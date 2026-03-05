@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lotus · Mustapha Aouad | Immobilier de prestige</title>
+  <title>Lotus · Mustapha Aouad | Collection Prestige</title>
   <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- Google Fonts: outfit (moderne, américain) + playfair pour accents -->
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts: Outfit + Playfair -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    /* Reset & base */
     * {
       margin: 0;
       padding: 0;
@@ -18,8 +17,8 @@
 
     body {
       font-family: 'Outfit', sans-serif;
-      background-color: #fefefe;
-      color: #1e1e1e;
+      background: #fffcf8;
+      color: #1e2a2a;
       line-height: 1.5;
     }
 
@@ -29,521 +28,493 @@
       padding: 0 2rem;
     }
 
-    /* Navigation ultra clean, fixe mais sans mouvement parasite */
+    /* ===== NAVIGATION FIXE ÉLÉGANTE ===== */
     .navbar {
       position: fixed;
       top: 0;
-      left: 0;
       width: 100%;
-      background: white;
-      padding: 1.2rem 2rem;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid rgba(0,0,0,0.05);
-      box-shadow: 0 4px 30px rgba(0,0,0,0.02);
+      border-bottom: 1px solid rgba(181, 139, 107, 0.2);
+      box-shadow: 0 5px 30px rgba(0,0,0,0.03);
       z-index: 1000;
     }
 
     .logo {
       font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      font-weight: 700;
-      color: #b58b6b;
-      letter-spacing: -0.02em;
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: linear-gradient(145deg, #b58b6b, #7a5a44);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     .logo span {
       font-family: 'Outfit', sans-serif;
       font-size: 1rem;
       font-weight: 300;
-      color: #6b5a4e;
+      background: none;
+      -webkit-text-fill-color: #6b5a4e;
       margin-left: 0.3rem;
     }
 
     .nav-links {
       display: flex;
-      gap: 3rem;
+      gap: 2.2rem;
       align-items: center;
     }
     .nav-links a {
       text-decoration: none;
-      color: #2b2b2b;
+      color: #2e2e2e;
       font-weight: 500;
       font-size: 1rem;
       letter-spacing: 0.3px;
-      transition: color 0.2s;
-      padding: 0.3rem 0;
+      padding: 0.4rem 0;
       border-bottom: 2px solid transparent;
+      transition: 0.2s;
     }
     .nav-links a:hover {
       color: #b58b6b;
       border-bottom-color: #b58b6b;
     }
-
-    .phone-link {
+    .phone-btn {
       background: #b58b6b;
       color: white !important;
-      padding: 0.7rem 2rem !important;
+      padding: 0.6rem 2rem !important;
       border-radius: 40px;
-      font-weight: 600;
       border-bottom: none !important;
-      box-shadow: 0 10px 20px rgba(181,139,107,0.15);
-      transition: all 0.2s;
-    }
-    .phone-link:hover {
-      background: #9f7353;
-      transform: scale(1.02);
+      font-weight: 600;
+      box-shadow: 0 10px 20px rgba(181,139,107,0.2);
     }
 
-    /* Hero section : sobre, grande photo */
+    /* ===== HERO SECTION ===== */
     .hero {
-      margin-top: 85px; /* hauteur navbar */
-      height: 85vh;
-      background: linear-gradient(95deg, #1b1b1b 0%, #3b332c 100%);
+      margin-top: 80px;
+      height: 90vh;
+      background: linear-gradient(100deg, #1a1a1a 0%, #3f332a 100%);
       position: relative;
       display: flex;
       align-items: center;
-      overflow: hidden;
     }
-
-    .hero-image {
+    .hero-bg {
       position: absolute;
       inset: 0;
-      opacity: 0.45;
+      opacity: 0.4;
     }
-    .hero-image img {
+    .hero-bg img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 25%;
+      object-position: center 30%;
     }
-
     .hero-content {
       position: relative;
       z-index: 5;
       color: white;
-      max-width: 700px;
-      margin-left: 5%;
+      max-width: 800px;
+      margin-left: 8%;
     }
     .hero-content h1 {
-      font-size: 4.8rem;
-      font-weight: 600;
+      font-size: 5.2rem;
+      font-family: 'Playfair Display', serif;
       line-height: 1.1;
-      font-family: 'Playfair Display', serif;
       margin-bottom: 1.5rem;
-      text-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
-    .hero-content p {
+    .hero-accent {
+      color: #e3c9b2;
+    }
+    .hero-desc {
       font-size: 1.4rem;
-      font-weight: 300;
       margin-bottom: 2.5rem;
-      opacity: 0.9;
       max-width: 600px;
+      opacity: 0.9;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #e3c9b2;
     }
 
-    .price-badge {
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,215,170,0.3);
-      padding: 1rem 2.5rem;
-      border-radius: 60px;
-      display: inline-block;
-      font-size: 1.4rem;
-      font-weight: 400;
-    }
-
-    /* Section titles */
+    /* ===== SECTION TITLES ===== */
     .section-title {
-      font-size: 3.2rem;
-      font-weight: 600;
+      font-size: 3.5rem;
       font-family: 'Playfair Display', serif;
-      color: #1e1e1e;
-      margin: 3rem 0 1rem;
-      letter-spacing: -0.01em;
+      margin: 4rem 0 1rem;
+      color: #1e2a2a;
     }
     .section-sub {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       color: #6b5a4e;
       margin-bottom: 3rem;
-      font-weight: 300;
-      border-left: 4px solid #b58b6b;
-      padding-left: 1.5rem;
+      border-left: 5px solid #b58b6b;
+      padding-left: 1.8rem;
     }
 
-    /* Grille américaine, aérée */
-    .grid {
+    /* ===== GRILLES PRODUITS ===== */
+    .grid-4 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-      gap: 2.5rem;
-      margin: 4rem 0;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
     }
-
-    .property-card {
+    .card {
       background: white;
-      border-radius: 20px;
+      border-radius: 24px;
       overflow: hidden;
-      box-shadow: 0 20px 40px -15px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s;
-      border: 1px solid #f0eae4;
+      box-shadow: 0 20px 35px -10px rgba(0,0,0,0.08);
+      transition: 0.3s;
+      border: 1px solid #f5ebe3;
     }
-    .property-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 35px 60px -20px rgba(181,139,107,0.3);
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 50px -15px #b58b6b80;
     }
-
     .card-img {
-      height: 280px;
+      height: 240px;
       overflow: hidden;
     }
     .card-img img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.6s;
+      transition: 0.5s;
     }
-    .property-card:hover .card-img img {
-      transform: scale(1.05);
+    .card:hover .card-img img {
+      transform: scale(1.07);
     }
-
     .card-body {
-      padding: 2rem;
+      padding: 1.8rem;
     }
     .card-body h3 {
-      font-size: 1.9rem;
-      font-weight: 600;
+      font-size: 1.8rem;
       margin-bottom: 0.3rem;
     }
     .card-loc {
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
       color: #b58b6b;
-      font-weight: 400;
-      margin: 0.5rem 0 1rem;
+      margin: 0.5rem 0;
     }
-    .card-price {
+    .price {
       font-size: 2rem;
       font-weight: 700;
-      color: #1e1e1e;
+      margin: 1rem 0;
     }
-    .card-price small {
-      font-size: 1rem;
-      font-weight: 300;
-      color: #8a7a6e;
-    }
-    .card-details {
-      margin-top: 1.5rem;
+    .card-footer {
       display: flex;
-      gap: 1.5rem;
+      justify-content: space-between;
       border-top: 1px solid #eee;
-      padding-top: 1.5rem;
+      padding-top: 1.2rem;
       color: #5f5349;
     }
 
-    /* Bureaux cards */
-    .office-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
-      margin: 3rem 0;
+    /* ===== PAGE SPÉCIFIQUE STYLE ===== */
+    .page {
+      display: none;
     }
-    .office-item {
-      background: #faf7f4;
-      border-radius: 24px;
-      padding: 2.5rem;
-      border: 1px solid #e8dfd7;
-    }
-    .office-item i {
-      font-size: 2.8rem;
-      color: #b58b6b;
-      margin-bottom: 1.5rem;
-    }
-    .office-item h3 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
+    .page.active-page {
+      display: block;
     }
 
-    /* Contact section */
-    .contact-section {
-      background: #1b1b1b;
+    /* ===== BOUTONS ===== */
+    .btn {
+      display: inline-block;
+      background: #b58b6b;
       color: white;
-      padding: 6rem 0;
-      margin-top: 4rem;
+      padding: 1rem 2.8rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 15px 25px #b58b6b60;
     }
-    .contact-flex {
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #b58b6b;
+      color: #b58b6b;
+      box-shadow: none;
+    }
+    .btn-outline:hover {
+      background: #b58b6b;
+      color: white;
+    }
+
+    /* ===== FORMULAIRE CONTACT ===== */
+    .contact-section {
+      background: #1e1e1e;
+      color: white;
+      padding: 5rem 0;
+      border-radius: 4rem 4rem 0 0;
+    }
+    .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4rem;
+      gap: 3rem;
     }
-    .form-group {
-      margin-bottom: 2rem;
+    .field {
+      margin-bottom: 1.8rem;
     }
     input, select, textarea {
       width: 100%;
-      padding: 1.2rem 1.8rem;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 50px;
+      padding: 1.2rem 2rem;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 60px;
+      color: white;
       font-size: 1rem;
-      color: white;
-      outline: none;
     }
-    input:focus, textarea:focus {
-      border-color: #b58b6b;
-    }
-    .submit-btn {
-      background: #b58b6b;
-      border: none;
-      padding: 1.2rem 2.5rem;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 1.2rem;
-      color: white;
-      width: 100%;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    .submit-btn:hover {
-      background: #c9a384;
-    }
-    .contact-info {
+    .info-card {
       background: rgba(255,255,255,0.03);
-      border-radius: 40px;
-      padding: 3rem;
-    }
-    .info-row {
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-      margin-bottom: 2rem;
-      font-size: 1.2rem;
+      padding: 2.5rem;
+      border-radius: 3rem;
     }
 
+    /* ===== FOOTER ===== */
     footer {
-      background: #0f0f0f;
-      color: #a1978b;
+      background: #121212;
+      color: #9e9286;
+      padding: 3rem;
       text-align: center;
-      padding: 2rem;
     }
 
-    /* Aucun mouvement étrange, tout est stable */
-    html {
-      scroll-behavior: smooth;
+    /* ===== INDICATEUR DE PAGE ===== */
+    .page-indicator {
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      margin: 2rem 0;
     }
-
-    /* adaptation mobile */
-    @media (max-width: 900px) {
-      .navbar {
-        flex-direction: column;
-        gap: 0.8rem;
-      }
-      .nav-links {
-        gap: 1.5rem;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      .hero-content h1 {
-        font-size: 3.5rem;
-      }
-      .contact-flex {
-        grid-template-columns: 1fr;
-      }
+    .dot {
+      width: 10px;
+      height: 10px;
+      background: #d4c2b5;
+      border-radius: 20px;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+    .dot.active {
+      background: #b58b6b;
+      width: 30px;
     }
   </style>
 </head>
 <body>
-  <!-- Navigation fixe, sobre, rien ne bouge anormalement -->
+  <!-- Navigation fixe -->
   <nav class="navbar">
     <div class="logo">LOTUS <span>Mustapha Aouad</span></div>
     <div class="nav-links">
-      <a href="#accueil">Accueil</a>
-      <a href="#appartements">Appartements</a>
-      <a href="#bureaux">Bureaux</a>
-      <a href="#contact" class="phone-link"><i class="fas fa-phone-alt"></i> +212 6XX-XXXXX</a>
+      <a href="#" class="nav-page" data-page="accueil">Accueil</a>
+      <a href="#" class="nav-page" data-page="appartements">Appartements</a>
+      <a href="#" class="nav-page" data-page="bureaux">Bureaux</a>
+      <a href="#" class="nav-page" data-page="prestige">Prestige</a>
+      <a href="#" class="nav-page" data-page="invest">Investir</a>
+      <a href="#" class="nav-page" data-page="services">Services</a>
+      <a href="#" class="nav-page" data-page="actus">Actualités</a>
+      <a href="#" class="nav-page phone-btn" data-page="contact">Contact</a>
     </div>
   </nav>
 
-  <!-- HERO PLEIN ÉCRAN - Accueil -->
-  <section id="accueil" class="hero">
-    <div class="hero-image">
-      <img src="https://images.pexels.com/photos/280229/pexels-photo-280229.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Luxe apartment">
-    </div>
-    <div class="hero-content">
-      <h1>Lotus <br><span style="color:#e0bfa0;">par Mustapha Aouad</span></h1>
-      <p>Appartements et bureaux haut standing — Anoual, Oasis, Val Fleuri. Des biens pour tous les prix, du studio au penthouse.</p>
-      <div class="price-badge">
-        <i class="fas fa-tag"></i> 890 000 DH - 12 500 000 DH
+  <!-- PAGE 1 : ACCUEIL -->
+  <div id="accueil" class="page active-page">
+    <section class="hero">
+      <div class="hero-bg"><img src="https://images.pexels.com/photos/280229/pexels-photo-280229.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div>
+      <div class="hero-content">
+        <h1>Vivez l'exception <br><span class="hero-accent">Lotus Collection</span></h1>
+        <p class="hero-desc">Anoual, Oasis, Val Fleuri · Appartements & bureaux haut standing · Du studio au penthouse, pour tous les budgets.</p>
+        <div class="hero-stats">
+          <div class="stat-item"><span class="stat-number">+150</span><br>biens vendus</div>
+          <div class="stat-item"><span class="stat-number">12</span><br>années d'expertise</div>
+          <div class="stat-item"><span class="stat-number">8</span><br>quartiers premium</div>
+        </div>
+      </div>
+    </section>
+    <!-- mini apperçu -->
+    <div class="container" style="padding: 4rem 0;">
+      <h2 class="section-title">Sélection du moment</h2>
+      <div class="grid-4">
+        <div class="card"><div class="card-img"><img src="https://images.pexels.com/photos/2587054/pexels-photo-2587054.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div><div class="card-body"><h3>Al Warda</h3><p class="card-loc">Anoual</p><div class="price">3 450 000 DH</div></div></div>
+        <div class="card"><div class="card-img"><img src="https://images.pexels.com/photos/276528/pexels-photo-276528.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div><div class="card-body"><h3>Golden Oasis</h3><p class="card-loc">Oasis</p><div class="price">2 990 000 DH</div></div></div>
+        <div class="card"><div class="card-img"><img src="https://images.pexels.com/photos/280232/pexels-photo-280232.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div><div class="card-body"><h3>Jardin d'Eau</h3><p class="card-loc">Val Fleuri</p><div class="price">4 200 000 DH</div></div></div>
+        <div class="card"><div class="card-img"><img src="https://images.pexels.com/photos/271795/pexels-photo-271795.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div><div class="card-body"><h3>Lotus Studio</h3><p class="card-loc">Anoual</p><div class="price">890 000 DH</div></div></div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- SECTION APPARTEMENTS (ancre) -->
-  <section id="appartements" class="container" style="padding: 5rem 0;">
-    <h2 class="section-title">Résidences d'exception</h2>
-    <div class="section-sub">Anoual · Oasis · Val Fleuri · 15 biens disponibles</div>
-
-    <div class="grid">
-      <!-- Carte 1 : Anoual penthouse -->
-      <div class="property-card">
-        <div class="card-img">
-          <img src="https://images.pexels.com/photos/2587054/pexels-photo-2587054.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Anoual">
-        </div>
-        <div class="card-body">
-          <h3>Al Warda Penthouse</h3>
-          <div class="card-loc"><i class="fas fa-map-pin"></i> Anoual, Casablanca</div>
-          <div class="card-price">3 450 000 DH <small>+ frais</small></div>
-          <div class="card-details">
-            <span><i class="far fa-building"></i> 180 m²</span>
-            <span><i class="far fa-bed"></i> 3 suites</span>
-            <span><i class="far fa-sun"></i> Terrasse 80m²</span>
-          </div>
-        </div>
-      </div>
-      <!-- Carte 2 : Oasis duplex -->
-      <div class="property-card">
-        <div class="card-img">
-          <img src="https://images.pexels.com/photos/276528/pexels-photo-276528.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Oasis">
-        </div>
-        <div class="card-body">
-          <h3>Golden Oasis</h3>
-          <div class="card-loc"><i class="fas fa-map-pin"></i> Oasis, Casablanca</div>
-          <div class="card-price">2 990 000 DH</div>
-          <div class="card-details">
-            <span><i class="far fa-building"></i> 140 m²</span>
-            <span><i class="far fa-bed"></i> 3 chambres</span>
-            <span><i class="far fa-tree"></i> Jardin 50m²</span>
-          </div>
-        </div>
-      </div>
-      <!-- Carte 3 : Val Fleuri -->
-      <div class="property-card">
-        <div class="card-img">
-          <img src="https://images.pexels.com/photos/280232/pexels-photo-280232.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Val Fleuri">
-        </div>
-        <div class="card-body">
-          <h3>Jardin d'Eau</h3>
-          <div class="card-loc"><i class="fas fa-map-pin"></i> Val Fleuri, Casablanca</div>
-          <div class="card-price">4 200 000 DH</div>
-          <div class="card-details">
-            <span><i class="far fa-building"></i> 220 m²</span>
-            <span><i class="far fa-bed"></i> 5 chambres</span>
-            <span><i class="fas fa-swimming-pool"></i> Piscine</span>
-          </div>
-        </div>
-      </div>
-      <!-- Carte 4 : Studio Anoual (entrée gamme) -->
-      <div class="property-card">
-        <div class="card-img">
-          <img src="https://images.pexels.com/photos/271795/pexels-photo-271795.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Studio">
-        </div>
-        <div class="card-body">
-          <h3>Lotus Studio</h3>
-          <div class="card-loc"><i class="fas fa-map-pin"></i> Anoual centre</div>
-          <div class="card-price">890 000 DH</div>
-          <div class="card-details">
-            <span><i class="far fa-building"></i> 45 m²</span>
-            <span><i class="far fa-bed"></i> studio</span>
-            <span><i class="far fa-sun"></i> balcon</span>
-          </div>
-        </div>
-      </div>
-      <!-- Carte 5 : Oasis grand standing -->
-      <div class="property-card">
-        <div class="card-img">
-          <img src="https://images.pexels.com/photos/279607/pexels-photo-279607.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Oasis luxe">
-        </div>
-        <div class="card-body">
-          <h3>Résidence Saada</h3>
-          <div class="card-loc"><i class="fas fa-map-pin"></i> Oasis</div>
-          <div class="card-price">1 750 000 DH</div>
-          <div class="card-details">
-            <span>95 m²</span><span>2 chambres</span><span>parking</span>
-          </div>
-        </div>
-      </div>
-      <!-- Carte 6 : Val Fleuri prestige -->
-      <div class="property-card">
-        <div class="card-img">
-          <img src="https://images.pexels.com/photos/280233/pexels-photo-280233.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Val Fleuri">
-        </div>
-        <div class="card-body">
-          <h3>Panorama Val Fleuri</h3>
-          <div class="card-loc"><i class="fas fa-map-pin"></i> Val Fleuri</div>
-          <div class="card-price">5 200 000 DH</div>
-          <div class="card-details">
-            <span>210 m²</span><span>4 chambres</span><span>vue</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION BUREAUX -->
-  <section id="bureaux" style="background: #f4f0ec; padding: 5rem 0;">
+  <!-- PAGE 2 : APPARTEMENTS (détaillée) -->
+  <div id="appartements" class="page">
+    <div style="height: 80px;"></div>
     <div class="container">
-      <h2 class="section-title">Bureaux & espaces pro</h2>
-      <div class="section-sub">À vendre ou à louer · Anoual, Oasis, Val Fleuri</div>
-      <div class="office-grid">
-        <div class="office-item">
-          <i class="fas fa-building"></i>
-          <h3>Anoual Business Center</h3>
-          <p>120 à 600 m² · prix sur demande · parking, sécurité 24/7</p>
-        </div>
-        <div class="office-item">
-          <i class="fas fa-chart-line"></i>
-          <h3>Oasis Plaza</h3>
-          <p>250 m², vue panoramique, 2 800 000 DH · disponible</p>
-        </div>
-        <div class="office-item">
-          <i class="fas fa-door-open"></i>
-          <h3>Val Fleuri · médical</h3>
-          <p>120 m², 3 salles, 1 950 000 DH · idéal cabinet</p>
-        </div>
-        <div class="office-item">
-          <i class="fas fa-warehouse"></i>
-          <h3>Plateau libre Oasis</h3>
-          <p>570 m², 4 500 000 DH · parking privé, clim central</p>
-        </div>
+      <h1 class="section-title">Tous nos appartements</h1>
+      <p class="section-sub">22 biens disponibles · Anoual · Oasis · Val Fleuri</p>
+      <div class="grid-4">
+        <div class="card"><div class="card-img"><img src="https://images.pexels.com/photos/2587054/pexels-photo-2587054.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div><div class="card-body"><h3>Al Warda</h3><p class="card-loc">Anoual</p><div class="price">3 450 000 DH</div><div class="card-footer"><span>180 m²</span><span>3 suites</span></div></div></div>
+        <div class="card"><div class="card-img"><img src="https://images.pexels.com/photos/276528/pexels-photo-276528.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div><div class="card-body"><h3>Golden Oasis</h3><p class="card-loc">Oasis</p><div class="price">2 990 000 DH</div><div class="card-footer"><span>140 m²</span><span>jardin</span></div></div></div>
+        <div class="card"><div class="card-img"><img src="https://images.pexels.com/photos/280232/pexels-photo-280232.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div><div class="card-body"><h3>Jardin d'Eau</h3><p class="card-loc">Val Fleuri</p><div class="price">4 200 000 DH</div><div class="card-footer"><span>220 m²</span><span>piscine</span></div></div></div>
+        <div class="card"><div class="card-img"><img src="https://images.pexels.com/photos/271795/pexels-photo-271795.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div><div class="card-body"><h3>Lotus Studio</h3><p class="card-loc">Anoual</p><div class="price">890 000 DH</div><div class="card-footer"><span>45 m²</span><span>balcon</span></div></div></div>
+        <div class="card"><div class="card-img"><img src="https://images.pexels.com/photos/279607/pexels-photo-279607.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div><div class="card-body"><h3>Résidence Saada</h3><p class="card-loc">Oasis</p><div class="price">1 750 000 DH</div><div class="card-footer"><span>95 m²</span><span>parking</span></div></div></div>
+        <div class="card"><div class="card-img"><img src="https://images.pexels.com/photos/280233/pexels-photo-280233.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div><div class="card-body"><h3>Panorama</h3><p class="card-loc">Val Fleuri</p><div class="price">5 200 000 DH</div><div class="card-footer"><span>210 m²</span><span>vue</span></div></div></div>
+        <div class="card"><div class="card-img"><img src="https://images.pexels.com/photos/1648776/pexels-photo-1648776.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div><div class="card-body"><h3>Résidence Mira</h3><p class="card-loc">Anoual</p><div class="price">2 350 000 DH</div><div class="card-footer"><span>130 m²</span><span>2 parkings</span></div></div></div>
+        <div class="card"><div class="card-img"><img src="https://images.pexels.com/photos/280234/pexels-photo-280234.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div><div class="card-body"><h3>Oasis Sky</h3><p class="card-loc">Oasis</p><div class="price">3 890 000 DH</div><div class="card-footer"><span>165 m²</span><span>terrasse</span></div></div></div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- SECTION CONTACT (formulaire + infos) -->
-  <section id="contact" class="contact-section">
-    <div class="container contact-flex">
+  <!-- PAGE 3 : BUREAUX -->
+  <div id="bureaux" class="page">
+    <div style="height: 80px;"></div>
+    <div class="container">
+      <h1 class="section-title">Bureaux & locaux professionnels</h1>
+      <div class="grid-4">
+        <div class="card"><div class="card-img"><img src="https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div><div class="card-body"><h3>Anoual BC</h3><div class="price">2 800 000 DH</div><p>250 m², parking</p></div></div>
+        <div class="card"><div class="card-img"><img src="https://images.pexels.com/photos/443383/pexels-photo-443383.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div><div class="card-body"><h3>Oasis Plaza</h3><div class="price">3 200 000 DH</div><p>300 m², vue</p></div></div>
+        <div class="card"><div class="card-img"><img src="https://images.pexels.com/photos/4483610/pexels-photo-4483610.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div><div class="card-body"><h3>Val Fleuri Medical</h3><div class="price">1 950 000 DH</div><p>120 m², 3 salles</p></div></div>
+        <div class="card"><div class="card-img"><img src="https://images.pexels.com/photos/380768/pexels-photo-380768.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div><div class="card-body"><h3>Oasis Warehouse</h3><div class="price">4 500 000 DH</div><p>570 m², libre</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 4 : PRESTIGE (haut de gamme) -->
+  <div id="prestige" class="page">
+    <div style="height: 80px;"></div>
+    <div class="container">
+      <h1 class="section-title">Collection Prestige</h1>
+      <p class="section-sub">Penthouse, villas avec toit-terrasse, domotique</p>
+      <div class="grid-4">
+        <div class="card"><div class="card-img"><img src="https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div><div class="card-body"><h3>Sky Penthouse</h3><p>Anoual</p><div class="price">8 200 000 DH</div></div></div>
+        <div class="card"><div class="card-img"><img src="https://images.pexels.com/photos/280233/pexels-photo-280233.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div><div class="card-body"><h3>Villa Oasis</h3><p>Oasis</p><div class="price">12 500 000 DH</div></div></div>
+        <div class="card"><div class="card-img"><img src="https://images.pexels.com/photos/261169/pexels-photo-261169.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div><div class="card-body"><h3>Val Fleuri Palace</h3><p>Val Fleuri</p><div class="price">9 800 000 DH</div></div></div>
+        <div class="card"><div class="card-img"><img src="https://images.pexels.com/photos/280229/pexels-photo-280229.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div><div class="card-body"><h3>Duplex Royal</h3><p>Anoual</p><div class="price">6 950 000 DH</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 5 : INVESTIR -->
+  <div id="invest" class="page">
+    <div style="height: 80px;"></div>
+    <div class="container">
+      <h1 class="section-title">Investir avec Lotus</h1>
+      <div style="display: flex; gap: 4rem; align-items: center; margin: 4rem 0;">
+        <div><i class="fas fa-chart-line" style="font-size:5rem;color:#b58b6b;"></i></div>
+        <div><h2 style="font-size:2.5rem;">Rentabilité locative jusqu'à 7%</h2><p>Études personnalisées, défiscalisation, gestion locative.</p></div>
+      </div>
+      <div class="grid-4">
+        <div class="card"><h3>Programme Anoual Park</h3><p>Rendement 6,5% · livraison 2026</p></div>
+        <div class="card"><h3>Oasis Business</h3><p>bureaux · rendement 7,2%</p></div>
+        <div class="card"><h3>Val Fleuri Résidence</h3><p>9 lots · prix à partir de 850 000 DH</p></div>
+        <div class="card"><h3>LMNP / déficit foncier</h3><p>Optimisation fiscale</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 6 : SERVICES -->
+  <div id="services" class="page">
+    <div style="height: 80px;"></div>
+    <div class="container">
+      <h1 class="section-title">Services sur mesure</h1>
+      <div class="grid-4">
+        <div class="card"><i class="fas fa-tools" style="font-size:3rem;"></i><h3>Rénovation clé en main</h3></div>
+        <div class="card"><i class="fas fa-balance-scale"></i><h3>Conseil juridique</h3></div>
+        <div class="card"><i class="fas fa-hand-holding-usd"></i><h3>Courtage en prêt</h3></div>
+        <div class="card"><i class="fas fa-paint-roller"></i><h3>Home staging</h3></div>
+        <div class="card"><i class="fas fa-key"></i><h3>Gestion locative</h3></div>
+        <div class="card"><i class="fas fa-shield-alt"></i><h3>Assurance dommage</h3></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 7 : ACTUALITÉS -->
+  <div id="actus" class="page">
+    <div style="height: 80px;"></div>
+    <div class="container">
+      <h1 class="section-title">Actualités & marché</h1>
+      <div class="grid-4">
+        <div class="card"><h3>Nouveau programme Val Fleuri</h3><p>Livraison 2026, 20 appartements</p></div>
+        <div class="card"><h3>Baisse des taux</h3><p>Profitez des nouvelles conditions</p></div>
+        <div class="card"><h3>Portes ouvertes Anoual</h3><p>24-25 mai 2025</p></div>
+        <div class="card"><h3>Guide de l'investisseur</h3><p>Téléchargez gratuitement</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 8 : CONTACT -->
+  <div id="contact" class="page contact-section">
+    <div style="height: 80px;"></div>
+    <div class="container contact-grid">
       <div>
-        <h2 style="font-size: 3rem; font-family: 'Playfair Display'; margin-bottom: 2rem;">Contactez Mustapha Aouad</h2>
-        <p style="margin-bottom: 2.5rem; font-size: 1.2rem;">Que vous soyez du Maroc ou international, pour acheter, vendre ou louer. Réponse rapide.</p>
-        <form onsubmit="event.preventDefault(); alert('Merci, votre message a été envoyé (démo). Nous vous contacterons.');">
-          <div class="form-group"><input type="text" placeholder="Nom complet" required></div>
-          <div class="form-group"><input type="email" placeholder="Email" required></div>
-          <div class="form-group"><input type="tel" placeholder="Téléphone (WhatsApp)"></div>
-          <div class="form-group">
-            <select>
-              <option>Je recherche un appartement</option>
-              <option>Je recherche un bureau</option>
-              <option>Je souhaite vendre/estimer</option>
-              <option>Autre demande</option>
-            </select>
-          </div>
-          <div class="form-group"><textarea rows="4" placeholder="Votre message (quartier, budget...)"></textarea></div>
-          <button class="submit-btn" type="submit"><i class="fab fa-whatsapp"></i> Envoyer la demande</button>
+        <h1 style="font-size:3.5rem; color:white;">Parlons de votre projet</h1>
+        <p style="margin:2rem 0;">Réponse sous 24h · WhatsApp direct</p>
+        <form onsubmit="event.preventDefault(); alert('Merci, nous vous contacterons rapidement.');">
+          <div class="field"><input placeholder="Nom complet"></div>
+          <div class="field"><input placeholder="Email"></div>
+          <div class="field"><input placeholder="Téléphone"></div>
+          <div class="field"><select><option>Appartement</option><option>Bureau</option><option>Investissement</option></select></div>
+          <div class="field"><textarea placeholder="Votre message"></textarea></div>
+          <button class="btn" style="width:100%;">Envoyer <i class="fab fa-whatsapp"></i></button>
         </form>
       </div>
-      <div class="contact-info">
-        <div class="info-row"><i class="fas fa-user-tie fa-2x" style="width: 3rem;"></i> <span><strong>Mustapha Aouad</strong> · Conseiller en immobilier</span></div>
-        <div class="info-row"><i class="fas fa-phone-alt fa-2x" style="width: 3rem;"></i> <span>+212 6 12 34 56 78 <br>+212 5 22 99 88 77</span></div>
-        <div class="info-row"><i class="fab fa-whatsapp fa-2x" style="width: 3rem;"></i> <span>WhatsApp direct : +212 6 11 22 33 44</span></div>
-        <div class="info-row"><i class="fas fa-map-marked-alt fa-2x" style="width: 3rem;"></i> <span>26, Bd Zerktouni · Casablanca<br> (RDV uniquement)</span></div>
-        <div class="info-row"><i class="fas fa-globe fa-2x" style="width: 3rem;"></i> <span>Maroc · International · Tous budgets</span></div>
+      <div class="info-card">
+        <div style="margin-bottom:2rem;"><i class="fas fa-user-tie fa-3x"></i> <strong style="font-size:2rem;">Mustapha Aouad</strong></div>
+        <p><i class="fas fa-phone"></i> +212 6 12 34 56 78</p>
+        <p><i class="fab fa-whatsapp"></i> +212 6 11 22 33 44</p>
+        <p><i class="fas fa-map-pin"></i> 26, Bd Zerktouni, Casablanca</p>
+        <p><i class="fas fa-clock"></i> Lun-Ven 9h-19h · Sam sur RDV</p>
       </div>
     </div>
-  </section>
+  </div>
+
+  <!-- Indicateur de pages (dots) -->
+  <div class="page-indicator">
+    <div class="dot active-dot" data-page="accueil"></div><div class="dot" data-page="appartements"></div><div class="dot" data-page="bureaux"></div><div class="dot" data-page="prestige"></div><div class="dot" data-page="invest"></div><div class="dot" data-page="services"></div><div class="dot" data-page="actus"></div><div class="dot" data-page="contact"></div>
+  </div>
 
   <footer>
-    <p>© 2025 LOTUS par Mustapha Aouad – Haut standing. Photos à usage illustratif. Site démonstration.</p>
+    <p>© 2025 LOTUS · Mustapha Aouad · Immobilier haut standing · Tous droits réservés · Photos non contractuelles</p>
   </footer>
 
-  <!-- Rien ne bouge anormalement, pas de dots ou pages cachées -->
+  <script>
+    const pages = document.querySelectorAll('.page');
+    const dots = document.querySelectorAll('.dot');
+    const navLinks = document.querySelectorAll('.nav-page');
+
+    function changePage(pageId) {
+      pages.forEach(p => p.classList.remove('active-page'));
+      document.getElementById(pageId).classList.add('active-page');
+      
+      dots.forEach(dot => {
+        dot.classList.remove('active');
+        if(dot.dataset.page === pageId) dot.classList.add('active');
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const page = link.dataset.page;
+        if(page) changePage(page);
+      });
+    });
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const page = dot.dataset.page;
+        changePage(page);
+      });
+    });
+
+    // Initialisation
+    changePage('accueil');
+  </script>
 </body>
 </html>
