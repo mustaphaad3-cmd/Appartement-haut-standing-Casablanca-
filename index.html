@@ -2,51 +2,40 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-  <title>LOTUS · MUSTAPHA AOUAD | Immobilier Interactif 2026</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>LOTUS · La Vallée d'Arbouazza</title>
   
   <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   
-  <!-- Google Fonts Ultra Modern -->
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Clash+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- AOS -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  
-  <!-- Swiper JS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  
-  <!-- Three.js -->
+  <!-- Three.js et GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  
-  <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   
-  <!-- Hammer.js pour le tactile -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
-  
   <style>
-    /* ===== RESET ===== */
+    /* ===== RESET COMPLET ===== */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
     }
 
     html {
       scroll-behavior: smooth;
       font-size: 16px;
-      touch-action: manipulation;
     }
 
     body {
       font-family: 'Space Grotesk', sans-serif;
       background: #0a0a0a;
       color: #ffffff;
-      line-height: 1.6;
       overflow-x: hidden;
+      width: 100%;
       position: relative;
     }
 
@@ -55,146 +44,120 @@
       --primary: #c8a27b;
       --primary-dark: #a67c5b;
       --primary-light: #e3c9b2;
-      --accent: #d4af37;
+      --gold: #d4af37;
       --glass: rgba(255,255,255,0.05);
       --glass-border: rgba(255,255,255,0.1);
-      --shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
-      --shadow-hover: 0 35px 70px -12px rgba(200,162,123,0.3);
-      --border-radius: 24px;
-      --border-radius-lg: 40px;
-      --transition: all 0.5s cubic-bezier(0.2, 0.9, 0.4, 1);
     }
 
-    /* ===== CONTAINER ===== */
+    /* ===== CONTAINER ADAPTATIF ===== */
     .container {
+      width: 100%;
       max-width: 1400px;
       margin: 0 auto;
-      padding: 0 2rem;
+      padding: 0 20px;
     }
 
-    /* ===== LOGO ANIMÉ ===== */
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      cursor: pointer;
-    }
-    .logo-svg {
-      width: 50px;
-      height: 50px;
-      filter: drop-shadow(0 0 15px rgba(200,162,123,0.5));
-      transition: transform 0.3s;
-    }
-    .logo-svg:active {
-      transform: scale(0.9);
-    }
-    .logo-text {
-      font-family: 'Clash Display', sans-serif;
-      font-size: 2rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #c8a27b, #e3c9b2);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .logo-text span {
-      font-size: 0.8rem;
-      font-weight: 300;
-      -webkit-text-fill-color: #888;
-      margin-left: 5px;
-    }
-
-    /* ===== NAVIGATION ===== */
+    /* ===== NAVIGATION ADAPTATIVE ===== */
     .navbar {
       position: fixed;
-      top: 20px;
+      top: 15px;
       left: 50%;
       transform: translateX(-50%);
-      width: 90%;
-      max-width: 1400px;
+      width: calc(100% - 30px);
+      max-width: 1300px;
       background: rgba(10,10,10,0.8);
       backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border: 1px solid var(--glass-border);
-      border-radius: 100px;
-      padding: 0.8rem 2rem;
+      border-radius: 60px;
+      padding: 12px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       z-index: 9999;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #c8a27b, #e3c9b2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .nav-links {
       display: flex;
-      gap: 2.5rem;
-      align-items: center;
+      gap: 20px;
     }
+
     .nav-links a {
+      color: white;
       text-decoration: none;
-      color: #fff;
       font-weight: 500;
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      padding: 0.5rem;
-      transition: color 0.3s;
-      -webkit-tap-highlight-color: transparent;
+      font-size: 0.9rem;
+      padding: 8px 16px;
+      border-radius: 40px;
+      transition: all 0.3s;
     }
+
     .nav-links a:active {
-      color: var(--primary);
+      background: var(--primary);
       transform: scale(0.95);
     }
 
     .phone-btn {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      padding: 0.8rem 2.5rem;
-      border-radius: 50px;
+      background: var(--primary);
+      padding: 8px 20px !important;
     }
 
-    /* ===== ACCUEIL TACTILE INTERACTIF ===== */
-    #accueil {
-      min-height: 100vh;
-      background: linear-gradient(135deg, #050505, #1a1a1a);
-    }
-
-    .tactile-hero {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    /* ===== HERO SECTION 3D ===== */
+    .hero-3d {
       position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 700px;
       overflow: hidden;
     }
 
-    /* Toile de fond interactive */
-    #tactile-canvas {
+    #hero-canvas {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 0;
-      touch-action: none;
+      z-index: 1;
     }
 
-    .tactile-content {
-      position: relative;
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.3);
+    }
+
+    .hero-content {
       text-align: center;
       color: white;
       max-width: 900px;
-      padding: 2rem;
-      pointer-events: none;
+      padding: 20px;
     }
 
-    .tactile-content h1 {
-      font-family: 'Clash Display', sans-serif;
-      font-size: clamp(3rem, 10vw, 6rem);
+    .hero-content h1 {
+      font-size: clamp(2.5rem, 8vw, 5rem);
       font-weight: 800;
-      margin-bottom: 1.5rem;
+      margin-bottom: 20px;
       text-shadow: 0 20px 40px rgba(0,0,0,0.5);
-      pointer-events: none;
     }
 
-    .tactile-content h1 span {
+    .hero-content h1 span {
       color: var(--primary);
       display: inline-block;
       animation: float 3s ease-in-out infinite;
@@ -205,199 +168,251 @@
       50% { transform: translateY(-20px); }
     }
 
-    .tactile-stats {
-      display: flex;
-      gap: 4rem;
-      justify-content: center;
-      margin-top: 3rem;
-      pointer-events: none;
+    /* ===== AMENITÉS 3D INTERACTIVES ===== */
+    .amenites-3d {
+      position: relative;
+      padding: 80px 0;
+      background: linear-gradient(135deg, #050505, #111);
     }
 
-    .stat-item {
+    .amenites-title {
       text-align: center;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 50px;
+      font-family: 'Syne', sans-serif;
     }
 
-    .stat-number {
-      font-size: 3rem;
-      font-weight: 800;
-      color: var(--primary);
-      display: block;
-    }
-
-    /* Éléments tactiles flottants */
-    .touch-element {
-      position: absolute;
-      width: 100px;
-      height: 100px;
-      background: rgba(200,162,123,0.2);
-      border: 2px solid var(--primary);
-      border-radius: 50%;
-      backdrop-filter: blur(10px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 2rem;
-      cursor: pointer;
-      transition: transform 0.2s;
-      z-index: 3;
-      pointer-events: auto;
-      box-shadow: 0 0 30px rgba(200,162,123,0.3);
-      animation: floatElement 4s ease-in-out infinite;
-    }
-
-    .touch-element:active {
-      transform: scale(1.2) !important;
-      background: rgba(200,162,123,0.4);
-    }
-
-    @keyframes floatElement {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(5deg); }
-    }
-
-    /* ===== ESPACE 3D INTERACTIF POUR APPARTEMENTS ===== */
-    .appartement-3d-space {
-      width: 100%;
-      height: 600px;
-      position: relative;
-      border-radius: var(--border-radius-lg);
-      overflow: hidden;
-      border: 2px solid var(--primary);
-      box-shadow: 0 0 50px rgba(200,162,123,0.3);
-      margin: 3rem 0;
-    }
-
-    #appartement-canvas {
-      width: 100%;
-      height: 100%;
-      touch-action: none;
-    }
-
-    .object-controls {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0,0,0,0.7);
-      backdrop-filter: blur(10px);
-      padding: 1rem 2rem;
-      border-radius: 50px;
-      border: 1px solid var(--primary);
-      display: flex;
-      gap: 2rem;
-      z-index: 10;
-    }
-
-    .control-btn {
-      background: transparent;
-      border: 2px solid var(--primary);
-      color: white;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .control-btn:active {
-      background: var(--primary);
-      transform: scale(1.1);
-    }
-
-    /* ===== GRILLE DE BIENS ===== */
-    .grid {
+    .amenites-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-      gap: 2.5rem;
-      margin: 4rem 0;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
     }
 
-    .property-card {
-      background: rgba(20,20,20,0.8);
+    .amenite-card {
+      background: rgba(20,20,20,0.7);
       backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border: 1px solid var(--glass-border);
-      border-radius: var(--border-radius-lg);
-      overflow: hidden;
-      transition: var(--transition);
+      border-radius: 40px;
+      padding: 40px 30px;
+      text-align: center;
       cursor: pointer;
+      transition: all 0.5s;
       transform-style: preserve-3d;
+      perspective: 1000px;
     }
 
-    .property-card:active {
-      transform: scale(0.98);
+    .amenite-card:hover {
+      transform: translateY(-20px) rotateX(5deg);
+      border-color: var(--primary);
+      box-shadow: 0 30px 60px rgba(200,162,123,0.3);
     }
 
-    .card-img {
-      height: 280px;
-      position: relative;
-      overflow: hidden;
+    .amenite-card:active {
+      transform: scale(0.95);
     }
 
-    .card-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s;
-    }
-
-    .property-card:hover .card-img img {
-      transform: scale(1.1);
-    }
-
-    .img-badge-3d {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: white;
-      padding: 0.5rem 1.2rem;
-      border-radius: 50px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      z-index: 2;
+    .amenite-icon {
+      font-size: 4rem;
+      color: var(--primary);
+      margin-bottom: 20px;
       animation: pulse 2s infinite;
     }
 
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
+      50% { transform: scale(1.1); }
     }
 
-    .card-body {
-      padding: 2rem;
+    .amenite-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      color: var(--primary-light);
     }
 
-    .card-body h3 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
+    .amenite-card p {
+      color: #aaa;
+      font-size: 1rem;
     }
 
-    .card-price {
-      font-size: 2.5rem;
+    /* ===== AMENITÉS STYLE "LA VALLÉE D'ARBOUAZZA" ===== */
+    .amenites-speciales {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .amenite-speciale {
+      background: linear-gradient(135deg, rgba(200,162,123,0.1), rgba(0,0,0,0.3));
+      border: 1px solid var(--primary);
+      border-radius: 30px;
+      padding: 30px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: all 0.5s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .amenite-speciale::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 0.5s;
+    }
+
+    .amenite-speciale:hover::before {
+      left: 100%;
+    }
+
+    .amenite-speciale:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 50px rgba(200,162,123,0.3);
+    }
+
+    .amenite-speciale i {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    .amenite-speciale h4 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    /* ===== GRILLE DE BIENS 3D ===== */
+    .properties-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      padding: 50px 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .property-3d {
+      background: rgba(20,20,20,0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 40px;
+      overflow: hidden;
+      transition: all 0.5s;
+      cursor: pointer;
+    }
+
+    .property-3d:hover {
+      transform: translateY(-20px) scale(1.02);
+      border-color: var(--primary);
+      box-shadow: 0 40px 80px rgba(200,162,123,0.4);
+    }
+
+    .property-3d:active {
+      transform: scale(0.98);
+    }
+
+    .property-img {
+      width: 100%;
+      height: 250px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .property-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1s;
+    }
+
+    .property-3d:hover .property-img img {
+      transform: scale(1.1);
+    }
+
+    .property-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--primary);
+      padding: 8px 16px;
+      border-radius: 40px;
+      font-weight: 600;
+      z-index: 2;
+    }
+
+    .property-info {
+      padding: 25px;
+    }
+
+    .property-info h3 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .property-price {
+      font-size: 2.2rem;
       font-weight: 800;
       background: linear-gradient(135deg, #fff, var(--primary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin: 1rem 0;
+      margin: 15px 0;
     }
 
-    .card-details {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin: 1.5rem 0;
-      padding: 1.5rem 0;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+    .property-details {
+      display: flex;
+      gap: 20px;
+      color: #aaa;
     }
 
-    /* ===== MODAL 3D INTERACTIVE ===== */
+    /* ===== BOUTON 3D POUR VISITE ===== */
+    .btn-3d {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      border: none;
+      padding: 15px 40px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 20px;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-3d::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn-3d:hover::before {
+      left: 100%;
+    }
+
+    .btn-3d:active {
+      transform: scale(0.95);
+    }
+
+    /* ===== MODAL 3D ===== */
     .modal-3d {
       display: none;
       position: fixed;
@@ -407,9 +422,10 @@
       height: 100%;
       background: rgba(0,0,0,0.95);
       z-index: 100000;
-      justify-content: center;
       align-items: center;
-      backdrop-filter: blur(10px);
+      justify-content: center;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
     }
 
     .modal-3d.active {
@@ -419,7 +435,7 @@
     .modal-content {
       width: 95%;
       height: 95%;
-      max-width: 1600px;
+      max-width: 1400px;
       background: #111;
       border-radius: 60px;
       overflow: hidden;
@@ -430,16 +446,15 @@
     #modal-canvas {
       width: 100%;
       height: 100%;
-      touch-action: none;
     }
 
     .modal-close {
       position: absolute;
       top: 20px;
       right: 20px;
-      width: 60px;
-      height: 60px;
-      background: rgba(0,0,0,0.7);
+      width: 50px;
+      height: 50px;
+      background: rgba(0,0,0,0.5);
       backdrop-filter: blur(10px);
       border: 2px solid var(--primary);
       border-radius: 50%;
@@ -447,7 +462,7 @@
       align-items: center;
       justify-content: center;
       color: white;
-      font-size: 2.5rem;
+      font-size: 2rem;
       cursor: pointer;
       z-index: 100;
       transition: all 0.3s;
@@ -458,87 +473,42 @@
       background: var(--primary);
     }
 
-    .modal-objects-panel {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      background: rgba(0,0,0,0.7);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--primary);
-      border-radius: 60px;
-      padding: 1.5rem;
-      display: flex;
-      gap: 1rem;
-      z-index: 100;
-    }
-
-    .object-item {
-      width: 80px;
-      height: 80px;
-      background: rgba(255,255,255,0.1);
-      border: 2px solid var(--primary);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .object-item:active {
-      transform: scale(1.2);
-      background: var(--primary);
-    }
-
-    /* ===== SECTION TÉMOIGNAGES ===== */
-    .testimonials {
-      padding: 6rem 0;
-    }
-
-    .testimonial-card {
-      background: rgba(20,20,20,0.8);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--glass-border);
-      border-radius: 50px;
-      padding: 3rem;
-      transition: transform 0.3s;
-    }
-
-    .testimonial-card:active {
-      transform: scale(0.98);
-    }
-
     /* ===== SECTION CONTACT ===== */
     .contact-section {
-      padding: 6rem 0;
+      padding: 80px 0;
       background: linear-gradient(135deg, #000, #0a0a0a);
     }
 
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4rem;
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
     }
 
-    .form-group {
-      margin-bottom: 2rem;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      padding: 1.5rem 2rem;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
+    .contact-form {
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(10px);
+      padding: 40px;
       border-radius: 60px;
+      border: 1px solid var(--glass-border);
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 15px 20px;
+      margin-bottom: 20px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--glass-border);
+      border-radius: 40px;
       color: white;
       font-size: 1rem;
-      transition: all 0.3s;
     }
 
-    .form-group input:focus {
+    .contact-form input:focus {
       border-color: var(--primary);
       outline: none;
     }
@@ -546,16 +516,75 @@
     .contact-info {
       background: rgba(255,255,255,0.03);
       backdrop-filter: blur(10px);
-      border: 1px solid var(--glass-border);
+      padding: 40px;
       border-radius: 60px;
-      padding: 3rem;
+      border: 1px solid var(--glass-border);
     }
 
     /* ===== FOOTER ===== */
     .footer {
       background: #000;
-      padding: 4rem 0 2rem;
+      padding: 40px 0;
+      text-align: center;
       border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* ===== MEDIA QUERIES POUR IPHONE ===== */
+    @media screen and (max-width: 768px) {
+      .navbar {
+        padding: 10px 15px;
+      }
+
+      .logo {
+        font-size: 1.4rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .amenites-speciales {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+
+      .amenite-card {
+        padding: 30px 20px;
+      }
+
+      .amenite-card h3 {
+        font-size: 1.5rem;
+      }
+
+      .property-info h3 {
+        font-size: 1.5rem;
+      }
+
+      .property-price {
+        font-size: 1.8rem;
+      }
+    }
+
+    /* ===== MEDIA POUR TRÈS PETITS ÉCRANS ===== */
+    @media screen and (max-width: 380px) {
+      .container {
+        padding: 0 15px;
+      }
+
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+
+      .amenite-icon {
+        font-size: 3rem;
+      }
     }
 
     /* ===== PAGE SYSTEM ===== */
@@ -566,299 +595,241 @@
     .page.active-page {
       display: block;
     }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
-      
-      .tactile-stats {
-        flex-direction: column;
-        gap: 1rem;
-      }
-      
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .modal-objects-panel {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-    }
   </style>
 </head>
 <body>
   <!-- Navigation -->
   <nav class="navbar">
-    <div class="logo-container">
-      <svg class="logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M50 10 L80 40 L50 70 L20 40 L50 10Z" stroke="#c8a27b" stroke-width="2" fill="url(#gradient)" />
-        <defs>
-          <linearGradient id="gradient" x1="20" y1="10" x2="80" y2="70">
-            <stop stop-color="#c8a27b" />
-            <stop offset="1" stop-color="#e3c9b2" />
-          </linearGradient>
-        </defs>
-      </svg>
-      <div class="logo-text">LOTUS<span>Mustapha Aouad</span></div>
-    </div>
+    <div class="logo">LOTUS</div>
     <div class="nav-links">
       <a href="#" class="nav-page" data-page="accueil">Accueil</a>
       <a href="#" class="nav-page" data-page="appartements">Appartements</a>
-      <a href="#" class="nav-page" data-page="bureaux">Bureaux</a>
-      <a href="#" class="nav-page" data-page="prestige">Prestige</a>
-      <a href="#" class="nav-page" data-page="invest">Investir</a>
-      <a href="#" class="nav-page" data-page="services">Services</a>
-      <a href="#" class="nav-page" data-page="actus">Actualités</a>
+      <a href="#" class="nav-page" data-page="amenites">Aménités</a>
       <a href="#" class="nav-page phone-btn" data-page="contact">Contact</a>
     </div>
   </nav>
 
-  <!-- MODAL 3D INTERACTIVE -->
+  <!-- MODAL 3D -->
   <div class="modal-3d" id="modal3d">
     <div class="modal-content">
       <div class="modal-close" onclick="closeModal3D()">×</div>
-      <div id="modal-canvas"></div>
-      <div class="modal-objects-panel">
-        <div class="object-item" onclick="addObject('table')"><i class="fas fa-chair"></i></div>
-        <div class="object-item" onclick="addObject('lamp')"><i class="fas fa-lightbulb"></i></div>
-        <div class="object-item" onclick="addObject('sofa')"><i class="fas fa-couch"></i></div>
-        <div class="object-item" onclick="addObject('bed')"><i class="fas fa-bed"></i></div>
-        <div class="object-item" onclick="addObject('tv')"><i class="fas fa-tv"></i></div>
-      </div>
+      <canvas id="modal-canvas"></canvas>
     </div>
   </div>
 
-  <!-- PAGE ACCUEIL TACTILE -->
+  <!-- PAGE ACCUEIL -->
   <div id="accueil" class="page active-page">
-    <div class="tactile-hero">
-      <canvas id="tactile-canvas"></canvas>
-      
-      <!-- Éléments tactiles flottants -->
-      <div class="touch-element" style="top: 20%; left: 10%;" onclick="handleTouch('appartements')">
-        <i class="fas fa-building"></i>
-      </div>
-      <div class="touch-element" style="top: 60%; right: 15%;" onclick="handleTouch('prestige')">
-        <i class="fas fa-crown"></i>
-      </div>
-      <div class="touch-element" style="bottom: 20%; left: 20%;" onclick="handleTouch('invest')">
-        <i class="fas fa-chart-line"></i>
-      </div>
-      <div class="touch-element" style="top: 40%; right: 25%;" onclick="handleTouch('contact')">
-        <i class="fas fa-phone-alt"></i>
-      </div>
-      
-      <div class="tactile-content">
-        <h1 data-aos="fade-up">Touchez, <span>Explorez</span>, Vivez</h1>
-        <p data-aos="fade-up" data-aos-delay="200">L'immobilier interactif à Casablanca · Anoual · Oasis · Val Fleuri</p>
-        <div class="tactile-stats">
-          <div class="stat-item">
-            <span class="stat-number">350+</span>
-            <span>Biens vendus</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number">15</span>
-            <span>Ans d'expertise</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number">8</span>
-            <span>Programmes neufs</span>
-          </div>
+    <!-- Hero 3D -->
+    <section class="hero-3d">
+      <canvas id="hero-canvas"></canvas>
+      <div class="hero-overlay">
+        <div class="hero-content">
+          <h1>Bienvenue à <span>La Vallée d'Arbouazza</span></h1>
+          <p style="font-size: 1.2rem; margin-bottom: 30px;">L'excellence immobilière à Casablanca</p>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- ESPACE 3D INTERACTIF DANS ACCUEIL -->
-    <div class="container" style="padding: 4rem 0;">
-      <h2 class="section-title" style="color: white;">Espace Démo Interactif</h2>
-      <p class="section-subtitle">Touchez et déplacez les objets pour voir comment vous pouvez personnaliser votre futur appartement</p>
-      <div class="appartement-3d-space">
-        <canvas id="appartement-canvas"></canvas>
-        <div class="object-controls">
-          <div class="control-btn" onclick="rotateCamera('left')"><i class="fas fa-arrow-left"></i></div>
-          <div class="control-btn" onclick="rotateCamera('right')"><i class="fas fa-arrow-right"></i></div>
-          <div class="control-btn" onclick="addObject('random')"><i class="fas fa-plus"></i></div>
-          <div class="control-btn" onclick="resetObjects()"><i class="fas fa-undo"></i></div>
+    <!-- Aménités 3D Spectaculaires -->
+    <section class="amenites-3d">
+      <h2 class="amenites-title">Votre <span style="color: var(--primary);">Résidence de Rêve</span></h2>
+      
+      <!-- Grille principale des aménités avec effet 3D -->
+      <div class="amenites-grid">
+        <div class="amenite-card" data-aos="fade-up">
+          <div class="amenite-icon"><i class="fas fa-shield-alt"></i></div>
+          <h3>Résidence Sécurisée</h3>
+          <p>Vidéosurveillance 24h/24, gardiennage, accès par badge</p>
+        </div>
+
+        <div class="amenite-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="amenite-icon"><i class="fas fa-swimming-pool"></i></div>
+          <h3>Piscine</h3>
+          <p>Piscine olympique chauffée, espace détente, transats</p>
+        </div>
+
+        <div class="amenite-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="amenite-icon"><i class="fas fa-child"></i></div>
+          <h3>Aire de Jeux</h3>
+          <p>Espace enfants sécurisé, jeux modernes, baby-foot</p>
+        </div>
+
+        <div class="amenite-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="amenite-icon"><i class="fas fa-school"></i></div>
+          <h3>Proximité des écoles</h3>
+          <p>Écoles primaires, collèges et lycées à 5 minutes</p>
+        </div>
+
+        <div class="amenite-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="amenite-icon"><i class="fas fa-shopping-bag"></i></div>
+          <h3>Centres commerciaux</h3>
+          <p>Morocco Mall, Anfa Place à proximité immédiate</p>
+        </div>
+
+        <div class="amenite-card" data-aos="fade-up" data-aos-delay="500">
+          <div class="amenite-icon"><i class="fas fa-umbrella-beach"></i></div>
+          <h3>Proximité de la mer</h3>
+          <p>Plage à 10 minutes, vue mer exceptionnelle</p>
         </div>
       </div>
-    </div>
+
+      <!-- Aménités spéciales style "La Vallée d'Arbouazza" -->
+      <div class="amenites-speciales">
+        <div class="amenite-speciale">
+          <i class="fas fa-tree"></i>
+          <h4>Espace Vert</h4>
+          <p>Parc paysager de 2 hectares</p>
+        </div>
+        <div class="amenite-speciale">
+          <i class="fas fa-dumbbell"></i>
+          <h4>Salle de Sport</h4>
+          <p>Fitness, yoga, coach disponible</p>
+        </div>
+        <div class="amenite-speciale">
+          <i class="fas fa-wifi"></i>
+          <h4>Fibre Optique</h4>
+          <p>Internet très haut débit</p>
+        </div>
+        <div class="amenite-speciale">
+          <i class="fas fa-parking"></i>
+          <h4>Parking Sécurisé</h4>
+          <p>2 places par appartement</p>
+        </div>
+        <div class="amenite-speciale">
+          <i class="fas fa-tshirt"></i>
+          <h4>Laverie</h4>
+          <p>Espace laverie automatique</p>
+        </div>
+        <div class="amenite-speciale">
+          <i class="fas fa-dog"></i>
+          <h4>Espace Animal</h4>
+          <p>Parc à chiens</p>
+        </div>
+      </div>
+
+      <!-- Lien vers le site -->
+      <div style="text-align: center; margin-top: 30px;">
+        <a href="https://lavalleedarbouazza.com" target="_blank" style="color: var(--primary); font-size: 1.2rem; text-decoration: none; border: 2px solid var(--primary); padding: 15px 40px; border-radius: 60px; display: inline-block; transition: all 0.3s;" onmouseover="this.style.background='var(--primary)'; this.style.color='white';" onmouseout="this.style.background='transparent'; this.style.color='var(--primary)';">
+          lavalleedarbouazza.com <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- Appartements en vedette -->
+    <section style="padding: 60px 0;">
+      <div class="container">
+        <h2 class="amenites-title">Nos <span style="color: var(--primary);">Appartements</span></h2>
+        <div class="properties-grid">
+          <div class="property-3d" onclick="openModal3D()">
+            <div class="property-img">
+              <img src="https://images.pexels.com/photos/2587054/pexels-photo-2587054.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Appartement">
+              <div class="property-badge">Visite 3D</div>
+            </div>
+            <div class="property-info">
+              <h3>Penthouse Al Warda</h3>
+              <div class="property-price">3 450 000 DH</div>
+              <div class="property-details">
+                <span><i class="fas fa-vector-square"></i> 180 m²</span>
+                <span><i class="fas fa-bed"></i> 3 ch</span>
+                <span><i class="fas fa-bath"></i> 3 sdb</span>
+              </div>
+              <button class="btn-3d" onclick="event.stopPropagation(); openModal3D()">VISITE 3D INTERACTIVE</button>
+            </div>
+          </div>
+
+          <div class="property-3d" onclick="openModal3D()">
+            <div class="property-img">
+              <img src="https://images.pexels.com/photos/276528/pexels-photo-276528.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Appartement">
+              <div class="property-badge">Visite 3D</div>
+            </div>
+            <div class="property-info">
+              <h3>Golden Oasis</h3>
+              <div class="property-price">2 990 000 DH</div>
+              <div class="property-details">
+                <span>140 m²</span>
+                <span>3 ch</span>
+                <span>Jardin</span>
+              </div>
+              <button class="btn-3d" onclick="event.stopPropagation(); openModal3D()">VISITE 3D INTERACTIVE</button>
+            </div>
+          </div>
+
+          <div class="property-3d" onclick="openModal3D()">
+            <div class="property-img">
+              <img src="https://images.pexels.com/photos/280232/pexels-photo-280232.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Appartement">
+              <div class="property-badge">Visite 3D</div>
+            </div>
+            <div class="property-info">
+              <h3>Jardin d'Eau</h3>
+              <div class="property-price">4 200 000 DH</div>
+              <div class="property-details">
+                <span>220 m²</span>
+                <span>5 ch</span>
+                <span>Piscine</span>
+              </div>
+              <button class="btn-3d" onclick="event.stopPropagation(); openModal3D()">VISITE 3D INTERACTIVE</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 
   <!-- PAGE APPARTEMENTS -->
   <div id="appartements" class="page">
     <div style="height: 100px;"></div>
     <div class="container">
-      <h1 class="section-title">Nos Appartements Interactifs</h1>
-      <p class="section-subtitle">Touchez "Visite 3D" pour explorer et personnaliser chaque bien</p>
-      <div class="grid">
-        <!-- Carte 1 -->
-        <div class="property-card" onclick="window.location='#'">
-          <div class="card-img">
-            <img src="https://images.pexels.com/photos/2587054/pexels-photo-2587054.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="">
-            <span class="img-badge-3d" onclick="event.stopPropagation(); openModal3D('Al Warda Penthouse')"><i class="fas fa-cube"></i> Visite 3D</span>
-          </div>
-          <div class="card-body">
-            <h3>Al Warda Penthouse</h3>
-            <div class="card-price">3 450 000 DH</div>
-            <div class="card-details">
-              <div><span class="detail-value">180</span> m²</div>
-              <div><span class="detail-value">3</span> suites</div>
-              <div><span class="detail-value">80</span> terrasse</div>
-            </div>
-          </div>
+      <h1 class="amenites-title">Tous nos appartements</h1>
+      <div class="properties-grid">
+        <!-- Répéter pour plus d'appartements -->
+        <div class="property-3d">
+          <div class="property-img"><img src="https://images.pexels.com/photos/2587054/pexels-photo-2587054.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div>
+          <div class="property-info"><h3>Al Warda</h3><div class="property-price">3 450 000 DH</div></div>
         </div>
-
-        <!-- Carte 2 -->
-        <div class="property-card">
-          <div class="card-img">
-            <img src="https://images.pexels.com/photos/276528/pexels-photo-276528.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="">
-            <span class="img-badge-3d" onclick="event.stopPropagation(); openModal3D('Golden Oasis')"><i class="fas fa-cube"></i> Visite 3D</span>
-          </div>
-          <div class="card-body">
-            <h3>Golden Oasis</h3>
-            <div class="card-price">2 990 000 DH</div>
-            <div class="card-details">
-              <div>140 m²</div>
-              <div>3 ch</div>
-              <div>jardin</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Carte 3 -->
-        <div class="property-card">
-          <div class="card-img">
-            <img src="https://images.pexels.com/photos/280232/pexels-photo-280232.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="">
-            <span class="img-badge-3d" onclick="event.stopPropagation(); openModal3D('Jardin d\'Eau')"><i class="fas fa-cube"></i> Visite 3D</span>
-          </div>
-          <div class="card-body">
-            <h3>Jardin d'Eau</h3>
-            <div class="card-price">4 200 000 DH</div>
-            <div class="card-details">
-              <div>220 m²</div>
-              <div>5 ch</div>
-              <div>piscine</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Carte 4 -->
-        <div class="property-card">
-          <div class="card-img">
-            <img src="https://images.pexels.com/photos/271795/pexels-photo-271795.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="">
-          </div>
-          <div class="card-body">
-            <h3>Lotus Studio</h3>
-            <div class="card-price">890 000 DH</div>
-            <div class="card-details">
-              <div>45 m²</div>
-              <div>studio</div>
-              <div>balcon</div>
-            </div>
-          </div>
+        <div class="property-3d">
+          <div class="property-img"><img src="https://images.pexels.com/photos/276528/pexels-photo-276528.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div>
+          <div class="property-info"><h3>Golden Oasis</h3><div class="property-price">2 990 000 DH</div></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- PAGE BUREAUX -->
-  <div id="bureaux" class="page">
+  <!-- PAGE AMÉNITÉS -->
+  <div id="amenites" class="page">
     <div style="height: 100px;"></div>
     <div class="container">
-      <h1 class="section-title">Bureaux & Espaces Pro</h1>
-      <div class="grid">
-        <div class="property-card">
-          <div class="card-img"><img src="https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div>
-          <div class="card-body">
-            <h3>Anoual Business Center</h3>
-            <div class="card-price">2 800 000 DH</div>
-            <div class="card-details">
-              <div>250 m²</div>
-              <div>4 parkings</div>
-            </div>
-          </div>
-        </div>
-        <div class="property-card">
-          <div class="card-img"><img src="https://images.pexels.com/photos/443383/pexels-photo-443383.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div>
-          <div class="card-body">
-            <h3>Oasis Plaza</h3>
-            <div class="card-price">3 200 000 DH</div>
-            <div class="card-details">
-              <div>300 m²</div>
-              <div>vue</div>
-            </div>
-          </div>
-        </div>
+      <h1 class="amenites-title">Toutes nos aménités</h1>
+      <div class="amenites-grid">
+        <div class="amenite-card"><i class="fas fa-shield-alt fa-3x"></i><h3>Sécurité 24h</h3></div>
+        <div class="amenite-card"><i class="fas fa-swimming-pool fa-3x"></i><h3>Piscine</h3></div>
+        <div class="amenite-card"><i class="fas fa-child fa-3x"></i><h3>Aire de jeux</h3></div>
+        <div class="amenite-card"><i class="fas fa-school fa-3x"></i><h3>Proximité écoles</h3></div>
+        <div class="amenite-card"><i class="fas fa-shopping-bag fa-3x"></i><h3>Centres commerciaux</h3></div>
+        <div class="amenite-card"><i class="fas fa-umbrella-beach fa-3x"></i><h3>Proximité mer</h3></div>
       </div>
-    </div>
-  </div>
-
-  <!-- PAGE PRESTIGE -->
-  <div id="prestige" class="page">
-    <div style="height: 100px;"></div>
-    <div class="container">
-      <h1 class="section-title">Collection Prestige</h1>
-      <div class="grid">
-        <div class="property-card">
-          <div class="card-img"><img src="https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div>
-          <div class="card-body">
-            <h3>Sky Penthouse</h3>
-            <div class="card-price">8 200 000 DH</div>
-            <div class="card-details">
-              <div>280 m²</div>
-              <div>4 suites</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- PAGE INVESTISSEMENT -->
-  <div id="invest" class="page">
-    <div style="height: 100px;"></div>
-    <div class="container">
-      <h1 class="section-title">Investir avec Lotus</h1>
-      <p>Rentabilité jusqu'à 7,5%</p>
-    </div>
-  </div>
-
-  <!-- PAGE SERVICES -->
-  <div id="services" class="page">
-    <div style="height: 100px;"></div>
-    <div class="container">
-      <h1 class="section-title">Services</h1>
-    </div>
-  </div>
-
-  <!-- PAGE ACTUALITÉS -->
-  <div id="actus" class="page">
-    <div style="height: 100px;"></div>
-    <div class="container">
-      <h1 class="section-title">Actualités</h1>
     </div>
   </div>
 
   <!-- PAGE CONTACT -->
   <div id="contact" class="page contact-section">
     <div style="height: 100px;"></div>
-    <div class="container contact-grid">
-      <div>
-        <h2 style="color: white; font-size: 3rem;">Contactez Mustapha Aouad</h2>
-        <form>
-          <div class="form-group"><input type="text" placeholder="Nom"></div>
-          <div class="form-group"><input type="email" placeholder="Email"></div>
-          <div class="form-group"><input type="tel" placeholder="Téléphone"></div>
-          <div class="form-group"><textarea placeholder="Message"></textarea></div>
-          <button class="search-btn">Envoyer</button>
+    <div class="contact-grid">
+      <div class="contact-form">
+        <h2 style="margin-bottom: 30px;">Contactez-nous</h2>
+        <form onsubmit="event.preventDefault(); alert('Merci, nous vous contacterons.');">
+          <input type="text" placeholder="Nom complet">
+          <input type="email" placeholder="Email">
+          <input type="tel" placeholder="Téléphone">
+          <textarea rows="4" placeholder="Votre message"></textarea>
+          <button class="btn-3d" style="width: 100%;">Envoyer</button>
         </form>
       </div>
       <div class="contact-info">
+        <h2 style="margin-bottom: 30px;">Informations</h2>
         <p><i class="fas fa-phone"></i> +212 6 12 34 56 78</p>
         <p><i class="fab fa-whatsapp"></i> +212 6 11 22 33 44</p>
         <p><i class="fas fa-map-pin"></i> 26, Bd Zerktouni, Casablanca</p>
+        <p><i class="fas fa-globe"></i> lavalleedarbouazza.com</p>
       </div>
     </div>
   </div>
@@ -866,20 +837,12 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <p style="text-align: center;">© 2026 LOTUS · Mustapha Aouad · Immobilier Interactif</p>
+      <p>© 2026 LOTUS · La Vallée d'Arbouazza · Tous droits réservés</p>
     </div>
   </footer>
 
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    // Initialisation AOS
-    AOS.init();
-
-    // Variables globales pour la 3D
-    let scene, camera, renderer, objects = [];
-    let modalScene, modalCamera, modalRenderer, modalObjects = [];
-
-    // ===== SYSTÈME DE PAGES =====
+    // Système de pages
     const pages = document.querySelectorAll('.page');
     const navLinks = document.querySelectorAll('.nav-page');
 
@@ -896,103 +859,19 @@
       });
     });
 
-    // ===== FONCTIONS TACTILES =====
-    function handleTouch(destination) {
-      // Effet visuel
-      gsap.to('.touch-element', {
-        scale: 0.9,
-        duration: 0.2,
-        yoyo: true,
-        repeat: 1
-      });
-      
-      // Navigation
-      setTimeout(() => {
-        changePage(destination);
-      }, 300);
-    }
-
-    // ===== CANVAS TACTILE ACCUEIL =====
-    function initTactileCanvas() {
-      const canvas = document.getElementById('tactile-canvas');
+    // HERO 3D AVEC THREE.JS
+    function initHero3D() {
+      const canvas = document.getElementById('hero-canvas');
       if (!canvas) return;
 
-      const ctx = canvas.getContext('2d');
-      let width = window.innerWidth;
-      let height = window.innerHeight;
-      
-      canvas.width = width;
-      canvas.height = height;
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x050505);
 
-      let particles = [];
-      const particleCount = 100;
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      camera.position.set(5, 2, 10);
 
-      for (let i = 0; i < particleCount; i++) {
-        particles.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 2,
-          vy: (Math.random() - 0.5) * 2,
-          size: Math.random() * 5 + 2,
-          color: `rgba(200,162,123,${Math.random() * 0.5})`
-        });
-      }
-
-      function animate() {
-        ctx.clearRect(0, 0, width, height);
-
-        particles.forEach(p => {
-          p.x += p.vx;
-          p.y += p.vy;
-
-          if (p.x < 0 || p.x > width) p.vx *= -1;
-          if (p.y < 0 || p.y > height) p.vy *= -1;
-
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-          ctx.fillStyle = p.color;
-          ctx.fill();
-        });
-
-        requestAnimationFrame(animate);
-      }
-
-      animate();
-
-      // Interaction tactile
-      const hammertime = new Hammer(canvas);
-      hammertime.on('tap', (e) => {
-        const x = e.center.x;
-        const y = e.center.y;
-
-        // Créer une explosion de particules
-        for (let i = 0; i < 10; i++) {
-          particles.push({
-            x: x,
-            y: y,
-            vx: (Math.random() - 0.5) * 10,
-            vy: (Math.random() - 0.5) * 10,
-            size: Math.random() * 10 + 5,
-            color: `rgba(200,162,123,${Math.random() * 0.8})`
-          });
-        }
-      });
-    }
-
-    // ===== SCÈNE 3D INTERACTIVE POUR APPARTEMENT =====
-    function initAppartement3D() {
-      const canvas = document.getElementById('appartement-canvas');
-      if (!canvas) return;
-
-      scene = new THREE.Scene();
-      scene.background = new THREE.Color(0x111111);
-
-      camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
-      camera.position.set(5, 3, 8);
-      camera.lookAt(0, 1, 0);
-
-      renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-      renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+      renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.shadowMap.enabled = true;
 
       // Lumières
@@ -1004,121 +883,86 @@
       directionalLight.castShadow = true;
       scene.add(directionalLight);
 
-      // Sol
-      const floorGeometry = new THREE.BoxGeometry(8, 0.1, 6);
-      const floorMaterial = new THREE.MeshStandardMaterial({ color: 0x333333 });
+      // Sol avec réflexion
+      const floorGeometry = new THREE.CircleGeometry(20, 32);
+      const floorMaterial = new THREE.MeshStandardMaterial({ color: 0x111111, roughness: 0.2, metalness: 0.8 });
       const floor = new THREE.Mesh(floorGeometry, floorMaterial);
-      floor.position.y = -0.05;
+      floor.rotation.x = -Math.PI / 2;
+      floor.position.y = -0.1;
       floor.receiveShadow = true;
       scene.add(floor);
 
-      // Murs avec texture wireframe
-      const wallMaterial = new THREE.MeshStandardMaterial({ color: 0x555555, wireframe: true });
-
-      const wall1 = new THREE.Mesh(new THREE.BoxGeometry(0.1, 3, 6), wallMaterial);
-      wall1.position.set(-4, 1.5, 0);
-      scene.add(wall1);
-
-      const wall2 = new THREE.Mesh(new THREE.BoxGeometry(0.1, 3, 6), wallMaterial);
-      wall2.position.set(4, 1.5, 0);
-      scene.add(wall2);
-
-      const wall3 = new THREE.Mesh(new THREE.BoxGeometry(8, 3, 0.1), wallMaterial);
-      wall3.position.set(0, 1.5, -3);
-      scene.add(wall3);
-
-      const wall4 = new THREE.Mesh(new THREE.BoxGeometry(8, 3, 0.1), wallMaterial);
-      wall4.position.set(0, 1.5, 3);
-      scene.add(wall4);
-
-      // Objets de base
-      addTable();
-      addSofa();
-      addLamp();
-
-      function addTable() {
-        const tableTop = new THREE.Mesh(
-          new THREE.BoxGeometry(1.5, 0.1, 0.8),
-          new THREE.MeshStandardMaterial({ color: 0x8B4513 })
-        );
-        tableTop.position.set(0, 0.2, 0);
-        tableTop.castShadow = true;
-        tableTop.receiveShadow = true;
-        scene.add(tableTop);
-
-        const legGeo = new THREE.BoxGeometry(0.1, 0.4, 0.1);
-        const legMat = new THREE.MeshStandardMaterial({ color: 0x8B4513 });
-
-        const positions = [[-0.7, -0.1, -0.3], [0.7, -0.1, -0.3], [-0.7, -0.1, 0.3], [0.7, -0.1, 0.3]];
-        positions.forEach(pos => {
-          const leg = new THREE.Mesh(legGeo, legMat);
-          leg.position.set(pos[0], pos[1], pos[2]);
-          leg.castShadow = true;
-          leg.receiveShadow = true;
-          scene.add(leg);
+      // Immeubles 3D
+      const buildingColors = [0xc8a27b, 0xa67c5b, 0x8f684a, 0x7b5d44];
+      
+      for (let i = 0; i < 20; i++) {
+        const height = Math.random() * 3 + 1;
+        const geometry = new THREE.BoxGeometry(0.5, height, 0.5);
+        const material = new THREE.MeshStandardMaterial({ 
+          color: buildingColors[Math.floor(Math.random() * buildingColors.length)],
+          emissive: 0x221100
         });
+        const building = new THREE.Mesh(geometry, material);
+        
+        const angle = (i / 20) * Math.PI * 2;
+        const radius = 5 + Math.random() * 2;
+        building.position.x = Math.cos(angle) * radius;
+        building.position.z = Math.sin(angle) * radius;
+        building.position.y = height / 2;
+        
+        building.castShadow = true;
+        building.receiveShadow = true;
+        scene.add(building);
       }
 
-      function addSofa() {
-        const sofaBase = new THREE.Mesh(
-          new THREE.BoxGeometry(2, 0.5, 0.8),
-          new THREE.MeshStandardMaterial({ color: 0x800000 })
-        );
-        sofaBase.position.set(-2, 0.25, 1);
-        sofaBase.castShadow = true;
-        sofaBase.receiveShadow = true;
-        scene.add(sofaBase);
-
-        const sofaBack = new THREE.Mesh(
-          new THREE.BoxGeometry(2, 0.8, 0.2),
-          new THREE.MeshStandardMaterial({ color: 0x800000 })
-        );
-        sofaBack.position.set(-2, 0.7, 1.4);
-        sofaBack.castShadow = true;
-        sofaBack.receiveShadow = true;
-        scene.add(sofaBack);
+      // Particules flottantes
+      const particlesGeometry = new THREE.BufferGeometry();
+      const particlesCount = 1000;
+      const posArray = new Float32Array(particlesCount * 3);
+      
+      for (let i = 0; i < particlesCount * 3; i += 3) {
+        posArray[i] = (Math.random() - 0.5) * 30;
+        posArray[i+1] = (Math.random() - 0.5) * 15;
+        posArray[i+2] = (Math.random() - 0.5) * 30;
       }
+      
+      particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+      
+      const particlesMaterial = new THREE.PointsMaterial({
+        size: 0.05,
+        color: 0xc8a27b,
+        transparent: true,
+        opacity: 0.5,
+        blending: THREE.AdditiveBlending
+      });
+      
+      const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+      scene.add(particles);
 
-      function addLamp() {
-        const lampBase = new THREE.Mesh(
-          new THREE.CylinderGeometry(0.2, 0.2, 0.1),
-          new THREE.MeshStandardMaterial({ color: 0x888888 })
-        );
-        lampBase.position.set(2, 0.05, -1);
-        scene.add(lampBase);
-
-        const lampPole = new THREE.Mesh(
-          new THREE.CylinderGeometry(0.05, 0.05, 1.5),
-          new THREE.MeshStandardMaterial({ color: 0x888888 })
-        );
-        lampPole.position.set(2, 0.8, -1);
-        scene.add(lampPole);
-
-        const lampShade = new THREE.Mesh(
-          new THREE.ConeGeometry(0.3, 0.3),
-          new THREE.MeshStandardMaterial({ color: 0xffaa00 })
-        );
-        lampShade.position.set(2, 1.6, -1);
-        scene.add(lampShade);
-      }
-
+      // Animation
       function animate() {
         requestAnimationFrame(animate);
+        
+        particles.rotation.y += 0.0005;
+        
+        camera.position.x = Math.sin(Date.now() * 0.0005) * 12;
+        camera.position.z = Math.cos(Date.now() * 0.0005) * 12;
+        camera.lookAt(0, 1, 0);
+        
         renderer.render(scene, camera);
       }
-
+      
       animate();
 
-      // Gestion du redimensionnement
       window.addEventListener('resize', () => {
-        camera.aspect = canvas.clientWidth / canvas.clientHeight;
+        camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
-        renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+        renderer.setSize(window.innerWidth, window.innerHeight);
       });
     }
 
-    // ===== FONCTIONS POUR LA MODALE 3D =====
-    function openModal3D(propertyName) {
+    // MODAL 3D
+    function openModal3D() {
       document.getElementById('modal3d').classList.add('active');
       
       setTimeout(() => {
@@ -1134,25 +978,25 @@
       const canvas = document.getElementById('modal-canvas');
       if (!canvas) return;
 
-      modalScene = new THREE.Scene();
-      modalScene.background = new THREE.Color(0x0a0a0a);
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x111111);
 
-      modalCamera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
-      modalCamera.position.set(6, 4, 8);
-      modalCamera.lookAt(0, 1, 0);
+      const camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
+      camera.position.set(5, 3, 8);
+      camera.lookAt(0, 1, 0);
 
-      modalRenderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-      modalRenderer.setSize(canvas.clientWidth, canvas.clientHeight);
-      modalRenderer.shadowMap.enabled = true;
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+      renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+      renderer.shadowMap.enabled = true;
 
       // Lumières
       const ambientLight = new THREE.AmbientLight(0x404060);
-      modalScene.add(ambientLight);
+      scene.add(ambientLight);
 
-      const dirLight = new THREE.DirectionalLight(0xffffff, 1);
-      dirLight.position.set(3, 5, 5);
-      dirLight.castShadow = true;
-      modalScene.add(dirLight);
+      const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+      directionalLight.position.set(3, 5, 5);
+      directionalLight.castShadow = true;
+      scene.add(directionalLight);
 
       // Sol
       const floor = new THREE.Mesh(
@@ -1161,184 +1005,77 @@
       );
       floor.position.y = -0.05;
       floor.receiveShadow = true;
-      modalScene.add(floor);
+      scene.add(floor);
 
-      // Murs vitrés
-      const glassMaterial = new THREE.MeshStandardMaterial({ color: 0x88aaff, transparent: true, opacity: 0.2 });
+      // Murs avec texture wireframe
+      const wallMaterial = new THREE.MeshStandardMaterial({ color: 0x888888, wireframe: true, emissive: 0x221100 });
       
-      for (let i = -4; i <= 4; i += 8) {
-        const wall = new THREE.Mesh(new THREE.BoxGeometry(0.2, 3, 8), glassMaterial);
-        wall.position.set(i, 1.5, 0);
-        modalScene.add(wall);
-      }
+      const wall1 = new THREE.Mesh(new THREE.BoxGeometry(0.2, 3, 8), wallMaterial);
+      wall1.position.set(-5, 1.5, 0);
+      scene.add(wall1);
+      
+      const wall2 = new THREE.Mesh(new THREE.BoxGeometry(0.2, 3, 8), wallMaterial);
+      wall2.position.set(5, 1.5, 0);
+      scene.add(wall2);
+      
+      const wall3 = new THREE.Mesh(new THREE.BoxGeometry(10, 3, 0.2), wallMaterial);
+      wall3.position.set(0, 1.5, -4);
+      scene.add(wall3);
+      
+      const wall4 = new THREE.Mesh(new THREE.BoxGeometry(10, 3, 0.2), wallMaterial);
+      wall4.position.set(0, 1.5, 4);
+      scene.add(wall4);
 
-      for (let i = -3; i <= 3; i += 6) {
-        const wall = new THREE.Mesh(new THREE.BoxGeometry(10, 3, 0.2), glassMaterial);
-        wall.position.set(0, 1.5, i);
-        modalScene.add(wall);
-      }
-
-      // Plafond
-      const ceiling = new THREE.Mesh(
-        new THREE.BoxGeometry(10, 0.1, 8),
-        new THREE.MeshStandardMaterial({ color: 0x333333 })
+      // Meubles
+      const table = new THREE.Mesh(
+        new THREE.BoxGeometry(1.5, 0.1, 0.8),
+        new THREE.MeshStandardMaterial({ color: 0x8B4513 })
       );
-      ceiling.position.y = 3;
-      modalScene.add(ceiling);
+      table.position.set(1, 0.2, 0);
+      table.castShadow = true;
+      table.receiveShadow = true;
+      scene.add(table);
 
-      // Objets modulables
-      addModalObjects();
+      const sofa = new THREE.Mesh(
+        new THREE.BoxGeometry(2, 0.5, 0.8),
+        new THREE.MeshStandardMaterial({ color: 0x800000 })
+      );
+      sofa.position.set(-1.5, 0.25, 1.5);
+      sofa.castShadow = true;
+      sofa.receiveShadow = true;
+      scene.add(sofa);
 
-      function addModalObjects() {
-        // Table
-        const table = new THREE.Mesh(
-          new THREE.BoxGeometry(1.5, 0.1, 0.8),
-          new THREE.MeshStandardMaterial({ color: 0x8B4513 })
-        );
-        table.position.set(1, 0.2, 1);
-        table.castShadow = true;
-        table.receiveShadow = true;
-        modalScene.add(table);
-        modalObjects.push(table);
-
-        // Canapé
-        const sofa = new THREE.Mesh(
-          new THREE.BoxGeometry(2, 0.5, 0.8),
-          new THREE.MeshStandardMaterial({ color: 0x800000 })
-        );
-        sofa.position.set(-2, 0.25, -1);
-        sofa.castShadow = true;
-        sofa.receiveShadow = true;
-        modalScene.add(sofa);
-        modalObjects.push(sofa);
-
-        // Lampe
-        const lamp = new THREE.Mesh(
-          new THREE.ConeGeometry(0.2, 0.5),
-          new THREE.MeshStandardMaterial({ color: 0xffaa00 })
-        );
-        lamp.position.set(2, 0.5, -1);
-        lamp.castShadow = true;
-        modalScene.add(lamp);
-        modalObjects.push(lamp);
-      }
-
+      // Animation
       function animate() {
         requestAnimationFrame(animate);
-        modalRenderer.render(modalScene, modalCamera);
+        
+        camera.position.x = Math.sin(Date.now() * 0.001) * 6;
+        camera.position.z = Math.cos(Date.now() * 0.001) * 6 + 2;
+        camera.lookAt(0, 1, 0);
+        
+        renderer.render(scene, camera);
       }
-
+      
       animate();
 
-      // Gestion tactile pour rotation
-      let isDragging = false;
-      let lastX = 0;
-
-      canvas.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        lastX = e.clientX;
+      window.addEventListener('resize', () => {
+        camera.aspect = canvas.clientWidth / canvas.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(canvas.clientWidth, canvas.clientHeight);
       });
-
-      canvas.addEventListener('mousemove', (e) => {
-        if (isDragging) {
-          const delta = e.clientX - lastX;
-          modalCamera.position.x += delta * 0.01;
-          modalCamera.lookAt(0, 1, 0);
-          lastX = e.clientX;
-        }
-      });
-
-      canvas.addEventListener('mouseup', () => isDragging = false);
-
-      // Touch events
-      canvas.addEventListener('touchstart', (e) => {
-        isDragging = true;
-        lastX = e.touches[0].clientX;
-      });
-
-      canvas.addEventListener('touchmove', (e) => {
-        if (isDragging) {
-          const delta = e.touches[0].clientX - lastX;
-          modalCamera.position.x += delta * 0.01;
-          modalCamera.lookAt(0, 1, 0);
-          lastX = e.touches[0].clientX;
-          e.preventDefault();
-        }
-      });
-
-      canvas.addEventListener('touchend', () => isDragging = false);
     }
 
-    // ===== FONCTIONS POUR AJOUTER DES OBJETS =====
-    function addObject(type) {
-      if (!modalScene) return;
-
-      let geometry, material, mesh;
-
-      switch(type) {
-        case 'table':
-          geometry = new THREE.BoxGeometry(1, 0.1, 0.6);
-          material = new THREE.MeshStandardMaterial({ color: 0x8B4513 });
-          mesh = new THREE.Mesh(geometry, material);
-          mesh.position.set(Math.random() * 4 - 2, 0.2, Math.random() * 4 - 2);
-          break;
-        case 'lamp':
-          geometry = new THREE.ConeGeometry(0.2, 0.5);
-          material = new THREE.MeshStandardMaterial({ color: 0xffaa00 });
-          mesh = new THREE.Mesh(geometry, material);
-          mesh.position.set(Math.random() * 4 - 2, 0.25, Math.random() * 4 - 2);
-          break;
-        case 'sofa':
-          geometry = new THREE.BoxGeometry(1.5, 0.4, 0.6);
-          material = new THREE.MeshStandardMaterial({ color: 0x800000 });
-          mesh = new THREE.Mesh(geometry, material);
-          mesh.position.set(Math.random() * 4 - 2, 0.2, Math.random() * 4 - 2);
-          break;
-        case 'bed':
-          geometry = new THREE.BoxGeometry(1.8, 0.3, 1.2);
-          material = new THREE.MeshStandardMaterial({ color: 0x336699 });
-          mesh = new THREE.Mesh(geometry, material);
-          mesh.position.set(Math.random() * 4 - 2, 0.15, Math.random() * 4 - 2);
-          break;
-        case 'tv':
-          geometry = new THREE.BoxGeometry(1.2, 0.8, 0.1);
-          material = new THREE.MeshStandardMaterial({ color: 0x000000 });
-          mesh = new THREE.Mesh(geometry, material);
-          mesh.position.set(Math.random() * 4 - 2, 0.4, Math.random() * 4 - 2);
-          break;
-      }
-
-      if (mesh) {
-        mesh.castShadow = true;
-        mesh.receiveShadow = true;
-        modalScene.add(mesh);
-        modalObjects.push(mesh);
-      }
-    }
-
-    function rotateCamera(direction) {
-      if (!modalCamera) return;
-      
-      if (direction === 'left') {
-        modalCamera.position.x -= 1;
-      } else {
-        modalCamera.position.x += 1;
-      }
-      modalCamera.lookAt(0, 1, 0);
-    }
-
-    function resetObjects() {
-      if (!modalScene) return;
-      
-      modalObjects.forEach(obj => modalScene.remove(obj));
-      modalObjects = [];
-    }
-
-    // ===== INITIALISATION =====
+    // Initialisation
     window.addEventListener('load', () => {
-      initTactileCanvas();
-      initAppartement3D();
+      initHero3D();
     });
+
+    // Gestion tactile pour éviter les défilements intempestifs
+    document.addEventListener('touchmove', (e) => {
+      if (e.target.closest('.modal-3d')) {
+        e.preventDefault();
+      }
+    }, { passive: false });
 
     changePage('accueil');
   </script>
