@@ -195,6 +195,70 @@
       color: var(--primary);
     }
 
+    /* ===== FILTRES PAR ADRESSE ===== */
+    .address-filters {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin: 30px 0;
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: white;
+      padding: 12px 30px;
+      border-radius: 60px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 1rem;
+    }
+
+    .filter-btn:hover {
+      background: var(--primary);
+      transform: scale(1.05);
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      box-shadow: 0 0 30px rgba(200,162,123,0.5);
+    }
+
+    /* ===== COMPTEURS D'APPARTEMENTS ===== */
+    .address-stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin: 30px 0 50px;
+    }
+
+    .stat-address {
+      text-align: center;
+      background: rgba(255,255,255,0.05);
+      padding: 20px 40px;
+      border-radius: 60px;
+      border: 1px solid var(--glass-border);
+    }
+
+    .stat-address h3 {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .stat-address p {
+      font-size: 2rem;
+      font-weight: 800;
+    }
+
+    .stat-address small {
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
     /* ===== GRILLE DE CARTES ===== */
     .grid {
       display: grid;
@@ -257,6 +321,19 @@
       animation: pulse 2s infinite;
     }
 
+    .badge-address {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(10px);
+      padding: 8px 16px;
+      border-radius: 40px;
+      font-weight: 600;
+      z-index: 2;
+      border: 1px solid var(--primary);
+    }
+
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.05); }
@@ -285,6 +362,13 @@
       gap: 20px;
       color: #aaa;
       margin: 15px 0;
+      flex-wrap: wrap;
+    }
+
+    .card-details span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
 
     .btn-3d {
@@ -319,6 +403,67 @@
 
     .btn-3d:active {
       transform: scale(0.95);
+    }
+
+    /* ===== PLAN 3D POUR DAR BOUAZZA ===== */
+    .plan-section {
+      padding: 60px 0;
+      background: linear-gradient(135deg, #050505, #111);
+    }
+
+    .plan-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    #dar-bouazza-canvas {
+      width: 100%;
+      height: 500px;
+      border-radius: 40px;
+      overflow: hidden;
+      border: 2px solid var(--primary);
+      box-shadow: 0 0 50px rgba(200,162,123,0.3);
+    }
+
+    .plan-features {
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 40px;
+      padding: 40px;
+    }
+
+    .plan-features h3 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: var(--primary);
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+      font-size: 1.2rem;
+    }
+
+    .feature-item i {
+      font-size: 2rem;
+      color: var(--primary);
+    }
+
+    .feature-tag {
+      background: rgba(200,162,123,0.2);
+      border: 1px solid var(--primary);
+      padding: 5px 15px;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      margin-left: 10px;
     }
 
     /* ===== AMÉNITÉS SPECTACULAIRES ===== */
@@ -378,35 +523,6 @@
 
     .amenite-card p {
       color: #aaa;
-    }
-
-    /* ===== SERVICES CARDS ===== */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-      padding: 30px 20px;
-    }
-
-    .service-card {
-      background: rgba(30,30,30,0.8);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--glass-border);
-      border-radius: 40px;
-      padding: 40px 30px;
-      text-align: center;
-      transition: all 0.5s;
-    }
-
-    .service-card:hover {
-      transform: translateY(-15px);
-      border-color: var(--primary);
-    }
-
-    .service-card i {
-      font-size: 3.5rem;
-      color: var(--primary);
-      margin-bottom: 20px;
     }
 
     /* ===== MODAL 3D ===== */
@@ -592,27 +708,24 @@
         padding: 6px 12px;
       }
 
+      .plan-container {
+        grid-template-columns: 1fr;
+      }
+
+      #dar-bouazza-canvas {
+        height: 300px;
+      }
+
       .contact-grid {
         grid-template-columns: 1fr;
       }
 
-      .hero-content h1 {
-        font-size: 2.2rem;
-      }
-    }
-
-    @media screen and (max-width: 480px) {
-      .nav-links a {
-        font-size: 0.7rem;
-        padding: 5px 8px;
+      .address-stats {
+        gap: 15px;
       }
 
-      .card-info h3 {
-        font-size: 1.4rem;
-      }
-
-      .card-price {
-        font-size: 1.6rem;
+      .stat-address {
+        padding: 15px 25px;
       }
     }
   </style>
@@ -648,7 +761,7 @@
       <div class="hero-overlay">
         <div class="hero-content">
           <h1>Bienvenue chez <span>LOTUS</span></h1>
-          <p style="font-size: 1.3rem; margin-bottom: 30px;">L'excellence immobilière à Casablanca · Anoual · Oasis · Val Fleuri</p>
+          <p style="font-size: 1.3rem; margin-bottom: 30px;">Anoual · Val Fleuri · Oasis · Dar Bouazza</p>
           <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
             <button class="btn-3d" style="width: auto; padding: 15px 40px;" onclick="changePage('appartements')">Découvrir</button>
             <button class="btn-3d" style="width: auto; padding: 15px 40px; background: transparent; border: 2px solid var(--primary);" onclick="changePage('contact')">Nous contacter</button>
@@ -657,56 +770,27 @@
       </div>
     </section>
 
-    <!-- Aperçu des appartements -->
+    <!-- Aperçu des adresses -->
     <div class="container">
-      <h2 class="section-title">Nos <span>Appartements</span> à la une</h2>
-      <div class="grid">
-        <div class="card-3d" onclick="openModal3D()">
-          <div class="card-img">
-            <img src="https://images.pexels.com/photos/2587054/pexels-photo-2587054.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="">
-            <div class="card-badge">Visite 3D</div>
-          </div>
-          <div class="card-info">
-            <h3>Al Warda Penthouse</h3>
-            <div class="card-price">3 450 000 DH</div>
-            <div class="card-details">
-              <span><i class="fas fa-vector-square"></i> 180 m²</span>
-              <span><i class="fas fa-bed"></i> 3 ch</span>
-            </div>
-            <button class="btn-3d" onclick="event.stopPropagation(); openModal3D()">VISITE 3D</button>
-          </div>
+      <h2 class="section-title">Nos <span>Résidences</span></h2>
+      <div class="address-stats">
+        <div class="stat-address">
+          <h3>Anoual</h3>
+          <p>15 <small>appartements</small></p>
+          <div style="color: var(--primary);">2 avec terrasse</div>
         </div>
-
-        <div class="card-3d" onclick="openModal3D()">
-          <div class="card-img">
-            <img src="https://images.pexels.com/photos/276528/pexels-photo-276528.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="">
-            <div class="card-badge">Visite 3D</div>
-          </div>
-          <div class="card-info">
-            <h3>Golden Oasis</h3>
-            <div class="card-price">2 990 000 DH</div>
-            <div class="card-details">
-              <span>140 m²</span>
-              <span>3 ch</span>
-            </div>
-            <button class="btn-3d" onclick="event.stopPropagation(); openModal3D()">VISITE 3D</button>
-          </div>
+        <div class="stat-address">
+          <h3>Val Fleuri</h3>
+          <p>10 <small>appartements</small></p>
         </div>
-
-        <div class="card-3d" onclick="openModal3D()">
-          <div class="card-img">
-            <img src="https://images.pexels.com/photos/280232/pexels-photo-280232.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="">
-            <div class="card-badge">Visite 3D</div>
-          </div>
-          <div class="card-info">
-            <h3>Jardin d'Eau</h3>
-            <div class="card-price">4 200 000 DH</div>
-            <div class="card-details">
-              <span>220 m²</span>
-              <span>5 ch</span>
-            </div>
-            <button class="btn-3d" onclick="event.stopPropagation(); openModal3D()">VISITE 3D</button>
-          </div>
+        <div class="stat-address">
+          <h3>Oasis</h3>
+          <p>8 <small>appartements</small></p>
+        </div>
+        <div class="stat-address">
+          <h3>Dar Bouazza</h3>
+          <p>6 <small>en construction</small></p>
+          <div style="color: var(--primary);">Piscine · Paddle · Chiens de garde</div>
         </div>
       </div>
     </div>
@@ -717,31 +801,235 @@
     <div style="height: 100px;"></div>
     <div class="container">
       <h2 class="section-title">Tous nos <span>Appartements</span></h2>
-      <div class="grid">
-        <div class="card-3d" onclick="openModal3D()">
-          <div class="card-img"><img src="https://images.pexels.com/photos/2587054/pexels-photo-2587054.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div>
-          <div class="card-info"><h3>Al Warda</h3><div class="card-price">3 450 000 DH</div><div class="card-details">180 m² · 3 ch</div><button class="btn-3d" onclick="event.stopPropagation(); openModal3D()">VISITE 3D</button></div>
+      
+      <!-- Filtres par adresse -->
+      <div class="address-filters">
+        <button class="filter-btn active" onclick="filterAppartements('all')">Tous</button>
+        <button class="filter-btn" onclick="filterAppartements('anoual')">Anoual (15)</button>
+        <button class="filter-btn" onclick="filterAppartements('valfleuri')">Val Fleuri (10)</button>
+        <button class="filter-btn" onclick="filterAppartements('oasis')">Oasis (8)</button>
+        <button class="filter-btn" onclick="filterAppartements('darbouazza')">Dar Bouazza (6)</button>
+      </div>
+
+      <div class="grid" id="appartements-grid">
+        <!-- Anoual - 15 appartements -->
+        <div class="card-3d" data-address="anoual" onclick="openModal3D()">
+          <div class="card-img">
+            <img src="https://images.pexels.com/photos/2587054/pexels-photo-2587054.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="">
+            <div class="badge-address">Anoual</div>
+            <div class="card-badge">Terrasse 80m²</div>
+          </div>
+          <div class="card-info">
+            <h3>Al Warda Penthouse</h3>
+            <div class="card-price">3 450 000 DH</div>
+            <div class="card-details">
+              <span><i class="fas fa-vector-square"></i> 180 m²</span>
+              <span><i class="fas fa-bed"></i> 3 ch</span>
+              <span><i class="fas fa-bath"></i> 3 sdb</span>
+            </div>
+            <button class="btn-3d" onclick="event.stopPropagation(); openModal3D()">VISITE 3D</button>
+          </div>
         </div>
-        <div class="card-3d" onclick="openModal3D()">
-          <div class="card-img"><img src="https://images.pexels.com/photos/276528/pexels-photo-276528.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div>
-          <div class="card-info"><h3>Golden Oasis</h3><div class="card-price">2 990 000 DH</div><div class="card-details">140 m² · 3 ch</div><button class="btn-3d" onclick="event.stopPropagation(); openModal3D()">VISITE 3D</button></div>
+
+        <div class="card-3d" data-address="anoual" onclick="openModal3D()">
+          <div class="card-img">
+            <img src="https://images.pexels.com/photos/271795/pexels-photo-271795.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="">
+            <div class="badge-address">Anoual</div>
+          </div>
+          <div class="card-info">
+            <h3>Lotus Studio</h3>
+            <div class="card-price">890 000 DH</div>
+            <div class="card-details">
+              <span>45 m²</span>
+              <span>studio</span>
+              <span>balcon</span>
+            </div>
+            <button class="btn-3d" onclick="event.stopPropagation(); openModal3D()">VISITE 3D</button>
+          </div>
         </div>
-        <div class="card-3d" onclick="openModal3D()">
-          <div class="card-img"><img src="https://images.pexels.com/photos/280232/pexels-photo-280232.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div>
-          <div class="card-info"><h3>Jardin d'Eau</h3><div class="card-price">4 200 000 DH</div><div class="card-details">220 m² · 5 ch</div><button class="btn-3d" onclick="event.stopPropagation(); openModal3D()">VISITE 3D</button></div>
+
+        <div class="card-3d" data-address="anoual" onclick="openModal3D()">
+          <div class="card-img">
+            <img src="https://images.pexels.com/photos/279607/pexels-photo-279607.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="">
+            <div class="badge-address">Anoual</div>
+          </div>
+          <div class="card-info">
+            <h3>Résidence Saada</h3>
+            <div class="card-price">1 750 000 DH</div>
+            <div class="card-details">
+              <span>95 m²</span>
+              <span>2 ch</span>
+              <span>parking</span>
+            </div>
+            <button class="btn-3d" onclick="event.stopPropagation(); openModal3D()">VISITE 3D</button>
+          </div>
         </div>
-        <div class="card-3d" onclick="openModal3D()">
-          <div class="card-img"><img src="https://images.pexels.com/photos/271795/pexels-photo-271795.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div>
-          <div class="card-info"><h3>Lotus Studio</h3><div class="card-price">890 000 DH</div><div class="card-details">45 m² · studio</div><button class="btn-3d" onclick="event.stopPropagation(); openModal3D()">VISITE 3D</button></div>
+
+        <!-- Anoual avec terrasse -->
+        <div class="card-3d" data-address="anoual" onclick="openModal3D()">
+          <div class="card-img">
+            <img src="https://images.pexels.com/photos/1648776/pexels-photo-1648776.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="">
+            <div class="badge-address">Anoual</div>
+            <div class="card-badge">Terrasse 40m²</div>
+          </div>
+          <div class="card-info">
+            <h3>Mira</h3>
+            <div class="card-price">2 350 000 DH</div>
+            <div class="card-details">
+              <span>130 m²</span>
+              <span>3 ch</span>
+              <span>2 parkings</span>
+            </div>
+            <button class="btn-3d" onclick="event.stopPropagation(); openModal3D()">VISITE 3D</button>
+          </div>
         </div>
-        <div class="card-3d" onclick="openModal3D()">
-          <div class="card-img"><img src="https://images.pexels.com/photos/279607/pexels-photo-279607.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div>
-          <div class="card-info"><h3>Résidence Saada</h3><div class="card-price">1 750 000 DH</div><div class="card-details">95 m² · 2 ch</div><button class="btn-3d" onclick="event.stopPropagation(); openModal3D()">VISITE 3D</button></div>
+
+        <!-- Val Fleuri - 10 appartements -->
+        <div class="card-3d" data-address="valfleuri" onclick="openModal3D()">
+          <div class="card-img">
+            <img src="https://images.pexels.com/photos/280232/pexels-photo-280232.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="">
+            <div class="badge-address">Val Fleuri</div>
+          </div>
+          <div class="card-info">
+            <h3>Jardin d'Eau</h3>
+            <div class="card-price">4 200 000 DH</div>
+            <div class="card-details">
+              <span>220 m²</span>
+              <span>5 ch</span>
+              <span>piscine</span>
+            </div>
+            <button class="btn-3d" onclick="event.stopPropagation(); openModal3D()">VISITE 3D</button>
+          </div>
         </div>
-        <div class="card-3d" onclick="openModal3D()">
-          <div class="card-img"><img src="https://images.pexels.com/photos/280233/pexels-photo-280233.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div>
-          <div class="card-info"><h3>Panorama</h3><div class="card-price">5 200 000 DH</div><div class="card-details">210 m² · 4 ch</div><button class="btn-3d" onclick="event.stopPropagation(); openModal3D()">VISITE 3D</button></div>
+
+        <div class="card-3d" data-address="valfleuri" onclick="openModal3D()">
+          <div class="card-img">
+            <img src="https://images.pexels.com/photos/280233/pexels-photo-280233.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="">
+            <div class="badge-address">Val Fleuri</div>
+          </div>
+          <div class="card-info">
+            <h3>Panorama</h3>
+            <div class="card-price">5 200 000 DH</div>
+            <div class="card-details">
+              <span>210 m²</span>
+              <span>4 ch</span>
+              <span>vue mer</span>
+            </div>
+            <button class="btn-3d" onclick="event.stopPropagation(); openModal3D()">VISITE 3D</button>
+          </div>
         </div>
+
+        <!-- Oasis - 8 appartements -->
+        <div class="card-3d" data-address="oasis" onclick="openModal3D()">
+          <div class="card-img">
+            <img src="https://images.pexels.com/photos/276528/pexels-photo-276528.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="">
+            <div class="badge-address">Oasis</div>
+          </div>
+          <div class="card-info">
+            <h3>Golden Oasis</h3>
+            <div class="card-price">2 990 000 DH</div>
+            <div class="card-details">
+              <span>140 m²</span>
+              <span>3 ch</span>
+              <span>jardin</span>
+            </div>
+            <button class="btn-3d" onclick="event.stopPropagation(); openModal3D()">VISITE 3D</button>
+          </div>
+        </div>
+
+        <div class="card-3d" data-address="oasis" onclick="openModal3D()">
+          <div class="card-img">
+            <img src="https://images.pexels.com/photos/280234/pexels-photo-280234.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="">
+            <div class="badge-address">Oasis</div>
+          </div>
+          <div class="card-info">
+            <h3>Oasis Sky</h3>
+            <div class="card-price">3 890 000 DH</div>
+            <div class="card-details">
+              <span>165 m²</span>
+              <span>3 ch</span>
+              <span>terrasse</span>
+            </div>
+            <button class="btn-3d" onclick="event.stopPropagation(); openModal3D()">VISITE 3D</button>
+          </div>
+        </div>
+
+        <!-- Dar Bouazza - 6 appartements en construction -->
+        <div class="card-3d" data-address="darbouazza" onclick="openModal3D()">
+          <div class="card-img">
+            <img src="https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="">
+            <div class="badge-address">Dar Bouazza</div>
+            <div class="card-badge">En construction</div>
+          </div>
+          <div class="card-info">
+            <h3>Résidence des Dunes</h3>
+            <div class="card-price">À partir de 2 500 000 DH</div>
+            <div class="card-details">
+              <span>Livraison 2026</span>
+              <span>Piscine</span>
+              <span>Paddle</span>
+            </div>
+            <button class="btn-3d" onclick="event.stopPropagation(); openModal3D()">VISITE 3D</button>
+          </div>
+        </div>
+
+        <div class="card-3d" data-address="darbouazza" onclick="openModal3D()">
+          <div class="card-img">
+            <img src="https://images.pexels.com/photos/261169/pexels-photo-261169.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="">
+            <div class="badge-address">Dar Bouazza</div>
+            <div class="card-badge">En construction</div>
+          </div>
+          <div class="card-info">
+            <h3>Villa Océane</h3>
+            <div class="card-price">4 500 000 DH</div>
+            <div class="card-details">
+              <span>350 m²</span>
+              <span>Piscine privée</span>
+              <span>Chiens de garde</span>
+            </div>
+            <button class="btn-3d" onclick="event.stopPropagation(); openModal3D()">VISITE 3D</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLAN 3D DAR BOUAZZA -->
+  <div class="plan-section">
+    <div class="plan-container">
+      <div id="dar-bouazza-canvas"></div>
+      <div class="plan-features">
+        <h3>Dar Bouazza · Résidence du Futur</h3>
+        <div class="feature-item">
+          <i class="fas fa-swimming-pool"></i>
+          <span>Piscine olympique chauffée</span>
+          <span class="feature-tag">Air plus</span>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-table-tennis"></i>
+          <span>Terrain de paddle</span>
+          <span class="feature-tag">Professionnel</span>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-dog"></i>
+          <span>Chiens de garde · Bergers allemands</span>
+          <span class="feature-tag">Sécurité 24h</span>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-shield-alt"></i>
+          <span>Sécurité biométrique</span>
+          <span class="feature-tag">Reconnaissance faciale</span>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-robot"></i>
+          <span>Domotique intégrée</span>
+          <span class="feature-tag">Maison connectée</span>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-tree"></i>
+          <span>Parc paysager 2 hectares</span>
+        </div>
+        <button class="btn-3d" style="margin-top: 30px;" onclick="changePage('contact')">Réserver une visite</button>
       </div>
     </div>
   </div>
@@ -751,36 +1039,27 @@
     <div style="height: 100px;"></div>
     <div class="container">
       <h2 class="section-title">Nos <span>Services</span> exclusifs</h2>
-      <div class="services-grid">
-        <div class="service-card">
-          <i class="fas fa-tools"></i>
-          <h3>Rénovation clé en main</h3>
-          <p>Devis gratuit, suivi de chantier, garantie décennale</p>
+      <div class="grid">
+        <div class="card-3d">
+          <div class="card-info">
+            <i class="fas fa-tools fa-3x" style="color: var(--primary); margin-bottom: 20px;"></i>
+            <h3>Rénovation clé en main</h3>
+            <p>Devis gratuit, suivi de chantier, garantie décennale</p>
+          </div>
         </div>
-        <div class="service-card">
-          <i class="fas fa-balance-scale"></i>
-          <h3>Conseil juridique</h3>
-          <p>Notaires, avocats, fiscalistes à votre écoute</p>
+        <div class="card-3d">
+          <div class="card-info">
+            <i class="fas fa-balance-scale fa-3x" style="color: var(--primary); margin-bottom: 20px;"></i>
+            <h3>Conseil juridique</h3>
+            <p>Notaires, avocats, fiscalistes à votre écoute</p>
+          </div>
         </div>
-        <div class="service-card">
-          <i class="fas fa-hand-holding-usd"></i>
-          <h3>Courtage en prêt</h3>
-          <p>Meilleurs taux, simulation gratuite</p>
-        </div>
-        <div class="service-card">
-          <i class="fas fa-paint-roller"></i>
-          <h3>Home staging</h3>
-          <p>Valorisez votre bien avant vente</p>
-        </div>
-        <div class="service-card">
-          <i class="fas fa-key"></i>
-          <h3>Gestion locative</h3>
-          <p>Recherche de locataires, gestion des loyers</p>
-        </div>
-        <div class="service-card">
-          <i class="fas fa-shield-alt"></i>
-          <h3>Assurance dommage</h3>
-          <p>Multirisque, garanties complètes</p>
+        <div class="card-3d">
+          <div class="card-info">
+            <i class="fas fa-hand-holding-usd fa-3x" style="color: var(--primary); margin-bottom: 20px;"></i>
+            <h3>Courtage en prêt</h3>
+            <p>Meilleurs taux, simulation gratuite</p>
+          </div>
         </div>
       </div>
     </div>
@@ -834,11 +1113,21 @@
       <div class="grid">
         <div class="card-3d" onclick="openModal3D()">
           <div class="card-img"><img src="https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div>
-          <div class="card-info"><h3>Sky Penthouse</h3><div class="card-price">8 200 000 DH</div><div class="card-details">280 m² · 4 suites</div><button class="btn-3d" onclick="event.stopPropagation(); openModal3D()">VISITE 3D</button></div>
+          <div class="card-info">
+            <h3>Sky Penthouse</h3>
+            <div class="card-price">8 200 000 DH</div>
+            <div class="card-details">280 m² · 4 suites</div>
+            <button class="btn-3d" onclick="event.stopPropagation(); openModal3D()">VISITE 3D</button>
+          </div>
         </div>
         <div class="card-3d" onclick="openModal3D()">
           <div class="card-img"><img src="https://images.pexels.com/photos/261169/pexels-photo-261169.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt=""></div>
-          <div class="card-info"><h3>Villa Oasis</h3><div class="card-price">12 500 000 DH</div><div class="card-details">450 m² · 6 ch</div><button class="btn-3d" onclick="event.stopPropagation(); openModal3D()">VISITE 3D</button></div>
+          <div class="card-info">
+            <h3>Villa Oasis</h3>
+            <div class="card-price">12 500 000 DH</div>
+            <div class="card-details">450 m² · 6 ch</div>
+            <button class="btn-3d" onclick="event.stopPropagation(); openModal3D()">VISITE 3D</button>
+          </div>
         </div>
       </div>
     </div>
@@ -849,21 +1138,27 @@
     <div style="height: 100px;"></div>
     <div class="container">
       <h2 class="section-title">Investir avec <span>LOTUS</span></h2>
-      <div class="services-grid">
-        <div class="service-card">
-          <i class="fas fa-chart-line"></i>
-          <h3>Rentabilité 7,5%</h3>
-          <p>Études personnalisées</p>
+      <div class="grid">
+        <div class="card-3d">
+          <div class="card-info">
+            <i class="fas fa-chart-line fa-3x" style="color: var(--primary);"></i>
+            <h3>Rentabilité 7,5%</h3>
+            <p>Études personnalisées</p>
+          </div>
         </div>
-        <div class="service-card">
-          <i class="fas fa-file-signature"></i>
-          <h3>Défiscalisation</h3>
-          <p>LMNP, déficit foncier</p>
+        <div class="card-3d">
+          <div class="card-info">
+            <i class="fas fa-file-signature fa-3x" style="color: var(--primary);"></i>
+            <h3>Défiscalisation</h3>
+            <p>LMNP, déficit foncier</p>
+          </div>
         </div>
-        <div class="service-card">
-          <i class="fas fa-building"></i>
-          <h3>Programmes neufs</h3>
-          <p>Livraison 2026</p>
+        <div class="card-3d">
+          <div class="card-info">
+            <i class="fas fa-building fa-3x" style="color: var(--primary);"></i>
+            <h3>Programmes neufs</h3>
+            <p>Livraison 2026</p>
+          </div>
         </div>
       </div>
     </div>
@@ -919,38 +1214,23 @@
     const pageDots = document.querySelectorAll('.page-dot');
 
     function changePage(pageId) {
-      // Cacher toutes les pages
-      pages.forEach(page => {
-        page.classList.remove('active-page');
-      });
-      
-      // Afficher la page sélectionnée
+      pages.forEach(page => page.classList.remove('active-page'));
       const activePage = document.getElementById(pageId);
-      if (activePage) {
-        activePage.classList.add('active-page');
-      }
+      if (activePage) activePage.classList.add('active-page');
       
-      // Mettre à jour la navigation
       navLinks.forEach(link => {
         link.classList.remove('active');
-        if (link.dataset.page === pageId) {
-          link.classList.add('active');
-        }
+        if (link.dataset.page === pageId) link.classList.add('active');
       });
       
-      // Mettre à jour les dots
       pageDots.forEach(dot => {
         dot.classList.remove('active');
-        if (dot.dataset.page === pageId) {
-          dot.classList.add('active');
-        }
+        if (dot.dataset.page === pageId) dot.classList.add('active');
       });
       
-      // Scroll en haut
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Écouteurs sur les liens de navigation
     navLinks.forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
@@ -958,14 +1238,28 @@
       });
     });
 
-    // Écouteurs sur les dots
     pageDots.forEach(dot => {
-      dot.addEventListener('click', () => {
-        changePage(dot.dataset.page);
-      });
+      dot.addEventListener('click', () => changePage(dot.dataset.page));
     });
 
-    // ===== HERO 3D AVEC THREE.JS =====
+    // ===== FILTRES APPARTEMENTS =====
+    function filterAppartements(address) {
+      const cards = document.querySelectorAll('.card-3d[data-address]');
+      const buttons = document.querySelectorAll('.filter-btn');
+      
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      
+      cards.forEach(card => {
+        if (address === 'all' || card.dataset.address === address) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // ===== HERO 3D =====
     function initHero3D() {
       const canvas = document.getElementById('hero-canvas');
       if (!canvas) return;
@@ -980,7 +1274,6 @@
       renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.shadowMap.enabled = true;
 
-      // Lumières
       const ambientLight = new THREE.AmbientLight(0x404060);
       scene.add(ambientLight);
 
@@ -1046,7 +1339,6 @@
         requestAnimationFrame(animate);
         
         particles.rotation.y += 0.0003;
-        
         camera.position.x = Math.sin(Date.now() * 0.0004) * 10;
         camera.position.z = Math.cos(Date.now() * 0.0004) * 10;
         camera.lookAt(0, 1, 0);
@@ -1060,6 +1352,99 @@
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    }
+
+    // ===== PLAN 3D DAR BOUAZZA =====
+    function initDarBouazzaPlan() {
+      const canvas = document.getElementById('dar-bouazza-canvas');
+      if (!canvas) return;
+
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x0a0a0a);
+
+      const camera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
+      camera.position.set(8, 5, 10);
+      camera.lookAt(0, 0, 0);
+
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+      renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+      renderer.shadowMap.enabled = true;
+
+      // Lumières
+      const ambientLight = new THREE.AmbientLight(0x404060);
+      scene.add(ambientLight);
+
+      const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+      dirLight.position.set(5, 10, 7);
+      dirLight.castShadow = true;
+      scene.add(dirLight);
+
+      // Sol
+      const ground = new THREE.Mesh(
+        new THREE.PlaneGeometry(20, 20),
+        new THREE.MeshStandardMaterial({ color: 0x1a2a1a })
+      );
+      ground.rotation.x = -Math.PI / 2;
+      ground.position.y = 0;
+      ground.receiveShadow = true;
+      scene.add(ground);
+
+      // Piscine
+      const poolGeo = new THREE.BoxGeometry(4, 0.2, 2);
+      const poolMat = new THREE.MeshStandardMaterial({ color: 0x4a90e2, emissive: 0x112233 });
+      const pool = new THREE.Mesh(poolGeo, poolMat);
+      pool.position.set(2, 0.1, 1);
+      pool.receiveShadow = true;
+      scene.add(pool);
+
+      // Terrain de paddle
+      const paddleGeo = new THREE.BoxGeometry(3, 0.1, 1.5);
+      const paddleMat = new THREE.MeshStandardMaterial({ color: 0x2a5a2a });
+      const paddle = new THREE.Mesh(paddleGeo, paddleMat);
+      paddle.position.set(-2, 0.1, -1);
+      scene.add(paddle);
+
+      // Immeubles
+      const buildingMat = new THREE.MeshStandardMaterial({ color: 0xc8a27b });
+      
+      for (let i = 0; i < 4; i++) {
+        const building = new THREE.Mesh(new THREE.BoxGeometry(1.5, 3, 1.5), buildingMat);
+        building.position.set(i * 2.5 - 3, 1.5, 2);
+        building.castShadow = true;
+        building.receiveShadow = true;
+        scene.add(building);
+      }
+
+      // Chiens de garde (représentés par des sphères)
+      const dogMat = new THREE.MeshStandardMaterial({ color: 0x8B4513 });
+      const dog1 = new THREE.Mesh(new THREE.SphereGeometry(0.3), dogMat);
+      dog1.position.set(3, 0.3, -2);
+      scene.add(dog1);
+      
+      const dog2 = new THREE.Mesh(new THREE.SphereGeometry(0.3), dogMat);
+      dog2.position.set(-3, 0.3, -2);
+      scene.add(dog2);
+
+      // Arbres
+      const treeMat = new THREE.MeshStandardMaterial({ color: 0x2a5a2a });
+      for (let i = 0; i < 10; i++) {
+        const tree = new THREE.Mesh(new THREE.ConeGeometry(0.3, 1), treeMat);
+        tree.position.set(Math.random() * 10 - 5, 0.5, Math.random() * 10 - 5);
+        scene.add(tree);
+      }
+
+      function animate() {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+      }
+      
+      animate();
+
+      window.addEventListener('resize', () => {
+        camera.aspect = canvas.clientWidth / canvas.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(canvas.clientWidth, canvas.clientHeight);
       });
     }
 
@@ -1089,7 +1474,6 @@
       renderer.setSize(canvas.clientWidth, canvas.clientHeight);
       renderer.shadowMap.enabled = true;
 
-      // Lumières
       const ambientLight = new THREE.AmbientLight(0x404060);
       scene.add(ambientLight);
 
@@ -1108,7 +1492,7 @@
       scene.add(floor);
 
       // Murs
-      const wallMat = new THREE.MeshStandardMaterial({ color: 0x888888, wireframe: true, emissive: 0x221100 });
+      const wallMat = new THREE.MeshStandardMaterial({ color: 0x888888, wireframe: true });
       
       const wall1 = new THREE.Mesh(new THREE.BoxGeometry(0.2, 3, 8), wallMat);
       wall1.position.set(-5, 1.5, 0);
@@ -1117,14 +1501,6 @@
       const wall2 = new THREE.Mesh(new THREE.BoxGeometry(0.2, 3, 8), wallMat);
       wall2.position.set(5, 1.5, 0);
       scene.add(wall2);
-      
-      const wall3 = new THREE.Mesh(new THREE.BoxGeometry(10, 3, 0.2), wallMat);
-      wall3.position.set(0, 1.5, -4);
-      scene.add(wall3);
-      
-      const wall4 = new THREE.Mesh(new THREE.BoxGeometry(10, 3, 0.2), wallMat);
-      wall4.position.set(0, 1.5, 4);
-      scene.add(wall4);
 
       // Meubles
       const table = new THREE.Mesh(
@@ -1135,21 +1511,11 @@
       table.castShadow = true;
       scene.add(table);
 
-      const sofa = new THREE.Mesh(
-        new THREE.BoxGeometry(2, 0.5, 0.8),
-        new THREE.MeshStandardMaterial({ color: 0x800000 })
-      );
-      sofa.position.set(-1.5, 0.25, 1.5);
-      sofa.castShadow = true;
-      scene.add(sofa);
-
       function animate() {
         requestAnimationFrame(animate);
-        
         camera.position.x = Math.sin(Date.now() * 0.001) * 6;
         camera.position.z = Math.cos(Date.now() * 0.001) * 6;
         camera.lookAt(0, 1, 0);
-        
         renderer.render(scene, camera);
       }
       
@@ -1165,6 +1531,7 @@
     // Initialisation
     window.addEventListener('load', () => {
       initHero3D();
+      initDarBouazzaPlan();
       changePage('accueil');
     });
   </script>
