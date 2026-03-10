@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-  <title>LOTUS · MUSTAPHA AOUAD | Votre Bonheur Immobilier</title>
+  <title>LOTUS · MUSTAPHA AOUAD | L'Excellence Immobilière</title>
   
   <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   
-  <!-- Google Fonts - Écriture propre et joyeuse -->
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Nunito:wght@300;400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
-  <!-- Three.js -->
+  <!-- Three.js pour l'arrière-plan 3D -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   
   <style>
-    /* ===== RESET DOUX ===== */
+    /* ===== RESET ÉLÉGANT ===== */
     * {
       margin: 0;
       padding: 0;
@@ -29,60 +29,59 @@
     }
 
     body {
-      font-family: 'Quicksand', 'Nunito', sans-serif;
-      background: #f9f7f5;
-      color: #2d4059;
+      font-family: 'Montserrat', sans-serif;
+      background: #faf7f2;
+      color: #5e503f;
       overflow-x: hidden;
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
-    /* ===== COULEURS VIVES ET JOYEUSES ===== */
+    /* ===== PALETTE BEIGE ÉLÉGANTE ===== */
     :root {
-      --primary: #ff6b6b;
-      --primary-light: #ff8e8e;
-      --secondary: #4ecdc4;
-      --secondary-light: #7ff0e8;
-      --accent: #ffe66d;
-      --accent-light: #fff2b5;
-      --green: #6ab04c;
-      --blue: #2980b9;
-      --purple: #9b59b6;
-      --orange: #f39c12;
-      --background: #f9f7f5;
-      --card-bg: #ffffff;
-      --text-dark: #2d4059;
-      --text-light: #6b7b8e;
-      --shadow: 0 15px 40px rgba(0,0,0,0.08);
-      --shadow-hover: 0 25px 50px rgba(255,107,107,0.15);
+      --primary: #c9a27b;
+      --primary-dark: #b08968;
+      --primary-light: #e5cfb5;
+      --secondary: #8f7a63;
+      --accent: #d9b382;
+      --beige-clair: #faf7f2;
+      --beige-moyen: #f0e5d8;
+      --beige-fonce: #dcd0c0;
+      --gris-chaud: #a49b8f;
+      --texte-fonce: #5e503f;
+      --texte-moyen: #8b7a6b;
+      --texte-clair: #b3a18f;
+      --blanc-casse: #fffaf5;
+      --ombre-douce: 0 20px 40px rgba(0,0,0,0.03);
+      --ombre-moyenne: 0 25px 50px rgba(0,0,0,0.05);
       --border-radius: 30px;
-      --border-radius-sm: 20px;
     }
 
     /* ===== CONTAINER ===== */
     .container {
       max-width: 1300px;
       margin: 0 auto;
-      padding: 0 25px;
+      padding: 0 30px;
     }
 
-    /* ===== TYPOGRAPHIE PROPRE ===== */
+    /* ===== TYPOGRAPHIE ÉLÉGANTE ===== */
     h1, h2, h3, h4 {
-      font-family: 'Nunito', 'Poppins', sans-serif;
-      font-weight: 700;
-      color: var(--text-dark);
+      font-family: 'Playfair Display', 'Cormorant Garamond', serif;
+      font-weight: 600;
+      color: var(--texte-fonce);
+      line-height: 1.3;
     }
 
     p {
-      font-family: 'Quicksand', sans-serif;
-      color: var(--text-light);
-      line-height: 1.7;
+      font-family: 'Montserrat', sans-serif;
+      color: var(--texte-moyen);
+      font-weight: 300;
+      line-height: 1.8;
     }
 
     .section-title {
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      margin: 40px 0 20px;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      margin: 60px 0 25px;
       position: relative;
-      display: inline-block;
     }
 
     .section-title span {
@@ -93,127 +92,137 @@
     .section-title span::after {
       content: '';
       position: absolute;
-      bottom: -5px;
+      bottom: -8px;
       left: 0;
       width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      border-radius: 4px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), transparent);
+      border-radius: 3px;
     }
 
     .section-subtitle {
-      font-size: 1.2rem;
-      color: var(--text-light);
-      margin-bottom: 40px;
-      max-width: 700px;
+      font-size: 1.3rem;
+      color: var(--texte-moyen);
+      margin-bottom: 50px;
+      max-width: 800px;
+      font-weight: 300;
+      font-style: italic;
     }
 
-    /* ===== NAVIGATION PROPRE ===== */
+    /* ===== ARRIÈRE-PLAN 3D ===== */
+    #bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    /* ===== NAVIGATION ÉLÉGANTE ===== */
     .navbar {
       position: fixed;
-      top: 20px;
+      top: 25px;
       left: 50%;
       transform: translateX(-50%);
-      width: calc(100% - 40px);
+      width: calc(100% - 50px);
       max-width: 1200px;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(10px);
-      border-radius: 80px;
-      padding: 12px 25px;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 70px;
+      padding: 15px 30px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: var(--shadow);
+      box-shadow: var(--ombre-moyenne);
       z-index: 9999;
-      border: 1px solid rgba(255,255,255,0.8);
+      border: 1px solid rgba(255,255,255,0.5);
     }
 
     .logo {
-      font-family: 'Nunito', sans-serif;
+      font-family: 'Playfair Display', serif;
       font-size: 2rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+      color: var(--primary);
       cursor: pointer;
+    }
+
+    .logo span {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--texte-moyen);
+      margin-left: 5px;
     }
 
     .nav-links {
       display: flex;
-      gap: 15px;
+      gap: 20px;
       flex-wrap: wrap;
       justify-content: center;
     }
 
     .nav-links a {
-      font-family: 'Quicksand', sans-serif;
-      color: var(--text-dark);
+      font-family: 'Montserrat', sans-serif;
+      color: var(--texte-fonce);
       text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
+      font-weight: 500;
+      font-size: 0.95rem;
       padding: 8px 18px;
       border-radius: 50px;
       transition: all 0.3s;
       cursor: pointer;
-      background: transparent;
+      letter-spacing: 0.5px;
     }
 
     .nav-links a:hover {
-      background: var(--primary);
-      color: white;
-      transform: scale(1.05);
+      background: var(--primary-light);
+      color: var(--primary-dark);
     }
 
     .nav-links a.active {
-      background: var(--secondary);
+      background: var(--primary);
       color: white;
     }
 
     .phone-btn {
       background: var(--primary) !important;
       color: white !important;
-      box-shadow: 0 5px 15px rgba(255,107,107,0.4);
     }
 
-    /* ===== HERO ACCUEILLANT ===== */
+    /* ===== HERO SECTION AVEC 3D ===== */
     .hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 100px 20px 50px;
-      background: linear-gradient(135deg, #fff5f0 0%, #f0f9ff 100%);
+      padding: 120px 20px 80px;
       position: relative;
-      overflow: hidden;
+      text-align: center;
     }
 
     .hero-content {
       max-width: 900px;
-      text-align: center;
       z-index: 2;
     }
 
     .hero h1 {
-      font-size: clamp(2.5rem, 7vw, 4.5rem);
+      font-size: clamp(3rem, 7vw, 5.5rem);
       margin-bottom: 20px;
-      color: var(--text-dark);
+      color: var(--texte-fonce);
     }
 
     .hero h1 .highlight {
       color: var(--primary);
-      display: inline-block;
-      animation: gentleFloat 3s ease-in-out infinite;
-    }
-
-    @keyframes gentleFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+      font-style: italic;
     }
 
     .hero p {
       font-size: 1.3rem;
       margin-bottom: 40px;
-      color: var(--text-light);
+      color: var(--texte-moyen);
       max-width: 700px;
       margin-left: auto;
       margin-right: auto;
@@ -227,89 +236,297 @@
     }
 
     .btn {
-      padding: 15px 40px;
+      padding: 16px 45px;
       border-radius: 60px;
-      font-family: 'Nunito', sans-serif;
-      font-weight: 700;
-      font-size: 1.1rem;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
       border: none;
       cursor: pointer;
       transition: all 0.3s;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      letter-spacing: 0.5px;
     }
 
     .btn-primary {
       background: var(--primary);
       color: white;
+      box-shadow: 0 15px 30px rgba(201,162,123,0.3);
     }
 
     .btn-primary:hover {
-      background: var(--primary-light);
+      background: var(--primary-dark);
       transform: translateY(-5px);
-      box-shadow: 0 20px 35px rgba(255,107,107,0.3);
+      box-shadow: 0 25px 40px rgba(201,162,123,0.4);
     }
 
     .btn-secondary {
-      background: white;
-      color: var(--text-dark);
-      border: 2px solid var(--secondary);
+      background: transparent;
+      color: var(--texte-fonce);
+      border: 2px solid var(--primary);
     }
 
     .btn-secondary:hover {
-      background: var(--secondary);
-      color: white;
+      background: var(--primary-light);
       transform: translateY(-5px);
     }
 
-    /* ===== STATISTIQUES JOYEUSES ===== */
+    /* ===== STATISTIQUES ÉLÉGANTES ===== */
     .stats-container {
       display: flex;
       justify-content: center;
-      gap: 30px;
+      gap: 40px;
       flex-wrap: wrap;
-      margin: 60px 0;
+      margin: 80px 0;
     }
 
     .stat-card {
-      background: white;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       padding: 30px 40px;
       border-radius: var(--border-radius);
-      box-shadow: var(--shadow);
       text-align: center;
-      min-width: 180px;
-      transition: all 0.3s;
-      border-bottom: 5px solid var(--primary);
+      min-width: 200px;
+      box-shadow: var(--ombre-douce);
+      border: 1px solid rgba(255,255,255,0.5);
+      transition: transform 0.3s;
     }
 
     .stat-card:hover {
       transform: translateY(-10px);
-      box-shadow: var(--shadow-hover);
     }
 
     .stat-number {
-      font-size: 3rem;
-      font-weight: 800;
+      font-size: 3.2rem;
+      font-weight: 700;
       color: var(--primary);
       line-height: 1;
+      font-family: 'Playfair Display', serif;
     }
 
     .stat-label {
-      font-size: 1.1rem;
-      color: var(--text-light);
+      font-size: 1rem;
+      color: var(--texte-moyen);
       margin-top: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
-    .stat-badge {
-      background: var(--accent);
-      color: var(--text-dark);
-      padding: 5px 15px;
-      border-radius: 50px;
-      font-size: 0.9rem;
-      margin-top: 15px;
-      display: inline-block;
+    /* ===== SECTION PRÉSENTATION DÉTAILLÉE ===== */
+    .presentation-section {
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 60px;
+      padding: 60px;
+      margin: 80px 0;
+      border: 1px solid rgba(255,255,255,0.5);
     }
 
-    /* ===== CARTES D'APPARTEMENTS VIVES ===== */
+    .presentation-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .presentation-text h3 {
+      font-size: 2rem;
+      margin-bottom: 25px;
+      color: var(--primary);
+    }
+
+    .presentation-text p {
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+    }
+
+    .signature {
+      margin-top: 30px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+
+    .values-list {
+      list-style: none;
+      margin-top: 30px;
+    }
+
+    .values-list li {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 1.1rem;
+    }
+
+    .values-list i {
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    /* ===== ÉQUIPE ===== */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin: 50px 0;
+    }
+
+    .team-card {
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 40px;
+      padding: 40px 30px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.5);
+      transition: all 0.3s;
+    }
+
+    .team-card:hover {
+      transform: translateY(-10px);
+      background: rgba(255,255,255,0.9);
+    }
+
+    .team-avatar {
+      width: 120px;
+      height: 120px;
+      background: var(--primary-light);
+      border-radius: 50%;
+      margin: 0 auto 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .team-avatar i {
+      font-size: 3.5rem;
+      color: var(--primary);
+    }
+
+    .team-name {
+      font-size: 1.8rem;
+      margin-bottom: 5px;
+    }
+
+    .team-role {
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .team-desc {
+      font-size: 0.95rem;
+    }
+
+    /* ===== COMPARATIF CONCURRENTS ===== */
+    .comparison-section {
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 60px;
+      padding: 60px;
+      margin: 80px 0;
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .comparison-card {
+      background: white;
+      border-radius: 40px;
+      padding: 40px;
+    }
+
+    .comparison-card h3 {
+      font-size: 2rem;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .comparison-card.lotus h3 i {
+      color: var(--primary);
+    }
+
+    .comparison-card.others h3 i {
+      color: var(--gris-chaud);
+    }
+
+    .comparison-list {
+      list-style: none;
+    }
+
+    .comparison-list li {
+      margin-bottom: 20px;
+      display: flex;
+      gap: 15px;
+      font-size: 1.1rem;
+    }
+
+    .comparison-list i.fa-check {
+      color: var(--primary);
+    }
+
+    .comparison-list i.fa-times {
+      color: #c44545;
+    }
+
+    /* ===== NOTRE MÉTHODE DE CONSTRUCTION ===== */
+    .method-section {
+      margin: 80px 0;
+    }
+
+    .method-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .method-card {
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 40px;
+      padding: 40px 30px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.5);
+      transition: all 0.3s;
+    }
+
+    .method-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .method-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--primary-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 25px;
+    }
+
+    .method-icon i {
+      font-size: 2.5rem;
+      color: var(--primary);
+    }
+
+    .method-card h4 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+
+    /* ===== GRILLE D'APPARTEMENTS ===== */
     .appartments-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -318,18 +535,20 @@
     }
 
     .appart-card {
-      background: white;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border-radius: var(--border-radius);
       overflow: hidden;
-      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.5);
       transition: all 0.3s;
       cursor: pointer;
-      border: 1px solid rgba(0,0,0,0.03);
     }
 
     .appart-card:hover {
       transform: translateY(-15px);
-      box-shadow: var(--shadow-hover);
+      box-shadow: var(--ombre-moyenne);
+      background: rgba(255,255,255,0.9);
     }
 
     .card-img {
@@ -357,9 +576,7 @@
       color: white;
       padding: 8px 20px;
       border-radius: 50px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      box-shadow: 0 5px 15px rgba(255,107,107,0.3);
+      font-weight: 500;
     }
 
     .card-address {
@@ -368,11 +585,10 @@
       left: 20px;
       background: rgba(255,255,255,0.9);
       backdrop-filter: blur(5px);
-      color: var(--text-dark);
+      color: var(--texte-fonce);
       padding: 8px 20px;
       border-radius: 50px;
-      font-weight: 600;
-      font-size: 0.9rem;
+      font-weight: 500;
     }
 
     .card-content {
@@ -382,12 +598,11 @@
     .card-title {
       font-size: 1.8rem;
       margin-bottom: 10px;
-      color: var(--text-dark);
     }
 
     .card-price {
       font-size: 2rem;
-      font-weight: 800;
+      font-weight: 700;
       color: var(--primary);
       margin: 15px 0;
     }
@@ -395,23 +610,19 @@
     .card-features {
       display: flex;
       gap: 15px;
-      color: var(--text-light);
-      margin: 15px 0;
       flex-wrap: wrap;
+      margin: 15px 0;
     }
 
     .card-features span {
-      background: #f5f5f5;
+      background: rgba(255,255,255,0.8);
       padding: 8px 15px;
       border-radius: 50px;
       font-size: 0.9rem;
-      display: flex;
-      align-items: center;
-      gap: 5px;
     }
 
     .btn-card {
-      background: var(--secondary);
+      background: var(--primary);
       color: white;
       border: none;
       padding: 15px 25px;
@@ -420,265 +631,26 @@
       width: 100%;
       cursor: pointer;
       transition: all 0.3s;
-      font-size: 1rem;
     }
 
     .btn-card:hover {
-      background: var(--secondary-light);
-      color: var(--text-dark);
+      background: var(--primary-dark);
     }
 
-    /* ===== AMÉNITÉS EN COULEURS ===== */
-    .amenities-showcase {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-      margin: 50px 0;
-    }
-
-    .amenity-card {
-      background: white;
-      border-radius: var(--border-radius);
-      padding: 35px 25px;
-      text-align: center;
-      box-shadow: var(--shadow);
-      transition: all 0.3s;
-      border-top: 5px solid transparent;
-    }
-
-    .amenity-card:nth-child(1) { border-top-color: var(--primary); }
-    .amenity-card:nth-child(2) { border-top-color: var(--secondary); }
-    .amenity-card:nth-child(3) { border-top-color: var(--accent); }
-    .amenity-card:nth-child(4) { border-top-color: var(--green); }
-    .amenity-card:nth-child(5) { border-top-color: var(--blue); }
-    .amenity-card:nth-child(6) { border-top-color: var(--purple); }
-
-    .amenity-card:hover {
-      transform: translateY(-10px);
-      box-shadow: var(--shadow-hover);
-    }
-
-    .amenity-card i {
-      font-size: 3.5rem;
-      margin-bottom: 20px;
-    }
-
-    .amenity-card:nth-child(1) i { color: var(--primary); }
-    .amenity-card:nth-child(2) i { color: var(--secondary); }
-    .amenity-card:nth-child(3) i { color: var(--accent); }
-    .amenity-card:nth-child(4) i { color: var(--green); }
-    .amenity-card:nth-child(5) i { color: var(--blue); }
-    .amenity-card:nth-child(6) i { color: var(--purple); }
-
-    .amenity-card h3 {
-      font-size: 1.6rem;
-      margin-bottom: 10px;
-    }
-
-    /* ===== IA CHATBOT (NOUVEAU) ===== */
-    .chatbot-container {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      z-index: 9998;
-    }
-
-    .chatbot-button {
-      width: 70px;
-      height: 70px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 10px 30px rgba(255,107,107,0.4);
-      transition: all 0.3s;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-    }
-
-    .chatbot-button i {
-      color: white;
-      font-size: 2rem;
-    }
-
-    .chatbot-window {
-      position: absolute;
-      bottom: 90px;
-      right: 0;
-      width: 350px;
-      background: white;
-      border-radius: 30px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-      overflow: hidden;
-      display: none;
-      border: 1px solid rgba(255,107,107,0.2);
-    }
-
-    .chatbot-window.active {
-      display: block;
-    }
-
-    .chatbot-header {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      padding: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .chatbot-header i {
-      font-size: 2rem;
-    }
-
-    .chatbot-header h3 {
-      color: white;
-      font-size: 1.3rem;
-    }
-
-    .chatbot-messages {
-      height: 300px;
-      overflow-y: auto;
-      padding: 20px;
-      background: #f9f9f9;
-    }
-
-    .message {
-      margin-bottom: 15px;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-    }
-
-    .message.bot {
-      justify-content: flex-start;
-    }
-
-    .message.user {
-      justify-content: flex-end;
-    }
-
-    .message-content {
-      max-width: 80%;
-      padding: 12px 18px;
-      border-radius: 20px;
-      font-size: 0.95rem;
-    }
-
-    .bot .message-content {
-      background: white;
-      border: 1px solid var(--secondary);
-      border-bottom-left-radius: 5px;
-    }
-
-    .user .message-content {
-      background: var(--primary);
-      color: white;
-      border-bottom-right-radius: 5px;
-    }
-
-    .chatbot-input {
-      display: flex;
-      padding: 15px;
-      background: white;
-      border-top: 1px solid #eee;
-    }
-
-    .chatbot-input input {
-      flex: 1;
-      padding: 12px 18px;
-      border: 1px solid #ddd;
-      border-radius: 50px;
-      outline: none;
-      font-family: 'Quicksand', sans-serif;
-    }
-
-    .chatbot-input button {
-      background: var(--secondary);
-      color: white;
-      border: none;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      margin-left: 10px;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .chatbot-input button:hover {
-      background: var(--primary);
-      transform: scale(1.1);
-    }
-
-    /* ===== TÉMOIGNAGES ===== */
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
-      margin: 50px 0;
-    }
-
-    .testimonial-card {
-      background: white;
-      border-radius: var(--border-radius);
-      padding: 35px;
-      box-shadow: var(--shadow);
-      position: relative;
-    }
-
-    .testimonial-card i {
-      font-size: 2rem;
-      color: var(--primary);
-      opacity: 0.3;
-      position: absolute;
-      top: 20px;
-      right: 20px;
-    }
-
-    .testimonial-text {
-      font-size: 1.1rem;
-      margin-bottom: 20px;
-      color: var(--text-dark);
-    }
-
-    .testimonial-author {
-      font-weight: 700;
-      color: var(--primary);
-    }
-
-    .testimonial-location {
-      font-size: 0.9rem;
-      color: var(--text-light);
-    }
-
-    /* ===== CONTACT JOYEUX ===== */
+    /* ===== CONTACT ===== */
     .contact-section {
-      background: linear-gradient(135deg, #fff5f0, #f0f9ff);
-      padding: 80px 0;
-      border-radius: 50px 50px 0 0;
-      margin-top: 80px;
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 60px;
+      padding: 60px;
+      margin: 80px 0;
     }
 
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 50px;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 25px;
-    }
-
-    .contact-form {
-      background: white;
-      border-radius: var(--border-radius);
-      padding: 40px;
-      box-shadow: var(--shadow);
     }
 
     .form-group {
@@ -690,9 +662,10 @@
     .form-group textarea {
       width: 100%;
       padding: 15px 20px;
-      border: 2px solid #f0f0f0;
+      border: 1px solid rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.7);
       border-radius: 50px;
-      font-family: 'Quicksand', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-size: 1rem;
       transition: all 0.3s;
     }
@@ -700,15 +673,9 @@
     .form-group input:focus,
     .form-group select:focus,
     .form-group textarea:focus {
-      border-color: var(--secondary);
       outline: none;
-    }
-
-    .contact-info {
+      border-color: var(--primary);
       background: white;
-      border-radius: var(--border-radius);
-      padding: 40px;
-      box-shadow: var(--shadow);
     }
 
     .info-item {
@@ -725,9 +692,12 @@
 
     /* ===== FOOTER ===== */
     .footer {
-      background: var(--text-dark);
+      background: rgba(94,80,63,0.9);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       color: white;
       padding: 60px 0 30px;
+      margin-top: 100px;
     }
 
     .footer-content {
@@ -745,7 +715,7 @@
     }
 
     .footer-col p, .footer-col a {
-      color: #b0b0b0;
+      color: #e0d0c0;
       text-decoration: none;
       line-height: 2;
     }
@@ -754,7 +724,7 @@
       text-align: center;
       padding-top: 40px;
       margin-top: 40px;
-      border-top: 1px solid #3a4a5a;
+      border-top: 1px solid rgba(255,255,255,0.2);
     }
 
     /* ===== PAGE SYSTEM ===== */
@@ -777,7 +747,7 @@
     .page-dot {
       width: 12px;
       height: 12px;
-      background: #d0d0d0;
+      background: var(--beige-fonce);
       border-radius: 50%;
       cursor: pointer;
       transition: all 0.3s;
@@ -796,65 +766,48 @@
         padding: 15px;
       }
 
+      .presentation-grid,
+      .comparison-grid,
       .contact-grid {
         grid-template-columns: 1fr;
       }
 
-      .chatbot-window {
-        width: 300px;
-        right: 0;
+      .presentation-section,
+      .comparison-section,
+      .contact-section {
+        padding: 30px;
       }
     }
   </style>
 </head>
 <body>
+  <!-- Arrière-plan 3D -->
+  <canvas id="bg-canvas"></canvas>
+
   <!-- Navigation -->
   <nav class="navbar">
-    <div class="logo" onclick="changePage('accueil')">LOTUS</div>
+    <div class="logo" onclick="changePage('accueil')">LOTUS <span>Mustapha Aouad</span></div>
     <div class="nav-links">
       <a class="nav-page active" data-page="accueil">Accueil</a>
       <a class="nav-page" data-page="appartements">Appartements</a>
-      <a class="nav-page" data-page="services">Services</a>
-      <a class="nav-page" data-page="amenites">Aménités</a>
-      <a class="nav-page" data-page="temoignages">Témoignages</a>
+      <a class="nav-page" data-page="notre-histoire">Notre Histoire</a>
+      <a class="nav-page" data-page="equipe">L'Équipe</a>
+      <a class="nav-page" data-page="methodes">Nos Méthodes</a>
+      <a class="nav-page" data-page="pourquoi-nous">Pourquoi Nous</a>
       <a class="nav-page" data-page="contact">Contact</a>
       <a class="phone-btn" onclick="changePage('contact')">Appeler</a>
     </div>
   </nav>
 
-  <!-- IA Chatbot -->
-  <div class="chatbot-container">
-    <div class="chatbot-button" onclick="toggleChatbot()">
-      <i class="fas fa-robot"></i>
-    </div>
-    <div class="chatbot-window" id="chatbotWindow">
-      <div class="chatbot-header">
-        <i class="fas fa-comment-dots"></i>
-        <h3>IA LOTUS - Conseillère</h3>
-      </div>
-      <div class="chatbot-messages" id="chatMessages">
-        <div class="message bot">
-          <div class="message-content">
-            Bonjour ! Je suis l'assistant intelligent de LOTUS. Posez-moi toutes vos questions sur nos appartements, les prix, les quartiers, ou pour prendre rendez-vous ! 😊
-          </div>
-        </div>
-      </div>
-      <div class="chatbot-input">
-        <input type="text" id="chatInput" placeholder="Votre question..." onkeypress="if(event.key === 'Enter') sendMessage()">
-        <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
-      </div>
-    </div>
-  </div>
-
   <!-- PAGE ACCUEIL -->
   <div id="accueil" class="page active-page">
     <section class="hero">
       <div class="hero-content">
-        <h1>Trouvez votre <span class="highlight">bonheur</span> immobilier</h1>
-        <p>Des appartements lumineux et joyeux à Anoual, Val Fleuri, Oasis et Dar Bouazza. Votre nouveau chez-vous vous attend.</p>
+        <h1>L'Art de <span class="highlight">Vivre</span> Selon LOTUS</h1>
+        <p>Depuis 15 ans, nous créons des espaces de vie où l'élégance rencontre le bien-être. Anoual, Val Fleuri, Oasis, Dar Bouazza.</p>
         <div class="hero-buttons">
           <button class="btn btn-primary" onclick="changePage('appartements')">Découvrir nos biens</button>
-          <button class="btn btn-secondary" onclick="changePage('contact')">Parler à un conseiller</button>
+          <button class="btn btn-secondary" onclick="changePage('notre-histoire')">Notre histoire</button>
         </div>
       </div>
     </section>
@@ -863,32 +816,22 @@
     <div class="container">
       <div class="stats-container">
         <div class="stat-card">
+          <div class="stat-number">350+</div>
+          <div class="stat-label">Familles Accompagnées</div>
+        </div>
+        <div class="stat-card">
           <div class="stat-number">15</div>
-          <div class="stat-label">Appartements à Anoual</div>
-          <div class="stat-badge">2 avec terrasse</div>
+          <div class="stat-label">Années d'Excellence</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">10</div>
-          <div class="stat-label">Appartements à Val Fleuri</div>
-          <div class="stat-badge">Vue mer</div>
+          <div class="stat-number">4</div>
+          <div class="stat-label">Quartiers d'Exception</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">8</div>
-          <div class="stat-label">Appartements à Oasis</div>
-          <div class="stat-badge">Jardins privés</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">6</div>
-          <div class="stat-label">À Dar Bouazza</div>
-          <div class="stat-badge">En construction</div>
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Satisfaction Client</div>
         </div>
       </div>
-    </div>
-
-    <!-- Message de bienvenue -->
-    <div class="container" style="text-align: center; margin: 40px auto;">
-      <h2 class="section-title">Bienvenue chez <span>LOTUS</span></h2>
-      <p class="section-subtitle" style="margin: 0 auto;">Mustapha Aouad et son équipe vous accompagnent avec le sourire dans votre projet immobilier. Plus de 350 familles nous ont déjà fait confiance.</p>
     </div>
   </div>
 
@@ -896,8 +839,8 @@
   <div id="appartements" class="page">
     <div style="height: 100px;"></div>
     <div class="container">
-      <h2 class="section-title">Nos <span>appartements</span> de rêve</h2>
-      <p class="section-subtitle">Des biens sélectionnés avec soin, dans les plus beaux quartiers de Casablanca</p>
+      <h2 class="section-title">Nos <span>Appartements</span> d'Exception</h2>
+      <p class="section-subtitle">Des biens uniques, sélectionnés avec soin dans les plus beaux quartiers de Casablanca</p>
       
       <div class="appartments-grid">
         <!-- Anoual -->
@@ -912,29 +855,27 @@
             <div class="card-price">3 450 000 DH</div>
             <div class="card-features">
               <span><i class="fas fa-vector-square"></i> 180 m²</span>
-              <span><i class="fas fa-bed"></i> 3 chambres</span>
+              <span><i class="fas fa-bed"></i> 3 ch</span>
               <span><i class="fas fa-bath"></i> 3 sdb</span>
             </div>
-            <button class="btn-card" onclick="openChatbotQuestion('Al Warda Penthouse')">Poser une question</button>
           </div>
         </div>
 
         <div class="appart-card">
-            <div class="card-img">
-              <img src="https://images.pexels.com/photos/271795/pexels-photo-271795.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Studio">
-              <div class="card-address">Anoual</div>
-            </div>
-            <div class="card-content">
-              <h3 class="card-title">Lotus Studio</h3>
-              <div class="card-price">890 000 DH</div>
-              <div class="card-features">
-                <span><i class="fas fa-vector-square"></i> 45 m²</span>
-                <span><i class="fas fa-bed"></i> studio</span>
-                <span><i class="fas fa-sun"></i> balcon</span>
-              </div>
-              <button class="btn-card" onclick="openChatbotQuestion('Lotus Studio')">Poser une question</button>
+          <div class="card-img">
+            <img src="https://images.pexels.com/photos/271795/pexels-photo-271795.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Studio">
+            <div class="card-address">Anoual</div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Lotus Studio</h3>
+            <div class="card-price">890 000 DH</div>
+            <div class="card-features">
+              <span><i class="fas fa-vector-square"></i> 45 m²</span>
+              <span><i class="fas fa-bed"></i> studio</span>
+              <span><i class="fas fa-sun"></i> balcon</span>
             </div>
           </div>
+        </div>
 
         <div class="appart-card">
           <div class="card-img">
@@ -946,10 +887,9 @@
             <div class="card-price">1 750 000 DH</div>
             <div class="card-features">
               <span><i class="fas fa-vector-square"></i> 95 m²</span>
-              <span><i class="fas fa-bed"></i> 2 chambres</span>
+              <span><i class="fas fa-bed"></i> 2 ch</span>
               <span><i class="fas fa-car"></i> parking</span>
             </div>
-            <button class="btn-card" onclick="openChatbotQuestion('Résidence Saada')">Poser une question</button>
           </div>
         </div>
 
@@ -964,10 +904,9 @@
             <div class="card-price">4 200 000 DH</div>
             <div class="card-features">
               <span><i class="fas fa-vector-square"></i> 220 m²</span>
-              <span><i class="fas fa-bed"></i> 5 chambres</span>
+              <span><i class="fas fa-bed"></i> 5 ch</span>
               <span><i class="fas fa-swimming-pool"></i> piscine</span>
             </div>
-            <button class="btn-card" onclick="openChatbotQuestion('Jardin d\'Eau')">Poser une question</button>
           </div>
         </div>
 
@@ -981,10 +920,9 @@
             <div class="card-price">5 200 000 DH</div>
             <div class="card-features">
               <span><i class="fas fa-vector-square"></i> 210 m²</span>
-              <span><i class="fas fa-bed"></i> 4 chambres</span>
+              <span><i class="fas fa-bed"></i> 4 ch</span>
               <span><i class="fas fa-eye"></i> vue mer</span>
             </div>
-            <button class="btn-card" onclick="openChatbotQuestion('Panorama')">Poser une question</button>
           </div>
         </div>
 
@@ -999,10 +937,9 @@
             <div class="card-price">2 990 000 DH</div>
             <div class="card-features">
               <span><i class="fas fa-vector-square"></i> 140 m²</span>
-              <span><i class="fas fa-bed"></i> 3 chambres</span>
+              <span><i class="fas fa-bed"></i> 3 ch</span>
               <span><i class="fas fa-seedling"></i> jardin</span>
             </div>
-            <button class="btn-card" onclick="openChatbotQuestion('Golden Oasis')">Poser une question</button>
           </div>
         </div>
 
@@ -1016,10 +953,9 @@
             <div class="card-price">3 890 000 DH</div>
             <div class="card-features">
               <span><i class="fas fa-vector-square"></i> 165 m²</span>
-              <span><i class="fas fa-bed"></i> 3 chambres</span>
+              <span><i class="fas fa-bed"></i> 3 ch</span>
               <span><i class="fas fa-sun"></i> terrasse</span>
             </div>
-            <button class="btn-card" onclick="openChatbotQuestion('Oasis Sky')">Poser une question</button>
           </div>
         </div>
 
@@ -1038,7 +974,6 @@
               <span><i class="fas fa-table-tennis"></i> paddle</span>
               <span><i class="fas fa-dog"></i> chiens de garde</span>
             </div>
-            <button class="btn-card" onclick="openChatbotQuestion('Résidence des Dunes')">Poser une question</button>
           </div>
         </div>
 
@@ -1056,225 +991,353 @@
               <span><i class="fas fa-swimming-pool"></i> piscine privée</span>
               <span><i class="fas fa-dog"></i> 2 chiens</span>
             </div>
-            <button class="btn-card" onclick="openChatbotQuestion('Villa Océane')">Poser une question</button>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- PAGE SERVICES -->
-  <div id="services" class="page">
+  <!-- PAGE NOTRE HISTOIRE -->
+  <div id="notre-histoire" class="page">
     <div style="height: 100px;"></div>
     <div class="container">
-      <h2 class="section-title">Nos <span>services</span> sur mesure</h2>
-      <p class="section-subtitle">Nous vous accompagnons à chaque étape de votre projet, avec bienveillance et professionnalisme</p>
-      
-      <div class="amenities-showcase">
-        <div class="amenity-card">
-          <i class="fas fa-hand-holding-heart"></i>
-          <h3>Accompagnement personnalisé</h3>
-          <p>Un conseiller dédié du premier contact jusqu'à la remise des clés</p>
-        </div>
-        <div class="amenity-card">
-          <i class="fas fa-file-signature"></i>
-          <h3>Aide au financement</h3>
-          <p>Simulation de prêt, courtage, recherche des meilleurs taux</p>
-        </div>
-        <div class="amenity-card">
-          <i class="fas fa-gavel"></i>
-          <h3>Assistance juridique</h3>
-          <p>Notaires, avocats, fiscalistes à votre écoute</p>
-        </div>
-        <div class="amenity-card">
-          <i class="fas fa-paint-roller"></i>
-          <h3>Rénovation clé en main</h3>
-          <p>Devis gratuit, suivi de chantier, garantie décennale</p>
-        </div>
-        <div class="amenity-card">
-          <i class="fas fa-key"></i>
-          <h3>Gestion locative</h3>
-          <p>Recherche de locataires, gestion des loyers, assurances</p>
-        </div>
-        <div class="amenity-card">
-          <i class="fas fa-home"></i>
-          <h3>Home staging</h3>
-          <p>Valorisez votre bien avant vente ou location</p>
+      <div class="presentation-section">
+        <h2 class="section-title">Notre <span>Histoire</span></h2>
+        <div class="presentation-grid">
+          <div class="presentation-text">
+            <h3>Une Aventure Humaine Depuis 2010</h3>
+            <p>LOTUS Immobilier est né d'une conviction profonde : l'immobilier ne devrait pas être une simple transaction, mais une aventure humaine où chaque famille trouve le foyer de ses rêves.</p>
+            <p>Tout a commencé quand Mustapha Aouad, alors jeune entrepreneur passionné par l'architecture et le bien-être, décide de créer une agence différente. Une agence où l'écoute prime sur le chiffre, où la qualité surpasse la quantité, et où chaque projet est traité avec le soin d'un artisan.</p>
+            <p>En 15 ans, nous avons accompagné plus de 350 familles, construit 8 programmes immobiliers, et développé une expertise unique dans les quartiers les plus prisés de Casablanca : Anoual, Val Fleuri, Oasis et aujourd'hui Dar Bouazza.</p>
+            <p class="signature">Mustapha Aouad, Fondateur</p>
+          </div>
+          <div class="presentation-text">
+            <h3>Notre Philosophie</h3>
+            <p>Chez LOTUS, nous croyons que l'habitat est le reflet de l'âme. C'est pourquoi chaque appartement que nous proposons est pensé pour apporter lumière, sérénité et harmonie à ses occupants.</p>
+            <ul class="values-list">
+              <li><i class="fas fa-check-circle"></i> L'écoute avant tout : nous prenons le temps de comprendre vos besoins</li>
+              <li><i class="fas fa-check-circle"></i> La qualité des matériaux : nous sélectionnons les meilleurs artisans</li>
+              <li><i class="fas fa-check-circle"></i> L'innovation constante : nous intégrons les dernières technologies</li>
+              <li><i class="fas fa-check-circle"></i> La transparence totale : aucun frais caché, aucune mauvaise surprise</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- PAGE AMÉNITÉS -->
-  <div id="amenites" class="page">
+  <!-- PAGE ÉQUIPE -->
+  <div id="equipe" class="page">
     <div style="height: 100px;"></div>
     <div class="container">
-      <h2 class="section-title">Des <span>aménités</span> pour votre bonheur</h2>
-      <p class="section-subtitle">Tout ce qui rend la vie plus douce dans nos résidences</p>
+      <h2 class="section-title">L'<span>Équipe</span> qui Veille sur Vous</h2>
+      <p class="section-subtitle">Des professionnels passionnés, à votre écoute à chaque étape</p>
       
-      <div class="amenities-showcase">
-        <div class="amenity-card">
-          <i class="fas fa-shield-alt"></i>
-          <h3>Résidence sécurisée</h3>
-          <p>Vidéosurveillance 24h/24, gardiennage, accès par badge</p>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">
+            <i class="fas fa-user-tie"></i>
+          </div>
+          <h3 class="team-name">Mustapha Aouad</h3>
+          <div class="team-role">Fondateur & Directeur</div>
+          <p class="team-desc">15 ans d'expérience, plus de 350 transactions. Sa vision : faire de chaque achat une expérience exceptionnelle.</p>
         </div>
-        <div class="amenity-card">
-          <i class="fas fa-swimming-pool"></i>
-          <h3>Piscine</h3>
-          <p>Chauffée, espace détente, transats</p>
+
+        <div class="team-card">
+          <div class="team-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <h3 class="team-name">Karim Benjelloun</h3>
+          <div class="team-role">Conseiller en immobilier</div>
+          <p class="team-desc">Expert du quartier Anoual, il connaît chaque rue, chaque immeuble. Son objectif : vous trouver le bien parfait.</p>
         </div>
-        <div class="amenity-card">
-          <i class="fas fa-child"></i>
-          <h3>Aire de jeux</h3>
-          <p>Espace enfants sécurisé, jeux modernes</p>
+
+        <div class="team-card">
+          <div class="team-avatar">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+          <h3 class="team-name">Salma El Fassi</h3>
+          <div class="team-role">Experte en financement</div>
+          <p class="team-desc">Elle négocie les meilleurs taux avec les banques et vous accompagne dans toutes les démarches administratives.</p>
         </div>
-        <div class="amenity-card">
-          <i class="fas fa-school"></i>
-          <h3>Proximité des écoles</h3>
-          <p>Écoles maternelles, primaires, lycées à 5 minutes</p>
+
+        <div class="team-card">
+          <div class="team-avatar">
+            <i class="fas fa-user-check"></i>
+          </div>
+          <h3 class="team-name">Youssef Tazi</h3>
+          <div class="team-role">Responsable construction</div>
+          <p class="team-desc">Il supervise chaque chantier, vérifie chaque détail pour garantir une qualité irréprochable.</p>
         </div>
-        <div class="amenity-card">
-          <i class="fas fa-shopping-bag"></i>
-          <h3>Centres commerciaux</h3>
-          <p>Morocco Mall, Anfa Place, Marjane à proximité</p>
+
+        <div class="team-card">
+          <div class="team-avatar">
+            <i class="fas fa-user-tie"></i>
+          </div>
+          <h3 class="team-name">Nadia Bennani</h3>
+          <div class="team-role">Conseillère prestige</div>
+          <p class="team-desc">Spécialiste des biens haut de gamme, elle vous ouvre les portes des résidences les plus exclusives.</p>
         </div>
-        <div class="amenity-card">
-          <i class="fas fa-umbrella-beach"></i>
-          <h3>Proximité de la mer</h3>
-          <p>Plages à 10 minutes, vue mer exceptionnelle</p>
-        </div>
-        <div class="amenity-card">
-          <i class="fas fa-dog"></i>
-          <h3>Chiens de garde</h3>
-          <p>À Dar Bouazza, 2 bergers allemands assurent votre sécurité</p>
-        </div>
-        <div class="amenity-card">
-          <i class="fas fa-table-tennis"></i>
-          <h3>Terrain de paddle</h3>
-          <p>Pour les sportifs, éclairage nocturne</p>
+
+        <div class="team-card">
+          <div class="team-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <h3 class="team-name">Mehdi Alaoui</h3>
+          <div class="team-role">Conseiller en investissement</div>
+          <p class="team-desc">Il analyse pour vous les meilleures opportunités de rendement et de plus-value.</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- PAGE TÉMOIGNAGES -->
-  <div id="temoignages" class="page">
+  <!-- PAGE NOS MÉTHODES -->
+  <div id="methodes" class="page">
     <div style="height: 100px;"></div>
     <div class="container">
-      <h2 class="section-title">Ils nous ont <span>fait confiance</span></h2>
-      <p class="section-subtitle">Découvrez ce que nos clients disent de leur expérience avec LOTUS</p>
+      <h2 class="section-title">Comment <span>Nous Construisons</span> Mieux</h2>
+      <p class="section-subtitle">Des méthodes innovantes et des matériaux d'exception pour des appartements qui durent</p>
       
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <i class="fas fa-quote-right"></i>
-          <p class="testimonial-text">"Mustapha a été d'une aide précieuse. Il a compris mes besoins et m'a trouvé l'appartement parfait à Anoual. Je recommande vivement !"</p>
-          <div class="testimonial-author">Karim Benjelloun</div>
-          <div class="testimonial-location">Al Warda Penthouse</div>
+      <div class="method-grid">
+        <div class="method-card">
+          <div class="method-icon">
+            <i class="fas fa-drafting-compass"></i>
+          </div>
+          <h4>Architecture Bioclimatique</h4>
+          <p>Nos bâtiments sont conçus pour profiter au maximum de la lumière naturelle et réduire les besoins en climatisation. Des études d'ensoleillement sont réalisées pour chaque projet.</p>
         </div>
-        
-        <div class="testimonial-card">
-          <i class="fas fa-quote-right"></i>
-          <p class="testimonial-text">"Une équipe professionnelle et chaleureuse. Ils m'ont accompagnée dans toutes les démarches et j'ai pu acheter mon premier studio sans stress."</p>
-          <div class="testimonial-author">Salma El Fassi</div>
-          <div class="testimonial-location">Lotus Studio</div>
+
+        <div class="method-card">
+          <div class="method-icon">
+            <i class="fas fa-leaf"></i>
+          </div>
+          <h4>Matériaux Écologiques</h4>
+          <p>Nous sélectionnons des matériaux nobles et durables : pierre naturelle, bois certifié, peintures sans COV. La santé de nos habitants est notre priorité.</p>
         </div>
-        
-        <div class="testimonial-card">
-          <i class="fas fa-quote-right"></i>
-          <p class="testimonial-text">"Pour mon investissement locatif, j'ai été guidé pas à pas. Les rendements sont au rendez-vous et la gestion est parfaite."</p>
-          <div class="testimonial-author">Mehdi Alaoui</div>
-          <div class="testimonial-location">Investisseur Oasis</div>
+
+        <div class="method-card">
+          <div class="method-icon">
+            <i class="fas fa-robot"></i>
+          </div>
+          <h4>Domotique Intégrée</h4>
+          <p>Chaque appartement est pré-équipé pour la domotique : gestion à distance du chauffage, de l'éclairage, des volets. Une maison connectée et économique.</p>
         </div>
-        
-        <div class="testimonial-card">
-          <i class="fas fa-quote-right"></i>
-          <p class="testimonial-text">"La résidence à Dar Bouazza est magnifique. Les chiens de garde rassurent, la piscine est superbe. Un vrai bonheur au quotidien."</p>
-          <div class="testimonial-author">Nadia Tazi</div>
-          <div class="testimonial-location">Résidence des Dunes</div>
+
+        <div class="method-card">
+          <div class="method-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h4>Sécurité Renforcée</h4>
+          <p>Vidéosurveillance, accès par badge, interphone vidéo. À Dar Bouazza, nous ajoutons des chiens de garde formés pour une sécurité maximale.</p>
         </div>
-        
-        <div class="testimonial-card">
-          <i class="fas fa-quote-right"></i>
-          <p class="testimonial-text">"Merci à Mustapha pour son écoute et sa réactivité. Il a su trouver le bien qui correspondait à mon budget et à mes envies."</p>
-          <div class="testimonial-author">Youssef Benchekroun</div>
-          <div class="testimonial-location">Jardin d'Eau</div>
+
+        <div class="method-card">
+          <div class="method-icon">
+            <i class="fas fa-water"></i>
+          </div>
+          <h4>Isolation Thermique</h4>
+          <p>Nos murs sont isolés par l'extérieur, nos fenêtres sont en double vitrage haute performance. Des factures d'énergie réduites jusqu'à 40%.</p>
         </div>
-        
-        <div class="testimonial-card">
-          <i class="fas fa-quote-right"></i>
-          <p class="testimonial-text">"Une agence qui sort du lot par sa gentillesse et son professionnalisme. Je les recommande à tous mes proches."</p>
-          <div class="testimonial-author">Leila Bennani</div>
-          <div class="testimonial-location">Golden Oasis</div>
+
+        <div class="method-card">
+          <div class="method-icon">
+            <i class="fas fa-solar-panel"></i>
+          </div>
+          <h4>Énergie Solaire</h4>
+          <p>Nos résidences sont équipées de panneaux solaires pour l'eau chaude sanitaire. Une démarche écologique et économique.</p>
+        </div>
+
+        <div class="method-card">
+          <div class="method-icon">
+            <i class="fas fa-wifi"></i>
+          </div>
+          <h4>Fibre Optique</h4>
+          <p>Chaque appartement est raccordé à la fibre optique. Internet très haut débit pour le télétravail et les loisirs.</p>
+        </div>
+
+        <div class="method-card">
+          <div class="method-icon">
+            <i class="fas fa-parking"></i>
+          </div>
+          <h4>Stationnement Électrique</h4>
+          <p>Nos parkings sont équipés de bornes de recharge pour véhicules électriques. Prêts pour la mobilité de demain.</p>
+        </div>
+      </div>
+
+      <div class="presentation-section" style="margin-top: 60px;">
+        <h3>Notre Processus de Construction</h3>
+        <p>De la conception à la livraison, nous suivons un processus rigoureux en 5 étapes :</p>
+        <ol style="margin-top: 30px; padding-left: 20px;">
+          <li style="margin-bottom: 15px;"><strong>Étude de faisabilité</strong> : Analyse du terrain, études géotechniques, permis de construire</li>
+          <li style="margin-bottom: 15px;"><strong>Conception architecturale</strong> : Plans détaillés, choix des matériaux, simulation 3D</li>
+          <li style="margin-bottom: 15px;"><strong>Sélection des artisans</strong> : Nous travaillons avec les meilleurs corps de métier de la région</li>
+          <li style="margin-bottom: 15px;"><strong>Suivi de chantier</strong> : Contrôles quotidiens, rapports photo, réunions hebdomadaires</li>
+          <li style="margin-bottom: 15px;"><strong>Réception et service après-vente</strong> : Visite de conformité, garantie décennale, assistance</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE POURQUOI NOUS -->
+  <div id="pourquoi-nous" class="page">
+    <div style="height: 100px;"></div>
+    <div class="container">
+      <h2 class="section-title">Pourquoi <span>Choisir LOTUS</span></h2>
+      <p class="section-subtitle">Ce qui nous rend différents, meilleurs, et plus fiables que nos concurrents</p>
+      
+      <div class="comparison-section">
+        <div class="comparison-grid">
+          <div class="comparison-card lotus">
+            <h3><i class="fas fa-check-circle"></i> LOTUS Immobilier</h3>
+            <ul class="comparison-list">
+              <li><i class="fas fa-check"></i> <strong>15 ans d'expérience</strong> à Casablanca</li>
+              <li><i class="fas fa-check"></i> <strong>350+ familles</strong> accompagnées avec succès</li>
+              <li><i class="fas fa-check"></i> <strong>Matériaux nobles</strong> et durables</li>
+              <li><i class="fas fa-check"></i> <strong>Garantie décennale</strong> incluse</li>
+              <li><i class="fas fa-check"></i> <strong>Suivi personnalisé</strong> par un conseiller unique</li>
+              <li><i class="fas fa-check"></i> <strong>Transparence totale</strong> sur les frais</li>
+              <li><i class="fas fa-check"></i> <strong>Service après-vente</strong> réactif</li>
+              <li><i class="fas fa-check"></i> <strong>Innovation</strong> (domotique, panneaux solaires)</li>
+              <li><i class="fas fa-check"></i> <strong>Chiens de garde</strong> à Dar Bouazza</li>
+            </ul>
+          </div>
+          
+          <div class="comparison-card others">
+            <h3><i class="fas fa-times-circle"></i> Nos Concurrents</h3>
+            <ul class="comparison-list">
+              <li><i class="fas fa-times"></i> <strong>Moins de 5 ans</strong> d'expérience en moyenne</li>
+              <li><i class="fas fa-times"></i> <strong>Accompagnement standardisé</strong> sans suivi</li>
+              <li><i class="fas fa-times"></i> <strong>Matériaux bas de gamme</strong> pour réduire les coûts</li>
+              <li><i class="fas fa-times"></i> <strong>Garanties limitées</strong> et clauses d'exclusion</li>
+              <li><i class="fas fa-times"></i> <strong>Interlocuteurs multiples</strong> et perte d'information</li>
+              <li><i class="fas fa-times"></i> <strong>Frais cachés</strong> sur les contrats</li>
+              <li><i class="fas fa-times"></i> <strong>SAV inexistant</strong> après la vente</li>
+              <li><i class="fas fa-times"></i> <strong>Technologies obsolètes</strong></li>
+              <li><i class="fas fa-times"></i> <strong>Sécurité basique</strong> sans innovation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="presentation-section">
+        <h3>Ce que nos clients disent de nous</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px;">
+          <div style="background: rgba(255,255,255,0.5); padding: 30px; border-radius: 30px;">
+            <i class="fas fa-quote-left" style="color: var(--primary); font-size: 2rem; margin-bottom: 15px;"></i>
+            <p>"LOTUS a été bien plus qu'une agence immobilière. Ils ont été des partenaires de confiance qui ont rendu notre rêve possible."</p>
+            <p style="margin-top: 15px; font-weight: 600;">— Famille Benjelloun</p>
+          </div>
+          <div style="background: rgba(255,255,255,0.5); padding: 30px; border-radius: 30px;">
+            <i class="fas fa-quote-left" style="color: var(--primary); font-size: 2rem; margin-bottom: 15px;"></i>
+            <p>"La différence avec LOTUS ? On sent qu'ils prennent soin de vous. Pas de pression, juste des conseils sincères."</p>
+            <p style="margin-top: 15px; font-weight: 600;">— Mme Salma El Fassi</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="presentation-section">
+        <h3>Notre Engagement envers Vous</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 30px;">
+          <div style="text-align: center;">
+            <i class="fas fa-hand-holding-heart" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;"></i>
+            <h4>Écoute</h4>
+            <p>Nous comprenons vos besoins avant de vous proposer des biens</p>
+          </div>
+          <div style="text-align: center;">
+            <i class="fas fa-gem" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;"></i>
+            <h4>Qualité</h4>
+            <p>Des matériaux sélectionnés pour durer et embellir</p>
+          </div>
+          <div style="text-align: center;">
+            <i class="fas fa-clock" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;"></i>
+            <h4>Disponibilité</h4>
+            <p>Un conseiller accessible 7j/7 pour répondre à vos questions</p>
+          </div>
+          <div style="text-align: center;">
+            <i class="fas fa-check-double" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;"></i>
+            <h4>Transparence</h4>
+            <p>Tout est clair, rien n'est caché</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <!-- PAGE CONTACT -->
-  <div id="contact" class="page contact-section">
+  <div id="contact" class="page">
     <div style="height: 100px;"></div>
-    <div class="contact-grid">
-      <div class="contact-form">
-        <h2 style="margin-bottom: 30px; color: var(--text-dark);">Envoyez-nous un message</h2>
-        <form onsubmit="event.preventDefault(); alert('Merci pour votre message ! Nous vous répondrons dans la journée.');">
-          <div class="form-group">
-            <input type="text" placeholder="Votre nom complet" required>
-          </div>
-          <div class="form-group">
-            <input type="email" placeholder="Votre email" required>
-          </div>
-          <div class="form-group">
-            <input type="tel" placeholder="Votre téléphone">
-          </div>
-          <div class="form-group">
-            <select>
-              <option>Je recherche un appartement</option>
-              <option>Je recherche un bureau</option>
-              <option>Je souhaite investir</option>
-              <option>Autre demande</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <textarea rows="4" placeholder="Votre message..."></textarea>
-          </div>
-          <button class="btn btn-primary" style="width: 100%;">Envoyer</button>
-        </form>
-      </div>
-      <div class="contact-info">
-        <h2 style="margin-bottom: 30px; color: var(--text-dark);">Nos coordonnées</h2>
-        <div class="info-item">
-          <i class="fas fa-user-tie"></i>
+    <div class="container">
+      <div class="contact-section">
+        <h2 class="section-title" style="margin-top: 0;">Parlons de <span>Votre Projet</span></h2>
+        <p class="section-subtitle">Que vous cherchiez à acheter, vendre ou investir, notre équipe est là pour vous accompagner</p>
+        
+        <div class="contact-grid">
           <div>
-            <strong>Mustapha Aouad</strong>
-            <p>Conseiller en immobilier</p>
+            <form onsubmit="event.preventDefault(); alert('Merci pour votre message. Nous vous répondrons dans les plus brefs délais.');">
+              <div class="form-group">
+                <input type="text" placeholder="Votre nom complet" required>
+              </div>
+              <div class="form-group">
+                <input type="email" placeholder="Votre email" required>
+              </div>
+              <div class="form-group">
+                <input type="tel" placeholder="Votre téléphone">
+              </div>
+              <div class="form-group">
+                <select>
+                  <option>Je recherche un appartement</option>
+                  <option>Je recherche un bureau</option>
+                  <option>Je souhaite investir</option>
+                  <option>Je souhaite vendre</option>
+                  <option>Autre demande</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <textarea rows="5" placeholder="Parlez-nous de votre projet (quartier souhaité, budget, surface...)" required></textarea>
+              </div>
+              <button class="btn btn-primary" style="width: 100%;">Envoyer ma demande</button>
+            </form>
           </div>
-        </div>
-        <div class="info-item">
-          <i class="fas fa-phone-alt"></i>
           <div>
-            <strong>+212 6 12 34 56 78</strong>
-            <p>Lun-Ven 9h-19h</p>
-          </div>
-        </div>
-        <div class="info-item">
-          <i class="fab fa-whatsapp"></i>
-          <div>
-            <strong>+212 6 11 22 33 44</strong>
-            <p>Réponse sous 1h</p>
-          </div>
-        </div>
-        <div class="info-item">
-          <i class="fas fa-map-pin"></i>
-          <div>
-            <strong>26, Bd Zerktouni</strong>
-            <p>Casablanca, Maroc</p>
-          </div>
-        </div>
-        <div class="info-item">
-          <i class="fas fa-clock"></i>
-          <div>
-            <strong>Horaires</strong>
-            <p>Lun-Ven 9h-19h · Sam sur RDV</p>
+            <div class="info-item">
+              <i class="fas fa-user-tie"></i>
+              <div>
+                <h4>Mustapha Aouad</h4>
+                <p>Fondateur & Directeur</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-phone-alt"></i>
+              <div>
+                <h4>Téléphone</h4>
+                <p>+212 6 12 34 56 78</p>
+                <p>+212 5 22 99 88 77</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fab fa-whatsapp"></i>
+              <div>
+                <h4>WhatsApp</h4>
+                <p>+212 6 11 22 33 44</p>
+                <p>Réponse garantie sous 1h</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-map-pin"></i>
+              <div>
+                <h4>Adresse</h4>
+                <p>26, Boulevard Zerktouni</p>
+                <p>Casablanca 20000, Maroc</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-clock"></i>
+              <div>
+                <h4>Horaires</h4>
+                <p>Lundi - Vendredi : 9h - 19h</p>
+                <p>Samedi : sur rendez-vous</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1285,9 +1348,10 @@
   <div class="page-indicator">
     <div class="page-dot active" data-page="accueil"></div>
     <div class="page-dot" data-page="appartements"></div>
-    <div class="page-dot" data-page="services"></div>
-    <div class="page-dot" data-page="amenites"></div>
-    <div class="page-dot" data-page="temoignages"></div>
+    <div class="page-dot" data-page="notre-histoire"></div>
+    <div class="page-dot" data-page="equipe"></div>
+    <div class="page-dot" data-page="methodes"></div>
+    <div class="page-dot" data-page="pourquoi-nous"></div>
     <div class="page-dot" data-page="contact"></div>
   </div>
 
@@ -1296,15 +1360,15 @@
     <div class="footer-content">
       <div class="footer-col">
         <h4>LOTUS Immobilier</h4>
-        <p>Votre bonheur immobilier depuis 2010</p>
-        <p>Plus de 350 familles nous ont confié leur projet</p>
+        <p>L'excellence immobilière depuis 2010</p>
+        <p>Plus de 350 familles accompagnées</p>
       </div>
       <div class="footer-col">
         <h4>Nos quartiers</h4>
-        <p>Anoual</p>
-        <p>Val Fleuri</p>
-        <p>Oasis</p>
-        <p>Dar Bouazza</p>
+        <p>Anoual · 15 appartements</p>
+        <p>Val Fleuri · 10 appartements</p>
+        <p>Oasis · 8 appartements</p>
+        <p>Dar Bouazza · 6 en construction</p>
       </div>
       <div class="footer-col">
         <h4>Liens utiles</h4>
@@ -1353,97 +1417,103 @@
       dot.addEventListener('click', () => changePage(dot.dataset.page));
     });
 
-    // ===== IA CHATBOT INTELLIGENT =====
-    window.toggleChatbot = function() {
-      document.getElementById('chatbotWindow').classList.toggle('active');
-    };
+    // ===== ARRIÈRE-PLAN 3D =====
+    function initBackground3D() {
+      const canvas = document.getElementById('bg-canvas');
+      if (!canvas) return;
 
-    window.sendMessage = function() {
-      const input = document.getElementById('chatInput');
-      const message = input.value.trim();
-      if (!message) return;
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0xfaf7f2);
 
-      // Ajouter le message de l'utilisateur
-      const messagesDiv = document.getElementById('chatMessages');
-      messagesDiv.innerHTML += `
-        <div class="message user">
-          <div class="message-content">${message}</div>
-        </div>
-      `;
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      camera.position.set(0, 0, 20);
 
-      // Réponse automatique intelligente
-      setTimeout(() => {
-        let response = generateResponse(message);
-        messagesDiv.innerHTML += `
-          <div class="message bot">
-            <div class="message-content">${response}</div>
-          </div>
-        `;
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
-      }, 500);
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setClearColor(0xfaf7f2, 1);
 
-      input.value = '';
-      messagesDiv.scrollTop = messagesDiv.scrollHeight;
-    };
+      // Lumières douces
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+      scene.add(ambientLight);
 
-    function generateResponse(question) {
-      question = question.toLowerCase();
+      const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+      dirLight.position.set(1, 1, 1);
+      scene.add(dirLight);
+
+      // Création d'éléments 3D flottants
+      const geometry1 = new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
+      const material1 = new THREE.MeshStandardMaterial({ color: 0xc9a27b, wireframe: true, transparent: true, opacity: 0.15 });
+      const torusKnot = new THREE.Mesh(geometry1, material1);
+      torusKnot.position.set(-3, 0, 0);
+      torusKnot.scale.set(1.5, 1.5, 1.5);
+      scene.add(torusKnot);
+
+      const geometry2 = new THREE.IcosahedronGeometry(1.5, 0);
+      const material2 = new THREE.MeshStandardMaterial({ color: 0xd9b382, wireframe: true, transparent: true, opacity: 0.1 });
+      const icosahedron = new THREE.Mesh(geometry2, material2);
+      icosahedron.position.set(3, 1, -2);
+      icosahedron.scale.set(1.8, 1.8, 1.8);
+      scene.add(icosahedron);
+
+      const geometry3 = new THREE.SphereGeometry(1.2, 32, 32);
+      const material3 = new THREE.MeshStandardMaterial({ color: 0xe5cfb5, wireframe: true, transparent: true, opacity: 0.1 });
+      const sphere = new THREE.Mesh(geometry3, material3);
+      sphere.position.set(0, -1, -3);
+      sphere.scale.set(2, 2, 2);
+      scene.add(sphere);
+
+      // Particules flottantes
+      const particlesGeo = new THREE.BufferGeometry();
+      const particlesCount = 500;
+      const posArray = new Float32Array(particlesCount * 3);
       
-      if (question.includes('bonjour') || question.includes('salut') || question.includes('hello')) {
-        return "Bonjour ! Comment puis-je vous aider aujourd'hui ? 😊";
+      for (let i = 0; i < particlesCount * 3; i += 3) {
+        posArray[i] = (Math.random() - 0.5) * 40;
+        posArray[i+1] = (Math.random() - 0.5) * 40;
+        posArray[i+2] = (Math.random() - 0.5) * 40;
       }
-      else if (question.includes('prix') || question.includes('tarif') || question.includes('combien')) {
-        return "Nos appartements commencent à partir de 890 000 DH pour les studios à Anoual, et peuvent aller jusqu'à 5 200 000 DH pour les appartements de prestige. Quel type de bien recherchez-vous ?";
-      }
-      else if (question.includes('anoual')) {
-        return "Anoual est un quartier résidentiel calme et familial. Nous avons 15 appartements disponibles, dont 2 avec terrasse. Les prix varient entre 890 000 DH et 3 450 000 DH. Souhaitez-vous plus d'informations sur un bien en particulier ?";
-      }
-      else if (question.includes('val fleuri')) {
-        return "Val Fleuri offre une vue magnifique sur la mer. Nous avons 10 appartements disponibles, allant de 4 200 000 DH à 5 200 000 DH. La résidence dispose d'une piscine commune et est proche des écoles. Puis-je vous aider à trouver votre bonheur ?";
-      }
-      else if (question.includes('oasis')) {
-        return "Le quartier Oasis est prisé pour ses jardins et sa tranquillité. Nous avons 8 appartements disponibles, avec des prix de 2 990 000 DH à 3 890 000 DH. Plusieurs disposent de jardins privés. Souhaitez-vous plus de détails ?";
-      }
-      else if (question.includes('dar bouazza') || question.includes('dunes') || question.includes('océane')) {
-        return "Dar Bouazza est notre nouveau programme en construction, livraison prévue en 2026. La résidence disposera d'une piscine, d'un terrain de paddle et de chiens de garde pour la sécurité. Les prix commencent à 2 500 000 DH. Souhaitez-vous être rappelé pour une pré-réservation ?";
-      }
-      else if (question.includes('terrasse')) {
-        return "Nous avons 2 appartements avec terrasse à Anoual : Al Warda Penthouse (terrasse 80m²) et Mira (terrasse 40m²). Souhaitez-vous plus d'informations sur l'un d'eux ?";
-      }
-      else if (question.includes('piscine')) {
-        return "Plusieurs de nos résidences disposent de piscines : Jardin d'Eau à Val Fleuri, et les futures résidences de Dar Bouazza. Souhaitez-vous voir ces biens ?";
-      }
-      else if (question.includes('chien') || question.includes('garde')) {
-        return "À Dar Bouazza, la sécurité est assurée par 2 bergers allemands formés. Ils patrouillent dans la résidence 24h/24. C'est un service unique pour votre tranquillité !";
-      }
-      else if (question.includes('rendez-vous') || question.includes('visite')) {
-        return "Je peux vous proposer un rendez-vous avec Mustapha Aouad directement. Quel jour seriez-vous disponible ? Vous pouvez aussi nous appeler au +212 6 12 34 56 78.";
-      }
-      else if (question.includes('contact') || question.includes('téléphone') || question.includes('appeler')) {
-        return "Vous pouvez nous joindre au +212 6 12 34 56 78, ou passer à l'agence : 26, Bd Zerktouni, Casablanca. Nous sommes ouverts du lundi au vendredi de 9h à 19h.";
-      }
-      else if (question.includes('financement') || question.includes('prêt') || question.includes('crédit')) {
-        return "Nous proposons un service de courtage en prêt immobilier avec nos partenaires bancaires. Nous pouvons simuler votre capacité d'emprunt et trouver les meilleurs taux. Souhaitez-vous qu'un conseiller vous contacte ?";
-      }
-      else if (question.includes('merci')) {
-        return "Avec plaisir ! N'hésitez pas si vous avez d'autres questions. Passez une excellente journée ! 🌞";
-      }
-      else {
-        return "Merci pour votre question. Pourriez-vous me donner plus de détails sur ce que vous recherchez ? Je suis là pour vous aider à trouver l'appartement de vos rêves ! 🏠";
-      }
-    }
+      
+      particlesGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+      
+      const particlesMat = new THREE.PointsMaterial({
+        size: 0.1,
+        color: 0xc9a27b,
+        transparent: true,
+        opacity: 0.3
+      });
+      
+      const particles = new THREE.Points(particlesGeo, particlesMat);
+      scene.add(particles);
 
-    window.openChatbotQuestion = function(appartName) {
-      toggleChatbot();
-      setTimeout(() => {
-        const input = document.getElementById('chatInput');
-        input.value = `Parlez-moi de ${appartName}`;
-        sendMessage();
-      }, 500);
-    };
+      function animate() {
+        requestAnimationFrame(animate);
+        
+        torusKnot.rotation.x += 0.002;
+        torusKnot.rotation.y += 0.003;
+        
+        icosahedron.rotation.x += 0.003;
+        icosahedron.rotation.y += 0.002;
+        
+        sphere.rotation.x += 0.001;
+        sphere.rotation.y += 0.004;
+        
+        particles.rotation.y += 0.0002;
+        
+        renderer.render(scene, camera);
+      }
+      
+      animate();
+
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    }
 
     // Initialisation
     window.addEventListener('load', () => {
+      initBackground3D();
       changePage('accueil');
     });
   </script>
