@@ -56,80 +56,140 @@
       --border-radius: 30px;
     }
 
-    /* ===== BARRE DE NAVIGATION SUPÉRIEURE (NOUVELLE) ===== */
-    .top-nav {
+    /* ===== BARRE DE NAVIGATION À BOULES ===== */
+    .boule-nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
       background: rgba(255,255,255,0.85);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,0.5);
-      box-shadow: var(--ombre-douce);
-      z-index: 9999;
-      padding: 10px 30px;
+      border-radius: 70px;
+      padding: 12px 25px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      gap: 25px;
+      z-index: 9999;
+      box-shadow: var(--ombre-moyenne);
+      border: 1px solid rgba(255,255,255,0.5);
     }
 
-    .top-logo {
+    .boule-logo {
       font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       font-weight: 700;
       color: var(--primary);
       cursor: pointer;
+      padding-right: 15px;
+      border-right: 2px solid var(--beige-fonce);
     }
 
-    .top-logo span {
-      font-size: 0.9rem;
-      font-weight: 300;
-      color: var(--texte-moyen);
-      margin-left: 5px;
-    }
-
-    .top-menu {
+    .boule-menu {
       display: flex;
+      align-items: center;
       gap: 15px;
-      flex-wrap: wrap;
-      justify-content: center;
     }
 
-    .top-menu-item {
-      font-family: 'Montserrat', sans-serif;
-      color: var(--texte-fonce);
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.9rem;
-      padding: 6px 15px;
-      border-radius: 50px;
-      transition: all 0.3s;
+    .boule-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       cursor: pointer;
-      letter-spacing: 0.3px;
+      position: relative;
+      min-width: 60px;
     }
 
-    .top-menu-item:hover {
-      background: var(--primary-light);
-      color: var(--primary-dark);
+    .boule {
+      width: 16px;
+      height: 16px;
+      background: var(--beige-fonce);
+      border-radius: 50%;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 5px;
     }
 
-    .top-menu-item.active {
+    .boule-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--texte-moyen);
+      transition: all 0.3s;
+      white-space: nowrap;
+      opacity: 0.8;
+    }
+
+    /* Animation au survol */
+    .boule-item:hover .boule {
+      transform: scale(1.5);
       background: var(--primary);
-      color: white;
+      box-shadow: 0 0 15px var(--primary);
     }
 
-    .top-phone {
+    .boule-item:hover .boule-label {
+      color: var(--primary);
+      font-weight: 600;
+      opacity: 1;
+    }
+
+    /* État actif */
+    .boule-item.active .boule {
+      background: var(--primary);
+      transform: scale(1.3);
+      box-shadow: 0 0 20px var(--primary);
+      animation: pulse-boule 2s infinite;
+    }
+
+    .boule-item.active .boule-label {
+      color: var(--primary);
+      font-weight: 600;
+      opacity: 1;
+    }
+
+    /* Animation de pulsation */
+    @keyframes pulse-boule {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(201,162,123,0.4);
+      }
+      50% {
+        box-shadow: 0 0 0 10px rgba(201,162,123,0);
+      }
+    }
+
+    /* Animation au clic */
+    .boule-item:active .boule {
+      transform: scale(0.8);
+      background: var(--primary-dark);
+    }
+
+    /* Bouton spécial */
+    .boule-phone {
       background: var(--primary) !important;
       color: white !important;
-      padding: 6px 18px !important;
-      border-radius: 50px;
+      padding: 5px 15px !important;
+      border-radius: 30px;
+      margin-left: 10px;
+      font-size: 0.85rem;
       font-weight: 600;
     }
 
-    /* ===== ESPACE POUR LA BARRE DU HAUT ===== */
+    .boule-phone .boule {
+      display: none;
+    }
+
+    .boule-phone .boule-label {
+      color: white;
+      opacity: 1;
+    }
+
+    .boule-phone:hover {
+      background: var(--primary-dark) !important;
+      transform: scale(1.05);
+    }
+
+    /* Espace pour la barre */
     .spacer {
-      height: 70px;
+      height: 90px;
       width: 100%;
     }
 
@@ -198,13 +258,13 @@
       pointer-events: none;
     }
 
-    /* ===== HERO SECTION AVEC 3D ===== */
+    /* ===== HERO SECTION ===== */
     .hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 80px 20px 50px;
+      padding: 50px 20px;
       position: relative;
       text-align: center;
     }
@@ -276,7 +336,7 @@
       transform: translateY(-5px);
     }
 
-    /* ===== STATISTIQUES ÉLÉGANTES ===== */
+    /* ===== STATISTIQUES ===== */
     .stats-container {
       display: flex;
       justify-content: center;
@@ -318,7 +378,7 @@
       letter-spacing: 1px;
     }
 
-    /* ===== SECTION PRÉSENTATION DÉTAILLÉE ===== */
+    /* ===== SECTION PRÉSENTATION ===== */
     .presentation-section {
       background: rgba(255,255,255,0.5);
       backdrop-filter: blur(10px);
@@ -485,10 +545,6 @@
     }
 
     /* ===== NOTRE MÉTHODE DE CONSTRUCTION ===== */
-    .method-section {
-      margin: 80px 0;
-    }
-
     .method-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -742,44 +798,31 @@
       display: block;
     }
 
-    /* ===== INDICATEUR DE PAGE ===== */
-    .page-indicator {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin: 30px 0;
-    }
-
-    .page-dot {
-      width: 12px;
-      height: 12px;
-      background: var(--beige-fonce);
-      border-radius: 50%;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .page-dot.active {
-      background: var(--primary);
-      transform: scale(1.3);
-    }
-
     /* ===== MEDIA QUERIES ===== */
     @media (max-width: 768px) {
-      .top-nav {
-        padding: 10px 15px;
+      .boule-nav {
         flex-wrap: wrap;
+        width: 95%;
+        padding: 10px 15px;
       }
       
-      .top-menu {
-        order: 3;
-        width: 100%;
-        margin-top: 10px;
+      .boule-logo {
+        font-size: 1.4rem;
+        padding-right: 10px;
+      }
+      
+      .boule-menu {
+        flex-wrap: wrap;
         justify-content: center;
+        gap: 10px;
+      }
+      
+      .boule-item {
+        min-width: 50px;
       }
       
       .spacer {
-        height: 110px;
+        height: 120px;
       }
 
       .presentation-grid,
@@ -800,18 +843,41 @@
   <!-- Arrière-plan 3D -->
   <canvas id="bg-canvas"></canvas>
 
-  <!-- Barre de navigation supérieure (NOUVELLE) -->
-  <nav class="top-nav">
-    <div class="top-logo" onclick="changePage('accueil')">LOTUS <span>Mustapha Aouad</span></div>
-    <div class="top-menu">
-      <a class="top-menu-item active" data-page="accueil">Accueil</a>
-      <a class="top-menu-item" data-page="appartements">Appartements</a>
-      <a class="top-menu-item" data-page="notre-histoire">Notre Histoire</a>
-      <a class="top-menu-item" data-page="equipe">L'Équipe</a>
-      <a class="top-menu-item" data-page="methodes">Nos Méthodes</a>
-      <a class="top-menu-item" data-page="pourquoi-nous">Pourquoi Nous</a>
-      <a class="top-menu-item" data-page="contact">Contact</a>
-      <a class="top-menu-item top-phone" onclick="changePage('contact')">Appeler</a>
+  <!-- Barre de navigation à boules -->
+  <nav class="boule-nav">
+    <div class="boule-logo" onclick="changePage('accueil')">LOTUS</div>
+    <div class="boule-menu">
+      <div class="boule-item active" data-page="accueil" onclick="changePage('accueil')">
+        <div class="boule"></div>
+        <span class="boule-label">Accueil</span>
+      </div>
+      <div class="boule-item" data-page="appartements" onclick="changePage('appartements')">
+        <div class="boule"></div>
+        <span class="boule-label">Appartements</span>
+      </div>
+      <div class="boule-item" data-page="notre-histoire" onclick="changePage('notre-histoire')">
+        <div class="boule"></div>
+        <span class="boule-label">Histoire</span>
+      </div>
+      <div class="boule-item" data-page="equipe" onclick="changePage('equipe')">
+        <div class="boule"></div>
+        <span class="boule-label">Équipe</span>
+      </div>
+      <div class="boule-item" data-page="methodes" onclick="changePage('methodes')">
+        <div class="boule"></div>
+        <span class="boule-label">Méthodes</span>
+      </div>
+      <div class="boule-item" data-page="pourquoi-nous" onclick="changePage('pourquoi-nous')">
+        <div class="boule"></div>
+        <span class="boule-label">Pourquoi</span>
+      </div>
+      <div class="boule-item" data-page="contact" onclick="changePage('contact')">
+        <div class="boule"></div>
+        <span class="boule-label">Contact</span>
+      </div>
+      <div class="boule-item boule-phone" onclick="changePage('contact')">
+        <span class="boule-label"><i class="fas fa-phone-alt"></i> Appeler</span>
+      </div>
     </div>
   </nav>
 
@@ -856,7 +922,7 @@
 
   <!-- PAGE APPARTEMENTS -->
   <div id="appartements" class="page">
-    <div style="height: 30px;"></div>
+    <div style="height: 20px;"></div>
     <div class="container">
       <h2 class="section-title">Nos <span>Appartements</span> d'Exception</h2>
       <p class="section-subtitle">Des biens uniques, sélectionnés avec soin dans les plus beaux quartiers de Casablanca</p>
@@ -1018,7 +1084,7 @@
 
   <!-- PAGE NOTRE HISTOIRE -->
   <div id="notre-histoire" class="page">
-    <div style="height: 30px;"></div>
+    <div style="height: 20px;"></div>
     <div class="container">
       <div class="presentation-section">
         <h2 class="section-title">Notre <span>Histoire</span></h2>
@@ -1047,7 +1113,7 @@
 
   <!-- PAGE ÉQUIPE -->
   <div id="equipe" class="page">
-    <div style="height: 30px;"></div>
+    <div style="height: 20px;"></div>
     <div class="container">
       <h2 class="section-title">L'<span>Équipe</span> qui Veille sur Vous</h2>
       <p class="section-subtitle">Des professionnels passionnés, à votre écoute à chaque étape</p>
@@ -1112,7 +1178,7 @@
 
   <!-- PAGE NOS MÉTHODES -->
   <div id="methodes" class="page">
-    <div style="height: 30px;"></div>
+    <div style="height: 20px;"></div>
     <div class="container">
       <h2 class="section-title">Comment <span>Nous Construisons</span> Mieux</h2>
       <p class="section-subtitle">Des méthodes innovantes et des matériaux d'exception pour des appartements qui durent</p>
@@ -1199,7 +1265,7 @@
 
   <!-- PAGE POURQUOI NOUS -->
   <div id="pourquoi-nous" class="page">
-    <div style="height: 30px;"></div>
+    <div style="height: 20px;"></div>
     <div class="container">
       <h2 class="section-title">Pourquoi <span>Choisir LOTUS</span></h2>
       <p class="section-subtitle">Ce qui nous rend différents, meilleurs, et plus fiables que nos concurrents</p>
@@ -1284,7 +1350,7 @@
 
   <!-- PAGE CONTACT -->
   <div id="contact" class="page">
-    <div style="height: 30px;"></div>
+    <div style="height: 20px;"></div>
     <div class="container">
       <div class="contact-section">
         <h2 class="section-title" style="margin-top: 0;">Parlons de <span>Votre Projet</span></h2>
@@ -1363,17 +1429,6 @@
     </div>
   </div>
 
-  <!-- Indicateur de pages -->
-  <div class="page-indicator">
-    <div class="page-dot active" data-page="accueil"></div>
-    <div class="page-dot" data-page="appartements"></div>
-    <div class="page-dot" data-page="notre-histoire"></div>
-    <div class="page-dot" data-page="equipe"></div>
-    <div class="page-dot" data-page="methodes"></div>
-    <div class="page-dot" data-page="pourquoi-nous"></div>
-    <div class="page-dot" data-page="contact"></div>
-  </div>
-
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-content">
@@ -1404,8 +1459,7 @@
   <script>
     // ===== SYSTÈME DE PAGES =====
     const pages = document.querySelectorAll('.page');
-    const topMenuItems = document.querySelectorAll('.top-menu-item');
-    const pageDots = document.querySelectorAll('.page-dot');
+    const bouleItems = document.querySelectorAll('.boule-item');
 
     function changePage(pageId) {
       // Cacher toutes les pages
@@ -1415,33 +1469,22 @@
       const activePage = document.getElementById(pageId);
       if (activePage) activePage.classList.add('active-page');
       
-      // Mettre à jour la navigation supérieure
-      topMenuItems.forEach(item => {
+      // Mettre à jour la navigation à boules
+      bouleItems.forEach(item => {
         item.classList.remove('active');
         if (item.dataset.page === pageId) item.classList.add('active');
-      });
-      
-      // Mettre à jour les dots
-      pageDots.forEach(dot => {
-        dot.classList.remove('active');
-        if (dot.dataset.page === pageId) dot.classList.add('active');
       });
       
       // Scroll en haut
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Ajout des événements pour la navigation supérieure
-    topMenuItems.forEach(item => {
+    // Ajout des événements pour les boules
+    bouleItems.forEach(item => {
       item.addEventListener('click', (e) => {
         e.preventDefault();
         changePage(item.dataset.page);
       });
-    });
-
-    // Ajout des événements pour les dots
-    pageDots.forEach(dot => {
-      dot.addEventListener('click', () => changePage(dot.dataset.page));
     });
 
     // ===== ARRIÈRE-PLAN 3D =====
