@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-  <title>LANA BLUE · NISAC Immobilier | Résidence Balnéaire d'Exception</title>
+  <title>ATLANTIS HILLS · La Résidence Iconique de Casablanca</title>
   
   <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts - Futuriste mais accessible -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Three.js pour les effets 3D -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -19,7 +19,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   
   <style>
-    /* ===== RESET ÉLÉGANT ===== */
+    /* ===== RESET MODERNE ===== */
     * {
       margin: 0;
       padding: 0;
@@ -33,27 +33,28 @@
     }
 
     body {
-      font-family: 'Montserrat', sans-serif;
-      background: #f0f7fc;
-      color: #1e2f3a;
+      font-family: 'Outfit', 'Space Grotesk', sans-serif;
+      background: #f8fafc;
+      color: #1e2b3a;
       overflow-x: hidden;
-      line-height: 1.7;
+      line-height: 1.6;
     }
 
-    /* ===== PALETTE LANA BLUE LUXE ===== */
+    /* ===== PALETTE ATLANTIS HILLS ===== */
     :root {
       --primary: #0f4b6e;
       --primary-dark: #08344d;
       --primary-light: #2a7ca5;
       --secondary: #6ab0d6;
-      --accent: #f5c542;
+      --accent: #f5b042;
+      --gold: #d4a13e;
       --blue-pale: #d9eaf5;
       --blue-mist: #c2d9e8;
       --blue-sky: #8fc5e8;
       --blue-deep: #0f4b6e;
       --beige-sable: #f5efe6;
       --blanc-casablanca: #fcf9f7;
-      --texte-fonce: #1e2f3a;
+      --texte-fonce: #1e2b3a;
       --texte-moyen: #3a4f5e;
       --texte-clair: #6f8595;
       --ombre-douce: 0 30px 60px rgba(0,0,0,0.08);
@@ -69,16 +70,16 @@
       padding: 0 40px;
     }
 
-    /* ===== TYPOGRAPHIE LUXUEUSE ===== */
+    /* ===== TYPOGRAPHIE ===== */
     h1, h2, h3, h4 {
-      font-family: 'Playfair Display', 'Cormorant Garamond', serif;
-      font-weight: 800;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
       color: var(--texte-fonce);
       line-height: 1.2;
     }
 
     p {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Quicksand', sans-serif;
       color: var(--texte-moyen);
       font-weight: 300;
       line-height: 1.8;
@@ -92,11 +93,11 @@
       transform: translateX(-50%);
       width: calc(100% - 50px);
       max-width: 1300px;
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.85);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-radius: 80px;
-      padding: 15px 35px;
+      padding: 12px 30px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -106,21 +107,20 @@
     }
 
     .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 2rem;
       font-weight: 800;
       background: linear-gradient(135deg, var(--primary), var(--primary-light));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
     }
 
     .logo span {
       font-size: 0.9rem;
-      font-weight: 300;
+      font-weight: 400;
       -webkit-text-fill-color: var(--texte-moyen);
       margin-left: 8px;
-      letter-spacing: 1px;
     }
 
     .nav-links {
@@ -129,13 +129,11 @@
     }
 
     .nav-links a {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Outfit', sans-serif;
       color: var(--texte-fonce);
       text-decoration: none;
       font-weight: 500;
-      font-size: 0.95rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      font-size: 1rem;
       transition: all 0.3s;
       cursor: pointer;
       padding: 5px 0;
@@ -153,7 +151,8 @@
       transition: width 0.3s;
     }
 
-    .nav-links a:hover::after {
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
       width: 100%;
     }
 
@@ -162,11 +161,24 @@
       font-weight: 600;
     }
 
-    .nav-links a.active::after {
-      width: 100%;
+    .nav-phone {
+      background: var(--primary);
+      color: white !important;
+      padding: 8px 20px !important;
+      border-radius: 40px;
+      font-weight: 600;
     }
 
-    /* ===== ARRIÈRE-PLAN 3D OCÉANIQUE ===== */
+    .nav-phone::after {
+      display: none;
+    }
+
+    .nav-phone:hover {
+      background: var(--primary-dark);
+      transform: scale(1.05);
+    }
+
+    /* ===== ARRIÈRE-PLAN 3D ===== */
     #bg-canvas {
       position: fixed;
       top: 0;
@@ -174,11 +186,11 @@
       width: 100%;
       height: 100%;
       z-index: -1;
-      opacity: 0.25;
+      opacity: 0.2;
       pointer-events: none;
     }
 
-    /* ===== HERO SECTION SPECTACULAIRE ===== */
+    /* ===== HERO SECTION ===== */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -195,100 +207,68 @@
     }
 
     .hero-overline {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       text-transform: uppercase;
-      letter-spacing: 10px;
+      letter-spacing: 6px;
       color: var(--primary);
       margin-bottom: 20px;
       font-weight: 400;
     }
 
     .hero-title {
-      font-size: clamp(5rem, 12vw, 8rem);
-      font-weight: 900;
+      font-size: clamp(4rem, 10vw, 7rem);
+      font-weight: 800;
       line-height: 1;
       margin-bottom: 20px;
       color: var(--primary-dark);
-      text-shadow: 0 20px 40px rgba(0,0,0,0.1);
     }
 
     .hero-title span {
-      color: var(--primary-light);
-      font-style: italic;
+      color: var(--accent);
       display: inline-block;
       animation: float 6s ease-in-out infinite;
     }
 
     @keyframes float {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-25px); }
+      50% { transform: translateY(-15px); }
     }
 
     .hero-subtitle {
-      font-size: 2.5rem;
+      font-size: 1.8rem;
       font-weight: 300;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
       color: var(--texte-moyen);
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
+    }
+
+    .hero-badges {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 40px;
     }
 
     .hero-badge {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin-top: 50px;
-    }
-
-    .hero-badge-item {
       background: rgba(255,255,255,0.3);
       backdrop-filter: blur(10px);
       padding: 12px 30px;
-      border-radius: 60px;
-      font-size: 1.1rem;
-      font-weight: 600;
+      border-radius: 50px;
+      font-weight: 500;
       color: var(--primary-dark);
       border: 1px solid rgba(255,255,255,0.5);
-    }
-
-    /* ===== PROGRESS BAR ===== */
-    .progress-container {
-      max-width: 600px;
-      margin: 40px auto 0;
-    }
-
-    .progress-label {
       display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
-      font-weight: 600;
-      color: var(--primary);
+      align-items: center;
+      gap: 10px;
     }
 
-    .progress-bar {
-      height: 12px;
-      background: rgba(255,255,255,0.3);
-      border-radius: 30px;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      width: 78%;
-      background: linear-gradient(90deg, var(--primary), var(--primary-light));
-      border-radius: 30px;
-      position: relative;
-      animation: progressPulse 2s infinite;
-    }
-
-    @keyframes progressPulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.8; }
+    .hero-badge i {
+      color: var(--accent);
     }
 
     /* ===== SECTION PROJET ===== */
     .project-section {
-      margin: 120px 0;
+      margin: 100px 0;
     }
 
     .project-grid {
@@ -298,72 +278,72 @@
       align-items: center;
     }
 
-    .project-badge {
+    .project-tag {
       display: inline-block;
       background: var(--primary);
       color: white;
-      padding: 10px 30px;
+      padding: 8px 25px;
       border-radius: 50px;
-      font-size: 1rem;
+      font-size: 0.9rem;
       text-transform: uppercase;
-      letter-spacing: 4px;
-      margin-bottom: 30px;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
     }
 
     .project-title {
-      font-size: 4.5rem;
-      margin-bottom: 30px;
-      line-height: 1.1;
+      font-size: 3.5rem;
+      margin-bottom: 25px;
     }
 
-    .project-title .blue {
+    .project-title .highlight {
       color: var(--primary);
     }
 
-    .project-description {
-      font-size: 1.4rem;
-      margin-bottom: 40px;
-      font-weight: 300;
-      border-left: 5px solid var(--primary);
-      padding-left: 30px;
+    .project-desc {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      border-left: 4px solid var(--primary);
+      padding-left: 25px;
     }
 
     .project-stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 30px;
-      margin-top: 50px;
+      gap: 20px;
+      margin-top: 40px;
     }
 
-    .stat-item {
-      text-align: center;
-      background: rgba(255,255,255,0.5);
-      backdrop-filter: blur(10px);
+    .stat-card {
+      background: white;
       padding: 25px;
-      border-radius: 40px;
-      border: 1px solid rgba(255,255,255,0.5);
+      border-radius: 30px;
+      text-align: center;
+      box-shadow: var(--ombre-douce);
+      transition: transform 0.3s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--ombre-moyenne);
     }
 
     .stat-number {
-      font-size: 3.5rem;
+      font-size: 2.5rem;
       font-weight: 800;
       color: var(--primary);
-      font-family: 'Playfair Display', serif;
       line-height: 1;
     }
 
     .stat-label {
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+      font-size: 0.9rem;
       color: var(--texte-moyen);
-      margin-top: 10px;
+      margin-top: 5px;
     }
 
     .project-image {
       position: relative;
-      height: 700px;
-      border-radius: 80px;
+      height: 600px;
+      border-radius: 60px;
       overflow: hidden;
       box-shadow: var(--ombre-moyenne);
     }
@@ -372,7 +352,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 1.5s;
+      transition: transform 1.2s;
     }
 
     .project-image:hover img {
@@ -385,36 +365,34 @@
       left: 30px;
       background: rgba(255,255,255,0.9);
       backdrop-filter: blur(10px);
-      padding: 15px 35px;
-      border-radius: 60px;
+      padding: 12px 30px;
+      border-radius: 50px;
       font-weight: 600;
       color: var(--primary);
-      font-size: 1.1rem;
     }
 
-    /* ===== SECTION LIEU APAISANT ===== */
-    .lieu-section {
-      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    /* ===== SECTION POUR TOUS LES BUDGETS ===== */
+    .budget-section {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      padding: 100px 0;
+      border-radius: 100px 100px 0 0;
       color: white;
-      padding: 140px 0;
-      border-radius: 120px 120px 0 0;
-      margin-top: 100px;
       position: relative;
       overflow: hidden;
     }
 
-    .lieu-section::before {
+    .budget-section::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><path d="M10 50 Q 30 30, 50 50 T 90 50" stroke="white" fill="none" stroke-width="2"/><path d="M10 60 Q 30 40, 50 60 T 90 60" stroke="white" fill="none" stroke-width="1.5"/></svg>') repeat;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><circle cx="20" cy="20" r="10" fill="white"/><circle cx="80" cy="60" r="15" fill="white"/><circle cx="40" cy="80" r="8" fill="white"/></svg>') repeat;
       pointer-events: none;
     }
 
-    .lieu-content {
+    .budget-content {
       max-width: 1000px;
       margin: 0 auto;
       text-align: center;
@@ -422,357 +400,330 @@
       z-index: 2;
     }
 
-    .lieu-title {
-      font-size: 6rem;
-      font-weight: 900;
-      color: white;
-      margin-bottom: 30px;
-      font-family: 'Playfair Display', serif;
-      text-shadow: 0 20px 40px rgba(0,0,0,0.2);
-    }
-
-    .lieu-subtitle {
-      font-size: 3rem;
-      font-weight: 300;
-      margin-bottom: 40px;
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      color: rgba(255,255,255,0.9);
-    }
-
-    .lieu-text {
-      font-size: 2rem;
-      opacity: 0.95;
-      max-width: 800px;
-      margin: 0 auto;
-      font-weight: 400;
-    }
-
-    /* ===== SPORTS SECTION ===== */
-    .sports-section {
-      margin: 120px 0;
-    }
-
-    .sports-title {
-      font-size: 4rem;
-      text-align: center;
-      margin-bottom: 20px;
-      color: var(--primary);
-    }
-
-    .sports-subtitle {
-      text-align: center;
-      font-size: 1.3rem;
-      margin-bottom: 60px;
-      color: var(--texte-moyen);
-    }
-
-    .sports-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 40px;
-    }
-
-    .sport-card {
-      position: relative;
-      height: 600px;
-      border-radius: 80px;
-      overflow: hidden;
-      cursor: pointer;
-      box-shadow: var(--ombre-moyenne);
-    }
-
-    .sport-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 1.2s;
-    }
-
-    .sport-card:hover img {
-      transform: scale(1.15);
-    }
-
-    .sport-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      padding: 50px;
-      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-      color: white;
-    }
-
-    .sport-overlay h3 {
-      color: white;
+    .budget-title {
       font-size: 3.5rem;
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .budget-subtitle {
+      font-size: 1.5rem;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 50px;
+    }
+
+    .budget-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .budget-card {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 50px;
+      padding: 40px 20px;
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: all 0.3s;
+    }
+
+    .budget-card:hover {
+      transform: translateY(-15px);
+      background: rgba(255,255,255,0.25);
+    }
+
+    .budget-icon {
+      font-size: 3rem;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .budget-card h3 {
+      color: white;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .budget-card p {
+      color: rgba(255,255,255,0.8);
+      font-size: 1.1rem;
+    }
+
+    .budget-range {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-top: 20px;
+    }
+
+    /* ===== SECTION APPARTEMENTS ===== */
+    .appartments-section {
+      margin: 100px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-header h2 {
+      font-size: 3rem;
       margin-bottom: 15px;
     }
 
-    .sport-overlay p {
-      color: rgba(255,255,255,0.9);
-      font-size: 1.5rem;
-    }
-
-    .sport-badge {
-      position: absolute;
-      top: 30px;
-      right: 30px;
-      background: var(--accent);
-      color: var(--primary-dark);
-      padding: 12px 30px;
-      border-radius: 60px;
-      font-weight: 700;
+    .section-header p {
       font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
     }
 
-    /* ===== CARACTÉRISTIQUES ===== */
-    .features-grid {
+    .appartments-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 40px;
-      margin: 80px 0;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
     }
 
-    .feature-card {
-      background: rgba(255,255,255,0.7);
-      backdrop-filter: blur(10px);
-      border-radius: 70px;
-      padding: 60px 40px;
-      text-align: center;
-      border: 1px solid rgba(255,255,255,0.5);
-      transition: all 0.5s;
+    .appart-card {
+      background: white;
+      border-radius: 50px;
+      overflow: hidden;
+      box-shadow: var(--ombre-douce);
+      transition: all 0.4s;
+      cursor: pointer;
     }
 
-    .feature-card:hover {
-      transform: translateY(-25px) scale(1.02);
+    .appart-card:hover {
+      transform: translateY(-20px);
       box-shadow: var(--ombre-moyenne);
     }
 
-    .feature-icon {
-      width: 120px;
-      height: 120px;
+    .card-img {
+      height: 280px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s;
+    }
+
+    .appart-card:hover .card-img img {
+      transform: scale(1.15);
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--accent);
+      color: var(--primary-dark);
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .card-content {
+      padding: 25px;
+    }
+
+    .card-title {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .card-price {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin: 15px 0;
+    }
+
+    .card-features {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin: 15px 0;
+    }
+
+    .card-features span {
+      background: #f0f5fa;
+      padding: 8px 15px;
+      border-radius: 40px;
+      font-size: 0.9rem;
+    }
+
+    .btn-card {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 40px;
+      font-weight: 600;
+      width: 100%;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 1rem;
+    }
+
+    .btn-card:hover {
+      background: var(--primary-dark);
+    }
+
+    /* ===== SECTION AMÉNITÉS ===== */
+    .amenities-section {
+      background: #f0f5fa;
+      padding: 100px 0;
+      border-radius: 100px 100px 0 0;
+    }
+
+    .amenities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .amenity-card {
+      background: white;
+      border-radius: 40px;
+      padding: 40px 30px;
+      text-align: center;
+      transition: all 0.3s;
+      box-shadow: var(--ombre-douce);
+    }
+
+    .amenity-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--ombre-moyenne);
+    }
+
+    .amenity-icon {
+      width: 80px;
+      height: 80px;
       background: var(--primary);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 35px;
+      margin: 0 auto 25px;
     }
 
-    .feature-icon i {
-      font-size: 3.5rem;
+    .amenity-icon i {
+      font-size: 2.5rem;
       color: white;
     }
 
-    .feature-card h3 {
-      font-size: 2.2rem;
-      margin-bottom: 20px;
-      color: var(--primary);
+    .amenity-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
     }
 
-    .feature-card p {
-      font-size: 1.2rem;
+    .amenity-card p {
+      color: var(--texte-moyen);
     }
 
-    /* ===== PISCINES SECTION ===== */
-    .piscines-section {
-      margin: 120px 0;
-      position: relative;
-    }
-
-    .piscines-title {
-      font-size: 5rem;
-      text-align: center;
-      margin-bottom: 60px;
-      color: var(--primary);
-    }
-
-    .piscines-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 40px;
-    }
-
-    .piscine-card {
-      height: 550px;
-      border-radius: 80px;
-      overflow: hidden;
-      position: relative;
-      cursor: pointer;
-    }
-
-    .piscine-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 1s;
-    }
-
-    .piscine-card:hover img {
-      transform: scale(1.1);
-    }
-
-    .piscine-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      padding: 50px;
-      background: linear-gradient(to top, rgba(0,20,40,0.8), transparent);
-      color: white;
-    }
-
-    .piscine-overlay h3 {
-      color: white;
-      font-size: 3rem;
-      margin-bottom: 10px;
-    }
-
-    .piscine-overlay p {
-      color: rgba(255,255,255,0.9);
-      font-size: 1.3rem;
-    }
-
-    /* ===== GALERIE 3D ===== */
-    .gallery-3d {
-      margin: 120px 0;
-    }
-
-    .gallery-title {
-      font-size: 4.5rem;
-      text-align: center;
-      margin-bottom: 60px;
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
-    }
-
-    .gallery-item {
-      height: 450px;
-      border-radius: 60px;
-      overflow: hidden;
-      position: relative;
-      transform-style: preserve-3d;
-      transition: all 0.6s;
-      cursor: pointer;
-    }
-
-    .gallery-item:hover {
-      transform: perspective(1000px) rotateY(8deg) translateZ(30px);
-      box-shadow: var(--ombre-moyenne);
-    }
-
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .gallery-caption {
-      position: absolute;
-      bottom: 25px;
-      left: 25px;
-      background: rgba(255,255,255,0.9);
-      backdrop-filter: blur(10px);
-      padding: 12px 30px;
-      border-radius: 50px;
-      font-weight: 600;
-      color: var(--primary);
-      font-size: 1.1rem;
-    }
-
-    /* ===== SIGNATURE NISAC ===== */
-    .signature-section {
-      text-align: center;
-      padding: 100px 0;
-      background: var(--blue-pale);
-      border-radius: 120px;
+    /* ===== SECTION TÉMOIGNAGES ===== */
+    .testimonials-section {
       margin: 100px 0;
     }
 
-    .signature-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 7rem;
-      font-weight: 900;
-      background: linear-gradient(135deg, var(--primary), var(--primary-light));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 20px;
-      letter-spacing: 5px;
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
     }
 
-    .signature-sub {
-      font-size: 2rem;
-      color: var(--texte-moyen);
-      letter-spacing: 8px;
-      text-transform: uppercase;
-      margin-bottom: 30px;
+    .testimonial-card {
+      background: white;
+      border-radius: 40px;
+      padding: 40px;
+      box-shadow: var(--ombre-douce);
+      position: relative;
     }
 
-    .signature-divider {
-      width: 150px;
-      height: 4px;
-      background: var(--primary);
-      margin: 30px auto;
+    .testimonial-card i {
+      font-size: 2.5rem;
+      color: var(--primary);
+      opacity: 0.3;
+      position: absolute;
+      top: 20px;
+      right: 20px;
     }
 
-    .signature-text {
-      font-size: 1.5rem;
-      max-width: 700px;
-      margin: 30px auto;
+    .testimonial-text {
+      font-size: 1.1rem;
+      margin-bottom: 25px;
       color: var(--texte-fonce);
     }
 
-    /* ===== CONTACT SECTION ===== */
+    .testimonial-author {
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .testimonial-location {
+      color: var(--texte-moyen);
+      font-size: 0.9rem;
+    }
+
+    /* ===== SECTION CONTACT ===== */
     .contact-section {
       background: var(--primary-dark);
       color: white;
-      padding: 120px 0;
-      border-radius: 120px 120px 0 0;
+      padding: 100px 0;
+      border-radius: 100px 100px 0 0;
     }
 
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 80px;
+      gap: 60px;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 40px;
+      padding: 0 30px;
     }
 
     .contact-info h2 {
       color: white;
-      font-size: 4rem;
+      font-size: 3rem;
+      margin-bottom: 30px;
+    }
+
+    .contact-info p {
+      color: rgba(255,255,255,0.8);
+      font-size: 1.2rem;
       margin-bottom: 40px;
     }
 
     .contact-detail {
       display: flex;
       align-items: center;
-      gap: 25px;
-      margin-bottom: 30px;
-      font-size: 1.3rem;
+      gap: 20px;
+      margin-bottom: 25px;
+      font-size: 1.2rem;
     }
 
     .contact-detail i {
-      font-size: 2.5rem;
+      font-size: 2rem;
       color: var(--accent);
     }
 
     .contact-form input,
     .contact-form textarea {
       width: 100%;
-      padding: 18px 30px;
-      margin-bottom: 25px;
+      padding: 15px 25px;
+      margin-bottom: 20px;
       background: rgba(255,255,255,0.1);
       border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 60px;
+      border-radius: 50px;
       color: white;
-      font-size: 1.1rem;
+      font-size: 1rem;
     }
 
     .contact-form input::placeholder,
@@ -784,10 +735,10 @@
       background: var(--accent);
       color: var(--primary-dark);
       border: none;
-      padding: 18px 50px;
-      border-radius: 60px;
+      padding: 15px 40px;
+      border-radius: 50px;
       font-weight: 700;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       cursor: pointer;
       transition: all 0.3s;
       width: 100%;
@@ -802,13 +753,13 @@
     .footer {
       background: #0a1f2a;
       color: white;
-      padding: 70px 0 30px;
+      padding: 60px 0 30px;
     }
 
     .footer-content {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 50px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 30px;
@@ -816,21 +767,20 @@
 
     .footer-col h4 {
       color: white;
-      margin-bottom: 25px;
-      font-size: 1.5rem;
+      margin-bottom: 20px;
+      font-size: 1.3rem;
     }
 
     .footer-col p, .footer-col a {
       color: #b0c4d9;
       text-decoration: none;
-      line-height: 2.2;
-      font-size: 1.1rem;
+      line-height: 2;
     }
 
     .footer-bottom {
       text-align: center;
-      padding-top: 50px;
-      margin-top: 50px;
+      padding-top: 40px;
+      margin-top: 40px;
       border-top: 1px solid rgba(255,255,255,0.1);
     }
 
@@ -838,7 +788,7 @@
     @keyframes fadeInUp {
       from {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY(30px);
       }
       to {
         opacity: 1;
@@ -847,7 +797,7 @@
     }
 
     .fadeInUp {
-      animation: fadeInUp 1s ease forwards;
+      animation: fadeInUp 0.8s ease forwards;
     }
 
     /* ===== MEDIA QUERIES ===== */
@@ -858,7 +808,7 @@
 
       .navbar {
         flex-direction: column;
-        gap: 15px;
+        gap: 10px;
         padding: 15px;
       }
 
@@ -869,39 +819,29 @@
       }
 
       .project-grid,
-      .sports-grid,
-      .piscines-grid,
       .contact-grid,
-      .gallery-grid {
+      .budget-grid {
         grid-template-columns: 1fr;
       }
 
       .hero-title {
-        font-size: 3.5rem;
+        font-size: 3rem;
       }
 
       .hero-subtitle {
-        font-size: 1.8rem;
+        font-size: 1.3rem;
       }
 
-      .lieu-title {
-        font-size: 3rem;
-      }
-
-      .lieu-subtitle {
-        font-size: 1.8rem;
-      }
-
-      .sport-card {
-        height: 400px;
-      }
-
-      .signature-logo {
-        font-size: 3.5rem;
+      .budget-title {
+        font-size: 2.5rem;
       }
 
       .project-title {
-        font-size: 3rem;
+        font-size: 2.5rem;
+      }
+
+      .project-image {
+        height: 400px;
       }
     }
   </style>
@@ -912,41 +852,29 @@
 
   <!-- Navigation -->
   <nav class="navbar">
-    <div class="logo">LANA BLUE <span>by NISAC</span></div>
+    <div class="logo">ATLANTIS HILLS <span>Casablanca</span></div>
     <div class="nav-links">
       <a href="#accueil" class="active">Accueil</a>
       <a href="#projet">Le Projet</a>
-      <a href="#lieu">Lieu</a>
-      <a href="#sports">Sports</a>
-      <a href="#piscines">Piscines</a>
-      <a href="#galerie">Galerie</a>
-      <a href="#contact">Contact</a>
+      <a href="#appartements">Appartements</a>
+      <a href="#amenites">Aménités</a>
+      <a href="#budget">Tous Budgets</a>
+      <a href="#temoignages">Témoignages</a>
+      <a href="#contact" class="nav-phone">Contact</a>
     </div>
   </nav>
 
   <!-- HERO SECTION -->
   <section id="accueil" class="hero">
     <div class="hero-content">
-      <div class="hero-overline fadeInUp">NISAC IMMOBILIER</div>
-      <h1 class="hero-title fadeInUp" style="animation-delay: 0.2s;">LANA <span>BLUE</span></h1>
-      <div class="hero-subtitle fadeInUp" style="animation-delay: 0.4s;">Résidence Balnéaire R+2</div>
-      
-      <!-- Progress bar "11 of 14" -->
-      <div class="progress-container fadeInUp" style="animation-delay: 0.6s;">
-        <div class="progress-label">
-          <span>Projet LANA BLUE</span>
-          <span><strong>11</strong> of 14</span>
-        </div>
-        <div class="progress-bar">
-          <div class="progress-fill"></div>
-        </div>
-      </div>
-
-      <div class="hero-badge fadeInUp" style="animation-delay: 0.8s;">
-        <span class="hero-badge-item"><i class="fas fa-check-circle"></i> Done</span>
-        <span class="hero-badge-item"><i class="fas fa-swimming-pool"></i> Piscines</span>
-        <span class="hero-badge-item"><i class="fas fa-table-tennis"></i> Padel</span>
-        <span class="hero-badge-item"><i class="fas fa-basketball-ball"></i> Basket</span>
+      <div class="hero-overline fadeInUp">ATLANTIS HILLS</div>
+      <h1 class="hero-title fadeInUp" style="animation-delay: 0.2s;">Vivez au-dessus <span>de la ville</span></h1>
+      <div class="hero-subtitle fadeInUp" style="animation-delay: 0.4s;">La résidence iconique de Casablanca</div>
+      <div class="hero-badges fadeInUp" style="animation-delay: 0.6s;">
+        <span class="hero-badge"><i class="fas fa-check-circle"></i> Du studio au penthouse</span>
+        <span class="hero-badge"><i class="fas fa-swimming-pool"></i> Piscine & Spa</span>
+        <span class="hero-badge"><i class="fas fa-tree"></i> Parc paysager</span>
+        <span class="hero-badge"><i class="fas fa-shield-alt"></i> Sécurité 24/7</span>
       </div>
     </div>
   </section>
@@ -954,169 +882,264 @@
   <!-- PROJET SECTION -->
   <section id="projet" class="container project-section">
     <div class="project-grid">
-      <div>
-        <div class="project-badge fadeInUp">NISAC IMMOBILIER</div>
-        <h2 class="project-title fadeInUp" style="animation-delay: 0.2s;">LANA <span class="blue">BLUE</span></h2>
-        <p class="project-description fadeInUp" style="animation-delay: 0.4s;">
-          Une résidence balnéaire d'exception où l'architecture contemporaine épouse la douceur de vivre méditerranéenne. Conçue pour ceux qui recherchent l'équilibre parfait entre prestige et bien-être.
+      <div class="fadeInUp">
+        <div class="project-tag">ATLANTIS HILLS</div>
+        <h2 class="project-title">Un nouveau <span class="highlight">horizon</span> pour Casablanca</h2>
+        <p class="project-desc">
+          Au cœur de la métropole, Atlantis Hills redéfinit les codes de l'habitat. Une architecture contemporaine, des espaces généreux et une vue imprenable sur l'océan.
         </p>
         <div class="project-stats">
-          <div class="stat-item fadeInUp" style="animation-delay: 0.6s;">
-            <div class="stat-number">11</div>
-            <div class="stat-label">of 14</div>
-          </div>
-          <div class="stat-item fadeInUp" style="animation-delay: 0.7s;">
-            <div class="stat-number">R+2</div>
+          <div class="stat-card">
+            <div class="stat-number">R+8</div>
             <div class="stat-label">Étages</div>
           </div>
-          <div class="stat-item fadeInUp" style="animation-delay: 0.8s;">
-            <div class="stat-number">2025</div>
+          <div class="stat-card">
+            <div class="stat-number">89</div>
+            <div class="stat-label">Appartements</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">2026</div>
             <div class="stat-label">Livraison</div>
           </div>
         </div>
       </div>
-      <div class="project-image fadeInUp" style="animation-delay: 0.5s;">
-        <img src="https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="LANA BLUE Résidence">
+      <div class="project-image fadeInUp" style="animation-delay: 0.3s;">
+        <img src="https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Atlantis Hills">
         <div class="image-caption">
-          <i class="fas fa-camera"></i> Vue d'artiste · Piscine à débordement
+          <i class="fas fa-camera"></i> Vue d'artiste
         </div>
       </div>
     </div>
   </section>
 
-  <!-- LIEU APAISANT SECTION -->
-  <section id="lieu" class="lieu-section">
-    <div class="lieu-content">
-      <h2 class="lieu-title fadeInUp">UN LIEU APAISANT</h2>
-      <div class="lieu-subtitle fadeInUp" style="animation-delay: 0.2s;">POUR SE RESSOURCER</div>
-      <div class="lieu-text fadeInUp" style="animation-delay: 0.4s;">
-        SANS QUITTER LA VILLE
-      </div>
-    </div>
-  </section>
-
-  <!-- SPORTS SECTION (PADEL + BASKET) -->
-  <section id="sports" class="container sports-section">
-    <h2 class="sports-title fadeInUp">ESPACES <span style="color: var(--primary);">SPORTIFS</span></h2>
-    <p class="sports-subtitle fadeInUp">Des infrastructures d'exception pour votre bien-être et vos loisirs</p>
-    
-    <div class="sports-grid">
-      <div class="sport-card fadeInUp">
-        <img src="https://images.pexels.com/photos/260447/pexels-photo-260447.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Terrain de Padel">
-        <div class="sport-badge">7 of 14</div>
-        <div class="sport-overlay">
-          <h3>TERRAIN DE PADEL</h3>
-          <p>Surface professionnelle · Éclairage LED · Club-house</p>
+  <!-- SECTION POUR TOUS LES BUDGETS -->
+  <section id="budget" class="budget-section">
+    <div class="budget-content">
+      <h2 class="budget-title fadeInUp">Des appartements pour <span style="color: var(--accent);">tous les budgets</span></h2>
+      <p class="budget-subtitle fadeInUp" style="animation-delay: 0.2s;">Du studio au penthouse, trouvez celui qui vous correspond</p>
+      
+      <div class="budget-grid">
+        <div class="budget-card fadeInUp" style="animation-delay: 0.3s;">
+          <div class="budget-icon"><i class="fas fa-home"></i></div>
+          <h3>Studio & 2 pièces</h3>
+          <p>Idéal pour débuter ou investir</p>
+          <div class="budget-range">À partir de 890 000 DH</div>
         </div>
-      </div>
-      <div class="sport-card fadeInUp" style="animation-delay: 0.2s;">
-        <img src="https://images.pexels.com/photos/1752757/pexels-photo-1752757.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Terrain de Basket">
-        <div class="sport-badge">7 of 14</div>
-        <div class="sport-overlay">
-          <h3>TERRAIN DE BASKET</h3>
-          <p>Revêtement haute performance · Panneaux réglables · Tribune</p>
+        <div class="budget-card fadeInUp" style="animation-delay: 0.4s;">
+          <div class="budget-icon"><i class="fas fa-building"></i></div>
+          <h3>3 pièces & Duplex</h3>
+          <p>Pour les familles</p>
+          <div class="budget-range">De 1 500 000 à 2 800 000 DH</div>
+        </div>
+        <div class="budget-card fadeInUp" style="animation-delay: 0.5s;">
+          <div class="budget-icon"><i class="fas fa-crown"></i></div>
+          <h3>Penthouse & Prestige</h3>
+          <p>Vue mer, terrasse privative</p>
+          <div class="budget-range">Jusqu'à 6 500 000 DH</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CARACTÉRISTIQUES -->
-  <div class="container">
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">
-          <i class="fas fa-swimming-pool"></i>
-        </div>
-        <h3>Piscines</h3>
-        <p>Deux piscines à débordement avec vue panoramique, chauffées toute l'année</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">
-          <i class="fas fa-spa"></i>
-        </div>
-        <h3>Spa & Bien-être</h3>
-        <p>Hammam, sauna, salle de sport, massages sur réservation</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">
-          <i class="fas fa-umbrella-beach"></i>
-        </div>
-        <h3>Accès Plage</h3>
-        <p>Accès privé à la plage, transats, service de restauration légère</p>
-      </div>
+  <!-- APPARTEMENTS SECTION -->
+  <section id="appartements" class="container appartments-section">
+    <div class="section-header fadeInUp">
+      <h2>Nos <span style="color: var(--primary);">appartements</span></h2>
+      <p>Des espaces pensés pour votre confort, avec des finitions haut de gamme</p>
     </div>
-  </div>
 
-  <!-- PISCINES SECTION -->
-  <section id="piscines" class="container piscines-section">
-    <h2 class="piscines-title">PISCINES</h2>
-    <div class="piscines-grid">
-      <div class="piscine-card">
-        <img src="https://images.pexels.com/photos/261169/pexels-photo-261169.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Piscine principale">
-        <div class="piscine-overlay">
-          <h3>Piscine Infinity</h3>
-          <p>25m · Vue mer · Chauffée · Plage immergée</p>
+    <div class="appartments-grid">
+      <!-- Studio -->
+      <div class="appart-card fadeInUp">
+        <div class="card-img">
+          <img src="https://images.pexels.com/photos/271795/pexels-photo-271795.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Studio">
+          <div class="card-badge">Entrée de gamme</div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Studio Cosy</h3>
+          <div class="card-price">890 000 DH</div>
+          <div class="card-features">
+            <span><i class="fas fa-vector-square"></i> 38 m²</span>
+            <span><i class="fas fa-sun"></i> Balcon</span>
+            <span><i class="fas fa-elevator"></i> Ascenseur</span>
+          </div>
+          <button class="btn-card">Je suis intéressé</button>
         </div>
       </div>
-      <div class="piscine-card">
-        <img src="https://images.pexels.com/photos/280232/pexels-photo-280232.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Piscine intérieure">
-        <div class="piscine-overlay">
-          <h3>Piscine Intérieure</h3>
-          <p>15m · Spa · Contre-courant · Jacuzzi</p>
+
+      <!-- 2 pièces -->
+      <div class="appart-card fadeInUp" style="animation-delay: 0.1s;">
+        <div class="card-img">
+          <img src="https://images.pexels.com/photos/279607/pexels-photo-279607.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="2 pièces">
+          <div class="card-badge">Idéal investisseur</div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">2 Pièces Moderne</h3>
+          <div class="card-price">1 250 000 DH</div>
+          <div class="card-features">
+            <span><i class="fas fa-vector-square"></i> 65 m²</span>
+            <span><i class="fas fa-bed"></i> 1 chambre</span>
+            <span><i class="fas fa-car"></i> Parking</span>
+          </div>
+          <button class="btn-card">Je suis intéressé</button>
+        </div>
+      </div>
+
+      <!-- 3 pièces -->
+      <div class="appart-card fadeInUp" style="animation-delay: 0.2s;">
+        <div class="card-img">
+          <img src="https://images.pexels.com/photos/2587054/pexels-photo-2587054.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="3 pièces">
+          <div class="card-badge">Familial</div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">3 Pièces Familial</h3>
+          <div class="card-price">1 890 000 DH</div>
+          <div class="card-features">
+            <span><i class="fas fa-vector-square"></i> 98 m²</span>
+            <span><i class="fas fa-bed"></i> 2 chambres</span>
+            <span><i class="fas fa-parking"></i> Parking</span>
+          </div>
+          <button class="btn-card">Je suis intéressé</button>
+        </div>
+      </div>
+
+      <!-- Duplex -->
+      <div class="appart-card fadeInUp" style="animation-delay: 0.3s;">
+        <div class="card-img">
+          <img src="https://images.pexels.com/photos/280233/pexels-photo-280233.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Duplex">
+          <div class="card-badge">Duplex</div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Duplex Vue Mer</h3>
+          <div class="card-price">2 950 000 DH</div>
+          <div class="card-features">
+            <span><i class="fas fa-vector-square"></i> 145 m²</span>
+            <span><i class="fas fa-bed"></i> 3 chambres</span>
+            <span><i class="fas fa-swimming-pool"></i> Piscine</span>
+          </div>
+          <button class="btn-card">Je suis intéressé</button>
+        </div>
+      </div>
+
+      <!-- Penthouse -->
+      <div class="appart-card fadeInUp" style="animation-delay: 0.4s;">
+        <div class="card-img">
+          <img src="https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Penthouse">
+          <div class="card-badge">Prestige</div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Penthouse Atlantis</h3>
+          <div class="card-price">5 200 000 DH</div>
+          <div class="card-features">
+            <span><i class="fas fa-vector-square"></i> 210 m²</span>
+            <span><i class="fas fa-bed"></i> 4 chambres</span>
+            <span><i class="fas fa-sun"></i> Terrasse 80m²</span>
+          </div>
+          <button class="btn-card">Je suis intéressé</button>
+        </div>
+      </div>
+
+      <!-- Studio luxe -->
+      <div class="appart-card fadeInUp" style="animation-delay: 0.5s;">
+        <div class="card-img">
+          <img src="https://images.pexels.com/photos/276528/pexels-photo-276528.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Studio luxe">
+          <div class="card-badge">Coup de cœur</div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Studio Premium</h3>
+          <div class="card-price">1 150 000 DH</div>
+          <div class="card-features">
+            <span><i class="fas fa-vector-square"></i> 52 m²</span>
+            <span><i class="fas fa-sun"></i> Terrasse</span>
+            <span><i class="fas fa-thermometer"></i> Clim centrale</span>
+          </div>
+          <button class="btn-card">Je suis intéressé</button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- GALERIE 3D -->
-  <section id="galerie" class="container gallery-3d">
-    <h2 class="gallery-title">LA <span style="color: var(--primary);">GALERIE</span></h2>
-    <div class="gallery-grid">
-      <div class="gallery-item">
-        <img src="https://images.pexels.com/photos/2587054/pexels-photo-2587054.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Appartement">
-        <div class="gallery-caption">Salon vue mer</div>
+  <!-- AMÉNITÉS SECTION -->
+  <section id="amenites" class="amenities-section">
+    <div class="container">
+      <div class="section-header fadeInUp">
+        <h2>Des <span style="color: var(--primary);">aménités</span> d'exception</h2>
+        <p>Tout ce dont vous avez besoin pour votre bien-être, sans quitter la résidence</p>
       </div>
-      <div class="gallery-item">
-        <img src="https://images.pexels.com/photos/271795/pexels-photo-271795.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Chambre">
-        <div class="gallery-caption">Chambre suite</div>
-      </div>
-      <div class="gallery-item">
-        <img src="https://images.pexels.com/photos/276528/pexels-photo-276528.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Terrasse">
-        <div class="gallery-caption">Terrasse paysagère</div>
-      </div>
-      <div class="gallery-item">
-        <img src="https://images.pexels.com/photos/280234/pexels-photo-280234.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Jardin">
-        <div class="gallery-caption">Jardin méditerranéen</div>
-      </div>
-      <div class="gallery-item">
-        <img src="https://images.pexels.com/photos/280229/pexels-photo-280229.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Coucher de soleil">
-        <div class="gallery-caption">Coucher de soleil</div>
-      </div>
-      <div class="gallery-item">
-        <img src="https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Piscine nuit">
-        <div class="gallery-caption">Piscine illuminée</div>
+
+      <div class="amenities-grid">
+        <div class="amenity-card fadeInUp">
+          <div class="amenity-icon"><i class="fas fa-swimming-pool"></i></div>
+          <h3>Piscine</h3>
+          <p>Piscine olympique chauffée avec plage immergée</p>
+        </div>
+        <div class="amenity-card fadeInUp" style="animation-delay: 0.1s;">
+          <div class="amenity-icon"><i class="fas fa-spa"></i></div>
+          <h3>Spa & Fitness</h3>
+          <p>Hammam, sauna, salle de sport, massages</p>
+        </div>
+        <div class="amenity-card fadeInUp" style="animation-delay: 0.2s;">
+          <div class="amenity-icon"><i class="fas fa-tree"></i></div>
+          <h3>Parc paysager</h3>
+          <p>2 hectares d'espaces verts, aires de jeux</p>
+        </div>
+        <div class="amenity-card fadeInUp" style="animation-delay: 0.3s;">
+          <div class="amenity-icon"><i class="fas fa-shield-alt"></i></div>
+          <h3>Sécurité 24/7</h3>
+          <p>Vidéosurveillance, gardiennage, accès badge</p>
+        </div>
+        <div class="amenity-card fadeInUp" style="animation-delay: 0.4s;">
+          <div class="amenity-icon"><i class="fas fa-table-tennis"></i></div>
+          <h3>Terrain de padel</h3>
+          <p>Pour les passionnés de sport</p>
+        </div>
+        <div class="amenity-card fadeInUp" style="animation-delay: 0.5s;">
+          <div class="amenity-icon"><i class="fas fa-parking"></i></div>
+          <h3>Parking sécurisé</h3>
+          <p>Places de parking et box fermés</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- SIGNATURE NISAC -->
-  <div class="container signature-section">
-    <div class="signature-logo">NISAC</div>
-    <div class="signature-sub">IMMOBILIER</div>
-    <div class="signature-divider"></div>
-    <p class="signature-text">UN PROJET SIGNÉ PAR</p>
-    <div style="font-size: 3rem; font-weight: 800; color: var(--primary);">NISAC</div>
-    <div style="font-size: 1.5rem; letter-spacing: 5px; margin-top: 10px;">IMMOBILIER</div>
-  </div>
+  <!-- TÉMOIGNAGES SECTION -->
+  <section id="temoignages" class="container testimonials-section">
+    <div class="section-header fadeInUp">
+      <h2>Ils ont choisi <span style="color: var(--primary);">Atlantis Hills</span></h2>
+      <p>Découvrez ce que nos futurs résidents pensent du projet</p>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card fadeInUp">
+        <i class="fas fa-quote-right"></i>
+        <p class="testimonial-text">"J'ai visité plusieurs programmes, mais Atlantis Hills m'a conquise par son emplacement et la qualité des finitions. J'ai réservé mon studio et j'ai hâte d'emménager."</p>
+        <div class="testimonial-author">Salma Bennani</div>
+        <div class="testimonial-location">Studio, 38m²</div>
+      </div>
+      <div class="testimonial-card fadeInUp" style="animation-delay: 0.2s;">
+        <i class="fas fa-quote-right"></i>
+        <p class="testimonial-text">"Pour mon investissement locatif, Atlantis Hills est parfait. Le quartier est en plein développement et les prestations sont haut de gamme. Je recommande à 100%."</p>
+        <div class="testimonial-author">Karim El Fassi</div>
+        <div class="testimonial-location">Investisseur, 2 pièces</div>
+      </div>
+      <div class="testimonial-card fadeInUp" style="animation-delay: 0.4s;">
+        <i class="fas fa-quote-right"></i>
+        <p class="testimonial-text">"Nous cherchions un appartement familial avec de beaux espaces. Le duplex avec vue mer a été un coup de cœur. L'équipe est très professionnelle."</p>
+        <div class="testimonial-author">Famille Alaoui</div>
+        <div class="testimonial-location">Duplex, 145m²</div>
+      </div>
+    </div>
+  </section>
 
   <!-- CONTACT SECTION -->
   <section id="contact" class="contact-section">
     <div class="contact-grid">
-      <div class="contact-info">
-        <h2>RENSEIGNEZ-VOUS</h2>
+      <div class="contact-info fadeInUp">
+        <h2>Contactez-nous</h2>
+        <p>Que vous cherchiez à acheter, investir ou simplement vous renseigner, notre équipe est là pour vous répondre.</p>
         <div class="contact-detail">
           <i class="fas fa-map-pin"></i>
-          <div>26, Boulevard Zerktouni · Casablanca</div>
+          <div>26, Boulevard Zerktouni, Casablanca</div>
         </div>
         <div class="contact-detail">
           <i class="fas fa-phone-alt"></i>
@@ -1128,25 +1151,15 @@
         </div>
         <div class="contact-detail">
           <i class="fas fa-envelope"></i>
-          <div>lana.blue@nisac.ma</div>
-        </div>
-        <div style="margin-top: 50px; background: rgba(255,255,255,0.1); padding: 30px; border-radius: 40px;">
-          <div style="display: flex; justify-content: space-between; font-size: 1.3rem;">
-            <span>Projet LANA BLUE</span>
-            <span><strong>11</strong> of 14</span>
-          </div>
-          <div style="height: 10px; background: rgba(255,255,255,0.2); border-radius: 20px; margin-top: 15px;">
-            <div style="width: 78%; height: 100%; background: var(--accent); border-radius: 20px;"></div>
-          </div>
-          <p style="color: white; margin-top: 15px;"><i class="fas fa-check-circle"></i> Done · 7 of 14 · Padel & Basket</p>
+          <div>contact@atlantishills.ma</div>
         </div>
       </div>
-      <div class="contact-form">
-        <form onsubmit="event.preventDefault(); alert('Merci pour votre intérêt pour LANA BLUE. Un conseiller NISAC vous contactera dans les 24h.');">
+      <div class="contact-form fadeInUp" style="animation-delay: 0.2s;">
+        <form onsubmit="event.preventDefault(); alert('Merci pour votre intérêt pour Atlantis Hills. Un conseiller vous contactera dans les 24h.');">
           <input type="text" placeholder="Nom complet" required>
           <input type="email" placeholder="Email" required>
           <input type="tel" placeholder="Téléphone">
-          <textarea rows="4" placeholder="Je souhaite plus d'informations sur LANA BLUE (piscines, padel, basket...)"></textarea>
+          <textarea rows="4" placeholder="Votre message (budget, type de bien recherché...)"></textarea>
           <button type="submit">Envoyer ma demande</button>
         </form>
       </div>
@@ -1157,44 +1170,43 @@
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-col">
-        <h4>LANA BLUE</h4>
-        <p>Résidence balnéaire R+2</p>
-        <p>Un projet signé NISAC</p>
-        <p>11 of 14 · En cours</p>
+        <h4>ATLANTIS HILLS</h4>
+        <p>La résidence iconique de Casablanca</p>
+        <p>89 appartements · Livraison 2026</p>
       </div>
       <div class="footer-col">
         <h4>Contact</h4>
         <p>+212 5 22 99 88 77</p>
-        <p>lana.blue@nisac.ma</p>
+        <p>contact@atlantishills.ma</p>
         <p>26, Bd Zerktouni, Casablanca</p>
       </div>
       <div class="footer-col">
         <h4>Suivez-nous</h4>
-        <p><i class="fab fa-instagram"></i> @lanablue.nisac</p>
-        <p><i class="fab fa-linkedin"></i> NISAC Immobilier</p>
-        <p><i class="fab fa-facebook"></i> NISAC Officiel</p>
+        <p><i class="fab fa-instagram"></i> @atlantishills</p>
+        <p><i class="fab fa-linkedin"></i> Atlantis Hills</p>
+        <p><i class="fab fa-facebook"></i> Atlantis Hills Officiel</p>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 LANA BLUE · NISAC Immobilier · Tous droits réservés</p>
+      <p>© 2025 ATLANTIS HILLS · Tous droits réservés · Réalisé par NISAC Immobilier</p>
     </div>
   </footer>
 
   <script>
-    // ===== ARRIÈRE-PLAN 3D OCÉANIQUE =====
+    // ===== ARRIÈRE-PLAN 3D =====
     function initBackground3D() {
       const canvas = document.getElementById('bg-canvas');
       if (!canvas) return;
 
       const scene = new THREE.Scene();
-      scene.background = new THREE.Color(0xf0f7fc);
+      scene.background = new THREE.Color(0xf8fafc);
 
       const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
       camera.position.set(0, 0, 20);
 
       const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
       renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.setClearColor(0xf0f7fc, 1);
+      renderer.setClearColor(0xf8fafc, 1);
 
       // Lumières
       const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
@@ -1204,51 +1216,49 @@
       dirLight.position.set(1, 1, 1);
       scene.add(dirLight);
 
-      // Vagues 3D
-      const waveGeometry = new THREE.TorusKnotGeometry(2, 0.5, 200, 20);
-      const waveMaterial = new THREE.MeshStandardMaterial({ 
+      // Éléments 3D flottants
+      const geometry1 = new THREE.TorusKnotGeometry(1.5, 0.4, 100, 16);
+      const material1 = new THREE.MeshStandardMaterial({ 
         color: 0x0f4b6e, 
         wireframe: true, 
         transparent: true, 
         opacity: 0.08 
       });
-      const wave = new THREE.Mesh(waveGeometry, waveMaterial);
-      wave.position.set(-4, 0, -5);
-      wave.scale.set(1.8, 1.8, 1.8);
-      scene.add(wave);
+      const torusKnot = new THREE.Mesh(geometry1, material1);
+      torusKnot.position.set(-3, 0, -2);
+      torusKnot.scale.set(1.5, 1.5, 1.5);
+      scene.add(torusKnot);
 
-      // Deuxième vague
-      const wave2Geometry = new THREE.TorusGeometry(2.5, 0.3, 100, 30);
-      const wave2Material = new THREE.MeshStandardMaterial({ 
-        color: 0x3a7ca5, 
+      const geometry2 = new THREE.IcosahedronGeometry(1.5, 0);
+      const material2 = new THREE.MeshStandardMaterial({ 
+        color: 0x6ab0d6, 
         wireframe: true, 
         transparent: true, 
-        opacity: 0.05 
+        opacity: 0.06 
       });
-      const wave2 = new THREE.Mesh(wave2Geometry, wave2Material);
-      wave2.position.set(3, 1, -8);
-      wave2.rotation.x = 0.5;
-      wave2.scale.set(1.5, 1.5, 1.5);
-      scene.add(wave2);
+      const icosahedron = new THREE.Mesh(geometry2, material2);
+      icosahedron.position.set(3, 1, -4);
+      icosahedron.scale.set(1.8, 1.8, 1.8);
+      scene.add(icosahedron);
 
-      // Particules flottantes
+      // Particules
       const particlesGeo = new THREE.BufferGeometry();
-      const particlesCount = 400;
+      const particlesCount = 300;
       const posArray = new Float32Array(particlesCount * 3);
       
       for (let i = 0; i < particlesCount * 3; i += 3) {
-        posArray[i] = (Math.random() - 0.5) * 60;
-        posArray[i+1] = (Math.random() - 0.5) * 40;
-        posArray[i+2] = (Math.random() - 0.5) * 40;
+        posArray[i] = (Math.random() - 0.5) * 50;
+        posArray[i+1] = (Math.random() - 0.5) * 30;
+        posArray[i+2] = (Math.random() - 0.5) * 30;
       }
       
       particlesGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
       
       const particlesMat = new THREE.PointsMaterial({
-        size: 0.12,
-        color: 0x6ab0d6,
+        size: 0.1,
+        color: 0x0f4b6e,
         transparent: true,
-        opacity: 0.15
+        opacity: 0.1
       });
       
       const particles = new THREE.Points(particlesGeo, particlesMat);
@@ -1257,13 +1267,13 @@
       function animate() {
         requestAnimationFrame(animate);
         
-        wave.rotation.x += 0.001;
-        wave.rotation.y += 0.002;
+        torusKnot.rotation.x += 0.001;
+        torusKnot.rotation.y += 0.002;
         
-        wave2.rotation.z += 0.001;
-        wave2.rotation.y += 0.001;
+        icosahedron.rotation.x += 0.002;
+        icosahedron.rotation.y += 0.001;
         
-        particles.rotation.y += 0.0003;
+        particles.rotation.y += 0.0002;
         
         renderer.render(scene, camera);
       }
@@ -1278,7 +1288,7 @@
     }
 
     // Smooth scroll pour la navigation
-    document.querySelectorAll('.nav-links a').forEach(link => {
+    document.querySelectorAll('.nav-links a[href^="#"]').forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const targetId = link.getAttribute('href');
@@ -1295,7 +1305,7 @@
 
     // Observer pour changer la classe active au scroll
     const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-links a');
+    const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
 
     window.addEventListener('scroll', () => {
       let current = '';
