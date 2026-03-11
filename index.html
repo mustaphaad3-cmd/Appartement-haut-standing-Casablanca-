@@ -9,17 +9,23 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
-  <!-- Three.js pour les effets 3D -->
+  <!-- Three.js pour les cartes 3D -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   
   <style>
-    /* ===== RESET ===== */
+    /* ===== RESET COMPLET ===== */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
     }
 
     body {
@@ -28,38 +34,78 @@
       color: #1e2b3a;
       overflow-x: hidden;
       line-height: 1.6;
+      padding-top: 90px; /* Espace pour la navbar fixe */
     }
 
-    /* ===== PALETTE ===== */
+    /* ===== PALETTE ATLANTIS ===== */
     :root {
       --primary: #0f4b6e;
       --primary-dark: #08344d;
       --primary-light: #2a7ca5;
+      --secondary: #6ab0d6;
       --accent: #f5b042;
       --gold: #d4a13e;
-      --blue-pale: #e6f0fa;
+      --blue-pale: #d9eaf5;
+      --blue-mist: #c2d9e8;
+      --texte-fonce: #1e2b3a;
+      --texte-moyen: #3a4f5e;
       --ombre-douce: 0 30px 60px rgba(0,0,0,0.08);
       --ombre-moyenne: 0 40px 80px rgba(0,20,40,0.15);
+      --border-radius: 30px;
+      --border-radius-lg: 50px;
     }
 
-    /* ===== NAVIGATION FIXE ===== */
+    /* ===== CONTAINER RESPONSIVE ===== */
+    .container {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        padding: 0 40px;
+      }
+    }
+
+    /* ===== NAVBAR FIXE INTERACTIVE ===== */
     .navbar {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       background: rgba(255,255,255,0.9);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       box-shadow: 0 5px 30px rgba(0,0,0,0.05);
-      z-index: 1000;
-      padding: 15px 40px;
+      z-index: 9999;
+      border-bottom: 1px solid rgba(255,255,255,0.5);
+      transition: all 0.3s;
+    }
+
+    .navbar.scrolled {
+      background: rgba(255,255,255,0.95);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 12px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
+    @media (min-width: 768px) {
+      .nav-container {
+        padding: 15px 40px;
+      }
+    }
+
     .logo {
-      font-size: 2rem;
+      font-size: 1.6rem;
       font-weight: 800;
       background: linear-gradient(135deg, var(--primary), var(--primary-light));
       -webkit-background-clip: text;
@@ -67,857 +113,968 @@
       cursor: pointer;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 30px;
+    .logo span {
+      font-size: 0.8rem;
+      font-weight: 400;
+      -webkit-text-fill-color: var(--texte-moyen);
+      margin-left: 5px;
     }
 
-    .nav-links a {
-      color: var(--primary-dark);
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 1rem;
-      padding: 5px 0;
-      position: relative;
+    @media (min-width: 768px) {
+      .logo {
+        font-size: 2rem;
+      }
+      .logo span {
+        font-size: 0.9rem;
+      }
+    }
+
+    /* Menu desktop */
+    .nav-links {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      .nav-links {
+        display: flex;
+        gap: 25px;
+        align-items: center;
+      }
+
+      .nav-links a {
+        color: var(--texte-fonce);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1rem;
+        transition: all 0.3s;
+        cursor: pointer;
+        padding: 5px 0;
+        position: relative;
+      }
+
+      .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary);
+        transition: width 0.3s;
+      }
+
+      .nav-links a:hover::after,
+      .nav-links a.active::after {
+        width: 100%;
+      }
+
+      .nav-links a.active {
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      .nav-phone {
+        background: var(--primary);
+        color: white !important;
+        padding: 8px 20px !important;
+        border-radius: 40px;
+        font-weight: 600;
+        transition: all 0.3s;
+      }
+
+      .nav-phone::after {
+        display: none;
+      }
+
+      .nav-phone:hover {
+        background: var(--primary-dark);
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(15,75,110,0.3);
+      }
+    }
+
+    /* Menu mobile */
+    .mobile-menu-btn {
+      display: block;
+      font-size: 1.8rem;
+      color: var(--primary);
       cursor: pointer;
     }
 
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
+    @media (min-width: 768px) {
+      .mobile-menu-btn {
+        display: none;
+      }
+    }
+
+    .mobile-nav {
+      position: fixed;
+      top: 70px;
       left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--primary);
-      transition: width 0.3s;
-    }
-
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
       width: 100%;
-    }
-
-    .nav-links a.active {
-      color: var(--primary);
-      font-weight: 600;
-    }
-
-    .nav-phone {
-      background: var(--primary);
-      color: white !important;
-      padding: 8px 20px !important;
-      border-radius: 40px;
-      font-weight: 600;
-    }
-
-    .nav-phone::after {
+      background: white;
+      padding: 20px;
       display: none;
+      flex-direction: column;
+      gap: 15px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      z-index: 9998;
     }
 
-    /* ===== PAGE CONTAINER ===== */
-    .page {
-      display: none;
-      min-height: 100vh;
-      padding-top: 80px;
-    }
-
-    .page.active-page {
-      display: block;
-    }
-
-    /* ===== CONTAINER ===== */
-    .container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
-
-    /* ===== HERO SECTION ===== */
-    .hero {
-      height: calc(100vh - 80px);
+    .mobile-nav.active {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
     }
 
-    #hero-canvas {
-      position: absolute;
+    .mobile-nav a {
+      color: var(--texte-fonce);
+      text-decoration: none;
+      font-size: 1.2rem;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    /* ===== ARRIÈRE-PLAN 3D ===== */
+    #bg-canvas {
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 0;
+      z-index: -1;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      min-height: calc(100vh - 90px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      text-align: center;
     }
 
     .hero-content {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      color: white;
-      max-width: 900px;
-      padding: 20px;
+      max-width: 1000px;
+      width: 100%;
     }
 
-    .hero-content h1 {
-      font-size: 5rem;
-      font-family: 'Playfair Display', serif;
-      margin-bottom: 20px;
-      text-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    }
-
-    .hero-content p {
-      font-size: 1.3rem;
-      margin-bottom: 30px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-    }
-
-    .btn {
-      padding: 15px 40px;
-      border-radius: 50px;
-      border: none;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s;
-      font-size: 1rem;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: var(--primary-dark);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(245,176,66,0.3);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      border: 2px solid white;
-      color: white;
-    }
-
-    .btn-secondary:hover {
-      background: white;
-      color: var(--primary-dark);
-    }
-
-    /* ===== SECTION HEADER ===== */
-    .section-header {
-      text-align: center;
-      margin-bottom: 50px;
-    }
-
-    .section-header h1 {
-      font-size: 3.5rem;
+    .hero-overline {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 4px;
       color: var(--primary);
       margin-bottom: 15px;
     }
 
-    .section-header p {
+    @media (min-width: 768px) {
+      .hero-overline {
+        font-size: 1.1rem;
+        letter-spacing: 6px;
+      }
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 8vw, 6rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 15px;
+      color: var(--primary-dark);
+    }
+
+    .hero-title span {
+      color: var(--accent);
+      display: inline-block;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .hero-subtitle {
       font-size: 1.2rem;
-      color: #5a6f7e;
-      max-width: 700px;
+      font-weight: 300;
+      margin-bottom: 30px;
+      color: var(--texte-moyen);
+    }
+
+    @media (min-width: 768px) {
+      .hero-subtitle {
+        font-size: 1.6rem;
+      }
+    }
+
+    .hero-badges {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .hero-badge {
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(10px);
+      padding: 8px 16px;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      color: var(--primary-dark);
+      border: 1px solid rgba(255,255,255,0.5);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    @media (min-width: 768px) {
+      .hero-badge {
+        padding: 12px 25px;
+        font-size: 1rem;
+        gap: 8px;
+      }
+    }
+
+    /* ===== SECTION PROJET ===== */
+    .section {
+      padding: 60px 0;
+    }
+
+    @media (min-width: 768px) {
+      .section {
+        padding: 100px 0;
+      }
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .section-header p {
+      font-size: 1rem;
+      max-width: 600px;
       margin: 0 auto;
     }
 
-    /* ===== PROJET PAGE ===== */
-    .projet-grid {
+    @media (min-width: 768px) {
+      .section-header h2 {
+        font-size: 3rem;
+      }
+      .section-header p {
+        font-size: 1.2rem;
+      }
+    }
+
+    .project-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-      margin-bottom: 80px;
+      gap: 30px;
     }
 
-    .projet-title {
-      font-size: 3rem;
+    @media (min-width: 768px) {
+      .project-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        align-items: center;
+      }
+    }
+
+    .project-tag {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 5px 15px;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      margin-bottom: 15px;
+    }
+
+    .project-title {
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    @media (min-width: 768px) {
+      .project-title {
+        font-size: 3rem;
+      }
+    }
+
+    .project-desc {
+      font-size: 1rem;
       margin-bottom: 25px;
+      border-left: 3px solid var(--primary);
+      padding-left: 15px;
     }
 
-    .projet-title span {
-      color: var(--primary);
+    @media (min-width: 768px) {
+      .project-desc {
+        font-size: 1.2rem;
+        padding-left: 20px;
+      }
     }
 
-    .projet-desc {
-      font-size: 1.2rem;
-      margin-bottom: 30px;
-      border-left: 4px solid var(--primary);
-      padding-left: 25px;
-    }
-
-    .projet-stats {
+    .project-stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin-top: 40px;
+      gap: 10px;
     }
 
     .stat-card {
       background: white;
-      padding: 25px;
-      border-radius: 30px;
+      padding: 15px;
+      border-radius: 20px;
       text-align: center;
       box-shadow: var(--ombre-douce);
     }
 
+    @media (min-width: 768px) {
+      .stat-card {
+        padding: 20px;
+      }
+    }
+
     .stat-number {
-      font-size: 2.5rem;
+      font-size: 1.8rem;
       font-weight: 800;
       color: var(--primary);
     }
 
-    .projet-image {
-      height: 500px;
-      border-radius: 50px;
-      overflow: hidden;
-      box-shadow: var(--ombre-moyenne);
+    @media (min-width: 768px) {
+      .stat-number {
+        font-size: 2.5rem;
+      }
     }
 
-    .projet-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--texte-moyen);
     }
 
-    .projet-long-text {
-      margin-top: 80px;
-      padding: 60px;
-      background: white;
-      border-radius: 60px;
-      box-shadow: var(--ombre-douce);
-    }
-
-    .projet-long-text h2 {
-      font-size: 2.5rem;
-      margin-bottom: 30px;
-      color: var(--primary);
-    }
-
-    .projet-long-text p {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-    }
-
-    /* ===== APPARTEMENTS PAGE ===== */
-    .appartements-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 30px;
-      margin-top: 50px;
-    }
-
-    .appart-card {
-      background: white;
+    .project-image {
+      height: 350px;
       border-radius: 40px;
       overflow: hidden;
-      box-shadow: var(--ombre-douce);
-      transition: transform 0.3s;
-      cursor: pointer;
-    }
-
-    .appart-card:hover {
-      transform: translateY(-15px);
+      position: relative;
       box-shadow: var(--ombre-moyenne);
     }
 
-    .card-img {
-      height: 280px;
-      overflow: hidden;
+    @media (min-width: 768px) {
+      .project-image {
+        height: 500px;
+      }
     }
 
-    .card-img img {
+    .project-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.6s;
     }
 
-    .appart-card:hover .card-img img {
-      transform: scale(1.1);
+    /* ===== CARTES 3D POUR APPARTEMENTS ===== */
+    .appartments-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 25px;
     }
 
-    .card-content {
+    @media (min-width: 768px) {
+      .appartments-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .card-3d {
+      height: 400px;
+      position: relative;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      transition: transform 0.5s;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: var(--ombre-douce);
+    }
+
+    .card-3d:hover {
+      transform: translateY(-10px) rotateX(2deg) rotateY(2deg);
+      box-shadow: var(--ombre-moyenne);
+    }
+
+    .card-3d-front {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: flex-end;
       padding: 25px;
+    }
+
+    .card-3d-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      background: var(--primary);
+      color: white;
+      transform: rotateY(180deg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .card-3d.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .card-badge {
+      background: var(--accent);
+      color: var(--primary-dark);
+      padding: 6px 15px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
     }
 
     .card-title {
       font-size: 1.8rem;
-      margin-bottom: 10px;
+      color: white;
+      margin-bottom: 5px;
     }
 
     .card-price {
-      font-size: 2rem;
+      font-size: 1.5rem;
       font-weight: 700;
-      color: var(--primary);
-      margin: 15px 0;
+      color: var(--accent);
     }
 
-    .card-features {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .card-features span {
-      background: #f0f5fa;
-      padding: 8px 15px;
-      border-radius: 40px;
-      font-size: 0.9rem;
-    }
-
-    .btn-card {
-      background: var(--primary);
+    /* ===== BUDGET SECTION ===== */
+    .budget-section {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       color: white;
-      border: none;
-      padding: 12px 25px;
-      border-radius: 40px;
-      font-weight: 600;
-      width: 100%;
-      margin-top: 20px;
-      cursor: pointer;
+      padding: 60px 20px;
     }
 
-    .appartements-long {
-      margin-top: 80px;
-      padding: 60px;
-      background: var(--blue-pale);
-      border-radius: 60px;
+    .budget-content {
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
-    /* ===== AMÉNITÉS PAGE ===== */
-    .amenites-grid {
+    .budget-title {
+      font-size: 2rem;
+      color: white;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    @media (min-width: 768px) {
+      .budget-title {
+        font-size: 3rem;
+      }
+    }
+
+    .budget-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 30px;
-      margin-top: 50px;
+      gap: 20px;
     }
 
-    .amenite-card {
+    @media (min-width: 768px) {
+      .budget-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .budget-card {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 30px;
+      padding: 30px 20px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .budget-icon {
+      font-size: 2.5rem;
+      color: var(--accent);
+      margin-bottom: 15px;
+    }
+
+    .budget-card h3 {
+      color: white;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .budget-range {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-top: 15px;
+    }
+
+    /* ===== AMÉNITÉS ===== */
+    .amenities-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    @media (min-width: 768px) {
+      .amenities-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .amenity-card {
       background: white;
-      border-radius: 40px;
-      padding: 40px 30px;
+      border-radius: 30px;
+      padding: 30px 20px;
       text-align: center;
       box-shadow: var(--ombre-douce);
-      transition: transform 0.3s;
     }
 
-    .amenite-card:hover {
-      transform: translateY(-15px);
-    }
-
-    .amenite-icon {
-      width: 80px;
-      height: 80px;
+    .amenity-icon {
+      width: 60px;
+      height: 60px;
       background: var(--primary);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 25px;
+      margin: 0 auto 20px;
     }
 
-    .amenite-icon i {
-      font-size: 2.5rem;
-      color: white;
-    }
-
-    .amenite-card h3 {
+    .amenity-icon i {
       font-size: 1.8rem;
-      margin-bottom: 15px;
-    }
-
-    .amenites-long {
-      margin-top: 80px;
-      padding: 60px;
-      background: white;
-      border-radius: 60px;
-    }
-
-    /* ===== CONTACT PAGE ===== */
-    .contact-page {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      min-height: calc(100vh - 80px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 60px 20px;
-    }
-
-    .contact-container {
-      max-width: 1200px;
-      width: 100%;
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 60px;
-      padding: 60px;
       color: white;
+    }
+
+    /* ===== CONTACT ===== */
+    .contact-section {
+      background: var(--primary-dark);
+      color: white;
+      padding: 60px 20px;
     }
 
     .contact-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 50px;
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
     .contact-info h2 {
-      font-size: 2.5rem;
-      margin-bottom: 30px;
+      color: white;
+      font-size: 2rem;
+      margin-bottom: 20px;
     }
 
     .contact-detail {
       display: flex;
       align-items: center;
       gap: 15px;
-      margin-bottom: 25px;
-      font-size: 1.2rem;
+      margin-bottom: 15px;
     }
 
     .contact-detail i {
-      font-size: 2rem;
+      font-size: 1.5rem;
       color: var(--accent);
     }
 
     .contact-form input,
     .contact-form textarea {
       width: 100%;
-      padding: 15px 20px;
-      margin-bottom: 20px;
-      background: rgba(255,255,255,0.2);
-      border: none;
-      border-radius: 50px;
+      padding: 12px 20px;
+      margin-bottom: 15px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 40px;
       color: white;
-      font-size: 1rem;
     }
 
     .contact-form button {
       background: var(--accent);
       color: var(--primary-dark);
       border: none;
-      padding: 15px 40px;
-      border-radius: 50px;
+      padding: 12px 30px;
+      border-radius: 40px;
       font-weight: 700;
-      font-size: 1.1rem;
-      cursor: pointer;
       width: 100%;
+      cursor: pointer;
     }
 
     /* ===== FOOTER ===== */
     .footer {
       background: #0a1f2a;
       color: white;
-      padding: 60px 0 30px;
+      padding: 40px 0 20px;
     }
 
     .footer-content {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 40px;
+      gap: 30px;
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 20px;
     }
 
+    @media (min-width: 768px) {
+      .footer-content {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .footer-col h4 {
+      color: white;
+      margin-bottom: 15px;
+    }
+
     .footer-bottom {
       text-align: center;
-      padding-top: 40px;
-      margin-top: 40px;
+      padding-top: 30px;
+      margin-top: 30px;
       border-top: 1px solid rgba(255,255,255,0.1);
     }
 
-    /* ===== INDICATEUR DE PAGE ===== */
-    .page-indicator {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 15px;
-      z-index: 1000;
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    .page-dot {
-      width: 12px;
-      height: 12px;
-      background: rgba(255,255,255,0.5);
-      border-radius: 50%;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .page-dot.active {
-      background: var(--accent);
-      transform: scale(1.3);
-    }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 768px) {
-      .navbar {
-        padding: 15px;
-      }
-      
-      .nav-links {
-        gap: 15px;
-      }
-      
-      .nav-links a {
-        font-size: 0.9rem;
-      }
-      
-      .hero-content h1 {
-        font-size: 2.5rem;
-      }
-      
-      .projet-grid,
-      .appartements-grid,
-      .amenites-grid,
-      .contact-grid,
-      .footer-content {
-        grid-template-columns: 1fr;
-      }
-      
-      .projet-image {
-        height: 300px;
-      }
-      
-      .contact-container {
-        padding: 30px;
-      }
+    .fadeInUp {
+      animation: fadeInUp 0.8s ease forwards;
     }
   </style>
 </head>
 <body>
+  <!-- Arrière-plan 3D -->
+  <canvas id="bg-canvas"></canvas>
+
   <!-- Navigation fixe -->
-  <nav class="navbar">
-    <div class="logo" onclick="changePage('accueil')">ATLANTIS HILLS</div>
-    <div class="nav-links">
-      <a class="nav-page active" data-page="accueil">Accueil</a>
-      <a class="nav-page" data-page="projet">Le Projet</a>
-      <a class="nav-page" data-page="appartements">Appartements</a>
-      <a class="nav-page" data-page="amenites">Aménités</a>
-      <a class="nav-page" data-page="contact">Contact</a>
-      <a class="nav-phone" onclick="changePage('contact')">Appeler</a>
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="logo" onclick="location.href='#accueil'">ATLANTIS HILLS <span>Casablanca</span></div>
+      
+      <!-- Menu desktop -->
+      <div class="nav-links">
+        <a href="#accueil" class="active">Accueil</a>
+        <a href="#projet">Le Projet</a>
+        <a href="#appartements">Appartements</a>
+        <a href="#amenites">Aménités</a>
+        <a href="#budget">Tous Budgets</a>
+        <a href="#contact" class="nav-phone">Contact</a>
+      </div>
+
+      <!-- Menu mobile button -->
+      <div class="mobile-menu-btn" onclick="toggleMobileMenu()">
+        <i class="fas fa-bars"></i>
+      </div>
     </div>
   </nav>
 
-  <!-- Indicateur de pages -->
-  <div class="page-indicator">
-    <div class="page-dot active" data-page="accueil"></div>
-    <div class="page-dot" data-page="projet"></div>
-    <div class="page-dot" data-page="appartements"></div>
-    <div class="page-dot" data-page="amenites"></div>
-    <div class="page-dot" data-page="contact"></div>
+  <!-- Menu mobile -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#accueil" onclick="closeMobileMenu()">Accueil</a>
+    <a href="#projet" onclick="closeMobileMenu()">Le Projet</a>
+    <a href="#appartements" onclick="closeMobileMenu()">Appartements</a>
+    <a href="#amenites" onclick="closeMobileMenu()">Aménités</a>
+    <a href="#budget" onclick="closeMobileMenu()">Tous Budgets</a>
+    <a href="#contact" onclick="closeMobileMenu()">Contact</a>
   </div>
 
-  <!-- PAGE ACCUEIL -->
-  <div id="accueil" class="page active-page">
-    <section class="hero">
-      <canvas id="hero-canvas"></canvas>
-      <div class="hero-content">
-        <h1>ATLANTIS HILLS</h1>
-        <p>Vivez au-dessus de la ville · La résidence iconique de Casablanca</p>
-        <div class="hero-buttons">
-          <button class="btn btn-primary" onclick="changePage('projet')">Découvrir le projet</button>
-          <button class="btn btn-secondary" onclick="changePage('contact')">Nous contacter</button>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- PAGE PROJET -->
-  <div id="projet" class="page">
-    <div class="container">
-      <div class="section-header">
-        <h1>Le Projet</h1>
-        <p>Une vision d'excellence pour Casablanca</p>
-      </div>
-      
-      <div class="projet-grid">
-        <div>
-          <h2 class="projet-title">Un nouveau <span>horizon</span></h2>
-          <p class="projet-desc">Au cœur de la métropole, Atlantis Hills redéfinit les codes de l'habitat. Une architecture contemporaine, des espaces généreux et une vue imprenable sur l'océan.</p>
-          <div class="projet-stats">
-            <div class="stat-card">
-              <div class="stat-number">R+8</div>
-              <div>Étages</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-number">89</div>
-              <div>Appartements</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-number">2026</div>
-              <div>Livraison</div>
-            </div>
-          </div>
-        </div>
-        <div class="projet-image">
-          <img src="https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Atlantis Hills">
-        </div>
-      </div>
-
-      <!-- Long texte pour remplir la page -->
-      <div class="projet-long-text">
-        <h2>Une architecture pensée pour vous</h2>
-        <p>Atlantis Hills n'est pas qu'une simple résidence, c'est un art de vivre. Conçu par les plus grands architectes, chaque détail a été pensé pour votre confort et votre bien-être. Les appartements baignent dans la lumière naturelle grâce à de larges baies vitrées, offrant des vues panoramiques sur Casablanca et l'océan Atlantique.</p>
-        <p>Les matériaux sélectionnés sont nobles et durables : pierre naturelle, bois précieux, verre haut de gamme. L'isolation thermique et acoustique est optimale pour vous garantir un confort absolu en toutes saisons.</p>
-        <p>Le projet s'intègre harmonieusement dans son environnement, avec des espaces verts généreux et une architecture qui respecte l'identité de Casablanca tout en apportant une touche de modernité.</p>
-        <p>Atlantis Hills, c'est aussi un engagement pour l'environnement avec des panneaux solaires, une récupération des eaux de pluie et des matériaux écologiques.</p>
+  <!-- HERO SECTION -->
+  <section id="accueil" class="hero">
+    <div class="hero-content">
+      <div class="hero-overline fadeInUp">ATLANTIS HILLS</div>
+      <h1 class="hero-title fadeInUp" style="animation-delay: 0.2s;">Vivez au-dessus <span>de la ville</span></h1>
+      <div class="hero-subtitle fadeInUp" style="animation-delay: 0.4s;">La résidence iconique de Casablanca</div>
+      <div class="hero-badges fadeInUp" style="animation-delay: 0.6s;">
+        <span class="hero-badge"><i class="fas fa-check-circle"></i> Studios</span>
+        <span class="hero-badge"><i class="fas fa-check-circle"></i> Duplex</span>
+        <span class="hero-badge"><i class="fas fa-check-circle"></i> Penthouses</span>
+        <span class="hero-badge"><i class="fas fa-swimming-pool"></i> Piscine</span>
+        <span class="hero-badge"><i class="fas fa-tree"></i> Parc</span>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- PAGE APPARTEMENTS -->
-  <div id="appartements" class="page">
-    <div class="container">
-      <div class="section-header">
-        <h1>Nos Appartements</h1>
-        <p>Du studio au penthouse, pour tous les budgets</p>
-      </div>
-      
-      <div class="appartements-grid">
-        <!-- Studio -->
-        <div class="appart-card">
-          <div class="card-img">
-            <img src="https://images.pexels.com/photos/271795/pexels-photo-271795.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2" alt="Studio">
+  <!-- PROJET SECTION -->
+  <section id="projet" class="section container">
+    <div class="project-grid">
+      <div class="fadeInUp">
+        <div class="project-tag">ATLANTIS HILLS</div>
+        <h2 class="project-title">Un nouveau <span style="color: var(--primary);">horizon</span></h2>
+        <p class="project-desc">
+          Au cœur de Casablanca, Atlantis Hills redéfinit l'art de vivre. Une architecture contemporaine, des espaces généreux et une vue imprenable.
+        </p>
+        <div class="project-stats">
+          <div class="stat-card">
+            <div class="stat-number">R+8</div>
+            <div class="stat-label">Étages</div>
           </div>
-          <div class="card-content">
+          <div class="stat-card">
+            <div class="stat-number">89</div>
+            <div class="stat-label">Appartements</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">2026</div>
+            <div class="stat-label">Livraison</div>
+          </div>
+        </div>
+      </div>
+      <div class="project-image fadeInUp" style="animation-delay: 0.3s;">
+        <img src="https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Atlantis Hills">
+      </div>
+    </div>
+  </section>
+
+  <!-- APPARTEMENTS SECTION AVEC CARTES 3D -->
+  <section id="appartements" class="section container">
+    <div class="section-header fadeInUp">
+      <h2>Nos <span style="color: var(--primary);">appartements</span></h2>
+      <p>Cliquez sur les cartes pour voir les détails en 3D</p>
+    </div>
+
+    <div class="appartments-grid">
+      <!-- Studio -->
+      <div class="card-3d" onclick="this.classList.toggle('flipped')">
+        <div class="card-3d-front" style="background-image: linear-gradient(to top, rgba(0,0,0,0.7), transparent), url('https://images.pexels.com/photos/271795/pexels-photo-271795.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2')">
+          <div>
+            <div class="card-badge">Entrée de gamme</div>
             <h3 class="card-title">Studio Cosy</h3>
             <div class="card-price">890 000 DH</div>
-            <div class="card-features">
-              <span>38 m²</span>
-              <span>Balcon</span>
-              <span>Équipé</span>
-            </div>
-            <button class="btn-card">Je suis intéressé</button>
           </div>
         </div>
+        <div class="card-3d-back">
+          <h3 style="font-size: 2rem; margin-bottom: 20px;">Studio</h3>
+          <p style="margin-bottom: 15px;">✓ 38 m²</p>
+          <p style="margin-bottom: 15px;">✓ Balcon 6m²</p>
+          <p style="margin-bottom: 15px;">✓ Cuisine équipée</p>
+          <p style="margin-bottom: 15px;">✓ Ascenseur</p>
+          <p style="margin-top: 20px; font-size: 1.2rem; color: var(--accent);">Idéal pour débuter</p>
+        </div>
+      </div>
 
-        <!-- 2 pièces -->
-        <div class="appart-card">
-          <div class="card-img">
-            <img src="https://images.pexels.com/photos/279607/pexels-photo-279607.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2" alt="2 pièces">
-          </div>
-          <div class="card-content">
+      <!-- 2 pièces -->
+      <div class="card-3d" onclick="this.classList.toggle('flipped')">
+        <div class="card-3d-front" style="background-image: linear-gradient(to top, rgba(0,0,0,0.7), transparent), url('https://images.pexels.com/photos/279607/pexels-photo-279607.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2')">
+          <div>
+            <div class="card-badge">Idéal investisseur</div>
             <h3 class="card-title">2 Pièces Moderne</h3>
             <div class="card-price">1 250 000 DH</div>
-            <div class="card-features">
-              <span>65 m²</span>
-              <span>1 chambre</span>
-              <span>Parking</span>
-            </div>
-            <button class="btn-card">Je suis intéressé</button>
           </div>
         </div>
+        <div class="card-3d-back">
+          <h3 style="font-size: 2rem; margin-bottom: 20px;">2 Pièces</h3>
+          <p style="margin-bottom: 15px;">✓ 65 m²</p>
+          <p style="margin-bottom: 15px;">✓ 1 chambre</p>
+          <p style="margin-bottom: 15px;">✓ Parking inclus</p>
+          <p style="margin-bottom: 15px;">✓ Terrasse 8m²</p>
+          <p style="margin-top: 20px; font-size: 1.2rem; color: var(--accent);">Rentabilité 6%</p>
+        </div>
+      </div>
 
-        <!-- 3 pièces -->
-        <div class="appart-card">
-          <div class="card-img">
-            <img src="https://images.pexels.com/photos/2587054/pexels-photo-2587054.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2" alt="3 pièces">
-          </div>
-          <div class="card-content">
+      <!-- 3 pièces -->
+      <div class="card-3d" onclick="this.classList.toggle('flipped')">
+        <div class="card-3d-front" style="background-image: linear-gradient(to top, rgba(0,0,0,0.7), transparent), url('https://images.pexels.com/photos/2587054/pexels-photo-2587054.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2')">
+          <div>
+            <div class="card-badge">Familial</div>
             <h3 class="card-title">3 Pièces Familial</h3>
             <div class="card-price">1 890 000 DH</div>
-            <div class="card-features">
-              <span>98 m²</span>
-              <span>2 chambres</span>
-              <span>Parking</span>
-            </div>
-            <button class="btn-card">Je suis intéressé</button>
           </div>
         </div>
+        <div class="card-3d-back">
+          <h3 style="font-size: 2rem; margin-bottom: 20px;">3 Pièces</h3>
+          <p style="margin-bottom: 15px;">✓ 98 m²</p>
+          <p style="margin-bottom: 15px;">✓ 2 chambres</p>
+          <p style="margin-bottom: 15px;">✓ Parking</p>
+          <p style="margin-bottom: 15px;">✓ Loggia 10m²</p>
+          <p style="margin-top: 20px; font-size: 1.2rem; color: var(--accent);">Vue sur le parc</p>
+        </div>
+      </div>
 
-        <!-- Duplex -->
-        <div class="appart-card">
-          <div class="card-img">
-            <img src="https://images.pexels.com/photos/280233/pexels-photo-280233.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2" alt="Duplex">
-          </div>
-          <div class="card-content">
+      <!-- Duplex -->
+      <div class="card-3d" onclick="this.classList.toggle('flipped')">
+        <div class="card-3d-front" style="background-image: linear-gradient(to top, rgba(0,0,0,0.7), transparent), url('https://images.pexels.com/photos/280233/pexels-photo-280233.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2')">
+          <div>
+            <div class="card-badge">Duplex</div>
             <h3 class="card-title">Duplex Vue Mer</h3>
             <div class="card-price">2 950 000 DH</div>
-            <div class="card-features">
-              <span>145 m²</span>
-              <span>3 chambres</span>
-              <span>Terrasse</span>
-            </div>
-            <button class="btn-card">Je suis intéressé</button>
           </div>
         </div>
+        <div class="card-3d-back">
+          <h3 style="font-size: 2rem; margin-bottom: 20px;">Duplex</h3>
+          <p style="margin-bottom: 15px;">✓ 145 m²</p>
+          <p style="margin-bottom: 15px;">✓ 3 chambres</p>
+          <p style="margin-bottom: 15px;">✓ 2 salles d'eau</p>
+          <p style="margin-bottom: 15px;">✓ Terrasse 25m²</p>
+          <p style="margin-top: 20px; font-size: 1.2rem; color: var(--accent);">Vue imprenable</p>
+        </div>
+      </div>
 
-        <!-- Penthouse -->
-        <div class="appart-card">
-          <div class="card-img">
-            <img src="https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2" alt="Penthouse">
-          </div>
-          <div class="card-content">
+      <!-- Penthouse -->
+      <div class="card-3d" onclick="this.classList.toggle('flipped')">
+        <div class="card-3d-front" style="background-image: linear-gradient(to top, rgba(0,0,0,0.7), transparent), url('https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2')">
+          <div>
+            <div class="card-badge">Prestige</div>
             <h3 class="card-title">Penthouse Atlantis</h3>
             <div class="card-price">5 200 000 DH</div>
-            <div class="card-features">
-              <span>210 m²</span>
-              <span>4 chambres</span>
-              <span>Terrasse 80m²</span>
-            </div>
-            <button class="btn-card">Je suis intéressé</button>
           </div>
         </div>
+        <div class="card-3d-back">
+          <h3 style="font-size: 2rem; margin-bottom: 20px;">Penthouse</h3>
+          <p style="margin-bottom: 15px;">✓ 210 m²</p>
+          <p style="margin-bottom: 15px;">✓ 4 chambres</p>
+          <p style="margin-bottom: 15px;">✓ 3 salles d'eau</p>
+          <p style="margin-bottom: 15px;">✓ Terrasse 80m²</p>
+          <p style="margin-top: 20px; font-size: 1.2rem; color: var(--accent);">Piscine privée</p>
+        </div>
+      </div>
 
-        <!-- Studio Luxe -->
-        <div class="appart-card">
-          <div class="card-img">
-            <img src="https://images.pexels.com/photos/276528/pexels-photo-276528.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2" alt="Studio Luxe">
-          </div>
-          <div class="card-content">
+      <!-- Studio luxe -->
+      <div class="card-3d" onclick="this.classList.toggle('flipped')">
+        <div class="card-3d-front" style="background-image: linear-gradient(to top, rgba(0,0,0,0.7), transparent), url('https://images.pexels.com/photos/276528/pexels-photo-276528.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2')">
+          <div>
+            <div class="card-badge">Coup de cœur</div>
             <h3 class="card-title">Studio Premium</h3>
             <div class="card-price">1 150 000 DH</div>
-            <div class="card-features">
-              <span>52 m²</span>
-              <span>Terrasse</span>
-              <span>Clim</span>
-            </div>
-            <button class="btn-card">Je suis intéressé</button>
           </div>
         </div>
-      </div>
-
-      <!-- Long texte -->
-      <div class="appartements-long">
-        <h2 style="font-size: 2.5rem; margin-bottom: 30px;">Des finitions haut de gamme</h2>
-        <p style="font-size: 1.2rem; margin-bottom: 20px;">Chaque appartement Atlantis Hills est livré avec des finitions d'exception : parquet massif, cuisine équipée, climatisation réversible, domotique intégrée.</p>
-        <p style="font-size: 1.2rem; margin-bottom: 20px;">Les matériaux sont sélectionnés avec soin : marbre pour les salles de bain, robinetterie design, double vitrage à isolation renforcée.</p>
-        <p style="font-size: 1.2rem;">Tous les appartements bénéficient d'un parking sécurisé et d'un accès à la piscine et au spa de la résidence.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- PAGE AMÉNITÉS -->
-  <div id="amenites" class="page">
-    <div class="container">
-      <div class="section-header">
-        <h1>Aménités d'exception</h1>
-        <p>Tout pour votre bien-être sans quitter la résidence</p>
-      </div>
-      
-      <div class="amenites-grid">
-        <div class="amenite-card">
-          <div class="amenite-icon"><i class="fas fa-swimming-pool"></i></div>
-          <h3>Piscine</h3>
-          <p>Piscine olympique chauffée avec plage immergée et solarium</p>
-        </div>
-        <div class="amenite-card">
-          <div class="amenite-icon"><i class="fas fa-spa"></i></div>
-          <h3>Spa & Fitness</h3>
-          <p>Hammam, sauna, salle de sport, massages sur réservation</p>
-        </div>
-        <div class="amenite-card">
-          <div class="amenite-icon"><i class="fas fa-tree"></i></div>
-          <h3>Parc paysager</h3>
-          <p>2 hectares d'espaces verts, aires de jeux, jardin zen</p>
-        </div>
-        <div class="amenite-card">
-          <div class="amenite-icon"><i class="fas fa-shield-alt"></i></div>
-          <h3>Sécurité 24/7</h3>
-          <p>Vidéosurveillance, gardiennage, accès par badge</p>
-        </div>
-        <div class="amenite-card">
-          <div class="amenite-icon"><i class="fas fa-table-tennis"></i></div>
-          <h3>Terrain de padel</h3>
-          <p>Pour les passionnés de sport, éclairage nocturne</p>
-        </div>
-        <div class="amenite-card">
-          <div class="amenite-icon"><i class="fas fa-parking"></i></div>
-          <h3>Parking sécurisé</h3>
-          <p>Places de parking et box fermés avec bornes électriques</p>
-        </div>
-      </div>
-
-      <!-- Long texte -->
-      <div class="amenites-long">
-        <h2 style="font-size: 2.5rem; margin-bottom: 30px;">Un art de vivre unique</h2>
-        <p style="font-size: 1.2rem; margin-bottom: 20px;">Atlantis Hills ne se contente pas de vous offrir un appartement, c'est tout un mode de vie que nous vous proposons. Nos résidents bénéficient d'un accès privilégié à des installations de premier ordre : piscine chauffée ouverte toute l'année, spa avec hammam et sauna, salle de fitness entièrement équipée.</p>
-        <p style="font-size: 1.2rem; margin-bottom: 20px;">Pour les familles, le parc paysager de 2 hectares est un véritable poumon vert au cœur de la résidence. Les enfants disposent d'une aire de jeux sécurisée, tandis que les adultes peuvent profiter du jardin zen pour se ressourcer.</p>
-        <p style="font-size: 1.2rem; margin-bottom: 20px;">Les sportifs apprécieront le terrain de padel aux normes internationales, éclairé pour les soirées. Et pour votre tranquillité, une sécurité 24h/24 veille sur la résidence avec vidéosurveillance et gardiennage.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- PAGE CONTACT -->
-  <div id="contact" class="page">
-    <div class="contact-page">
-      <div class="contact-container">
-        <h1 style="text-align: center; font-size: 3rem; margin-bottom: 50px;">Contactez-nous</h1>
-        <div class="contact-grid">
-          <div class="contact-info">
-            <h2>Nos coordonnées</h2>
-            <div class="contact-detail">
-              <i class="fas fa-map-pin"></i>
-              <span>26, Boulevard Zerktouni, Casablanca</span>
-            </div>
-            <div class="contact-detail">
-              <i class="fas fa-phone-alt"></i>
-              <span>+212 5 22 99 88 77</span>
-            </div>
-            <div class="contact-detail">
-              <i class="fab fa-whatsapp"></i>
-              <span>+212 6 12 34 56 78</span>
-            </div>
-            <div class="contact-detail">
-              <i class="fas fa-envelope"></i>
-              <span>contact@atlantishills.ma</span>
-            </div>
-            <div class="contact-detail">
-              <i class="fas fa-clock"></i>
-              <span>Lun-Ven 9h-19h · Sam 10h-14h</span>
-            </div>
-          </div>
-          <div class="contact-form">
-            <form onsubmit="event.preventDefault(); alert('Merci pour votre message. Un conseiller vous contactera dans les 24h.');">
-              <input type="text" placeholder="Nom complet" required>
-              <input type="email" placeholder="Email" required>
-              <input type="tel" placeholder="Téléphone">
-              <select style="width:100%; padding:15px 20px; margin-bottom:20px; background:rgba(255,255,255,0.2); border:none; border-radius:50px; color:white;">
-                <option>Je recherche un studio</option>
-                <option>Je recherche un 2 pièces</option>
-                <option>Je recherche un 3 pièces</option>
-                <option>Je recherche un duplex</option>
-                <option>Je recherche un penthouse</option>
-                <option>Je souhaite investir</option>
-              </select>
-              <textarea rows="4" placeholder="Votre message..."></textarea>
-              <button type="submit">Envoyer ma demande</button>
-            </form>
-          </div>
+        <div class="card-3d-back">
+          <h3 style="font-size: 2rem; margin-bottom: 20px;">Studio Premium</h3>
+          <p style="margin-bottom: 15px;">✓ 52 m²</p>
+          <p style="margin-bottom: 15px;">✓ Terrasse 10m²</p>
+          <p style="margin-bottom: 15px;">✓ Clim centrale</p>
+          <p style="margin-bottom: 15px;">✓ Cuisine américaine</p>
+          <p style="margin-top: 20px; font-size: 1.2rem; color: var(--accent);">Finitions luxe</p>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- Footer commun -->
+  <!-- BUDGET SECTION -->
+  <section id="budget" class="budget-section">
+    <div class="budget-content">
+      <h2 class="budget-title fadeInUp">Des appartements pour <span style="color: var(--accent);">tous les budgets</span></h2>
+      <div class="budget-grid">
+        <div class="budget-card fadeInUp">
+          <div class="budget-icon"><i class="fas fa-home"></i></div>
+          <h3>Studio & 2 pièces</h3>
+          <p>Idéal pour débuter</p>
+          <div class="budget-range">À partir de 890 000 DH</div>
+        </div>
+        <div class="budget-card fadeInUp" style="animation-delay: 0.2s;">
+          <div class="budget-icon"><i class="fas fa-building"></i></div>
+          <h3>3 pièces & Duplex</h3>
+          <p>Pour les familles</p>
+          <div class="budget-range">De 1 500 000 à 2 950 000 DH</div>
+        </div>
+        <div class="budget-card fadeInUp" style="animation-delay: 0.4s;">
+          <div class="budget-icon"><i class="fas fa-crown"></i></div>
+          <h3>Penthouse & Prestige</h3>
+          <p>Vue mer, terrasse</p>
+          <div class="budget-range">Jusqu'à 6 500 000 DH</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AMÉNITÉS SECTION -->
+  <section id="amenites" class="section container">
+    <div class="section-header fadeInUp">
+      <h2>Des <span style="color: var(--primary);">aménités</span> d'exception</h2>
+      <p>Tout pour votre bien-être sans quitter la résidence</p>
+    </div>
+
+    <div class="amenities-grid">
+      <div class="amenity-card fadeInUp">
+        <div class="amenity-icon"><i class="fas fa-swimming-pool"></i></div>
+        <h3>Piscine</h3>
+        <p>Chauffée, vue mer</p>
+      </div>
+      <div class="amenity-card fadeInUp" style="animation-delay: 0.1s;">
+        <div class="amenity-icon"><i class="fas fa-spa"></i></div>
+        <h3>Spa & Fitness</h3>
+        <p>Hammam, salle de sport</p>
+      </div>
+      <div class="amenity-card fadeInUp" style="animation-delay: 0.2s;">
+        <div class="amenity-icon"><i class="fas fa-tree"></i></div>
+        <h3>Parc paysager</h3>
+        <p>2 hectares, aires de jeux</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="contact-section">
+    <div class="contact-grid">
+      <div class="contact-info fadeInUp">
+        <h2>Contactez-nous</h2>
+        <div class="contact-detail">
+          <i class="fas fa-map-pin"></i>
+          <div>26, Boulevard Zerktouni, Casablanca</div>
+        </div>
+        <div class="contact-detail">
+          <i class="fas fa-phone-alt"></i>
+          <div>+212 5 22 99 88 77</div>
+        </div>
+        <div class="contact-detail">
+          <i class="fab fa-whatsapp"></i>
+          <div>+212 6 12 34 56 78</div>
+        </div>
+      </div>
+      <div class="contact-form fadeInUp" style="animation-delay: 0.2s;">
+        <form onsubmit="event.preventDefault(); alert('Merci pour votre intérêt. Un conseiller vous contactera.');">
+          <input type="text" placeholder="Nom complet" required>
+          <input type="email" placeholder="Email" required>
+          <input type="tel" placeholder="Téléphone">
+          <textarea rows="3" placeholder="Votre message..."></textarea>
+          <button type="submit">Envoyer</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-col">
         <h4>ATLANTIS HILLS</h4>
-        <p>La résidence iconique de Casablanca</p>
-        <p>89 appartements · Livraison 2026</p>
+        <p>La résidence iconique</p>
+        <p>89 appartements</p>
       </div>
       <div class="footer-col">
         <h4>Contact</h4>
         <p>+212 5 22 99 88 77</p>
         <p>contact@atlantishills.ma</p>
-        <p>26, Bd Zerktouni, Casablanca</p>
       </div>
       <div class="footer-col">
         <h4>Suivez-nous</h4>
         <p><i class="fab fa-instagram"></i> @atlantishills</p>
         <p><i class="fab fa-linkedin"></i> Atlantis Hills</p>
-        <p><i class="fab fa-facebook"></i> Atlantis Hills Officiel</p>
       </div>
     </div>
     <div class="footer-bottom">
@@ -926,92 +1083,91 @@
   </footer>
 
   <script>
-    // ===== SYSTÈME DE PAGES =====
-    const pages = document.querySelectorAll('.page');
-    const navLinks = document.querySelectorAll('.nav-page');
-    const pageDots = document.querySelectorAll('.page-dot');
-
-    function changePage(pageId) {
-      pages.forEach(page => page.classList.remove('active-page'));
-      document.getElementById(pageId).classList.add('active-page');
-      
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.dataset.page === pageId) link.classList.add('active');
-      });
-      
-      pageDots.forEach(dot => {
-        dot.classList.remove('active');
-        if (dot.dataset.page === pageId) dot.classList.add('active');
-      });
-      
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    navLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        changePage(link.dataset.page);
-      });
-    });
-
-    pageDots.forEach(dot => {
-      dot.addEventListener('click', () => changePage(dot.dataset.page));
-    });
-
-    // ===== HERO 3D =====
-    function initHero3D() {
-      const canvas = document.getElementById('hero-canvas');
+    // ===== ARRIÈRE-PLAN 3D =====
+    function initBackground3D() {
+      const canvas = document.getElementById('bg-canvas');
       if (!canvas) return;
 
       const scene = new THREE.Scene();
-      scene.background = new THREE.Color(0x0f4b6e);
+      scene.background = new THREE.Color(0xf8fafc);
 
       const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-      camera.position.set(0, 2, 15);
+      camera.position.set(0, 0, 20);
 
-      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
       renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setClearColor(0xf8fafc, 1);
 
+      // Lumières
       const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
       scene.add(ambientLight);
-      
+
       const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
-      dirLight.position.set(1, 2, 1);
+      dirLight.position.set(1, 1, 1);
       scene.add(dirLight);
 
-      // Immeubles 3D
-      for (let i = 0; i < 8; i++) {
-        const geometry = new THREE.BoxGeometry(1, Math.random() * 3 + 2, 1);
-        const material = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0x224466 });
-        const building = new THREE.Mesh(geometry, material);
-        building.position.x = (i - 3.5) * 1.5;
-        building.position.y = building.geometry.parameters.height / 2;
-        building.position.z = -3;
-        scene.add(building);
-      }
+      // Éléments 3D flottants
+      const geometry1 = new THREE.TorusKnotGeometry(1.5, 0.4, 100, 16);
+      const material1 = new THREE.MeshStandardMaterial({ 
+        color: 0x0f4b6e, 
+        wireframe: true, 
+        transparent: true, 
+        opacity: 0.08 
+      });
+      const torusKnot = new THREE.Mesh(geometry1, material1);
+      torusKnot.position.set(-3, 0, -2);
+      torusKnot.scale.set(1.5, 1.5, 1.5);
+      scene.add(torusKnot);
+
+      const geometry2 = new THREE.IcosahedronGeometry(1.5, 0);
+      const material2 = new THREE.MeshStandardMaterial({ 
+        color: 0x6ab0d6, 
+        wireframe: true, 
+        transparent: true, 
+        opacity: 0.06 
+      });
+      const icosahedron = new THREE.Mesh(geometry2, material2);
+      icosahedron.position.set(3, 1, -4);
+      icosahedron.scale.set(1.8, 1.8, 1.8);
+      scene.add(icosahedron);
 
       // Particules
       const particlesGeo = new THREE.BufferGeometry();
-      const particlesCount = 500;
+      const particlesCount = 300;
       const posArray = new Float32Array(particlesCount * 3);
       
       for (let i = 0; i < particlesCount * 3; i += 3) {
-        posArray[i] = (Math.random() - 0.5) * 30;
-        posArray[i+1] = (Math.random() - 0.5) * 20;
-        posArray[i+2] = (Math.random() - 0.5) * 20;
+        posArray[i] = (Math.random() - 0.5) * 50;
+        posArray[i+1] = (Math.random() - 0.5) * 30;
+        posArray[i+2] = (Math.random() - 0.5) * 30;
       }
       
       particlesGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-      const particlesMat = new THREE.PointsMaterial({ color: 0xf5b042, size: 0.05 });
+      
+      const particlesMat = new THREE.PointsMaterial({
+        size: 0.1,
+        color: 0x0f4b6e,
+        transparent: true,
+        opacity: 0.1
+      });
+      
       const particles = new THREE.Points(particlesGeo, particlesMat);
       scene.add(particles);
 
       function animate() {
         requestAnimationFrame(animate);
-        particles.rotation.y += 0.0005;
+        
+        torusKnot.rotation.x += 0.001;
+        torusKnot.rotation.y += 0.002;
+        
+        icosahedron.rotation.x += 0.002;
+        icosahedron.rotation.y += 0.001;
+        
+        particles.rotation.y += 0.0002;
+        
         renderer.render(scene, camera);
       }
+      
       animate();
 
       window.addEventListener('resize', () => {
@@ -1021,9 +1177,65 @@
       });
     }
 
+    // ===== NAVIGATION =====
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    function toggleMobileMenu() {
+      document.getElementById('mobileNav').classList.toggle('active');
+    }
+
+    function closeMobileMenu() {
+      document.getElementById('mobileNav').classList.remove('active');
+    }
+
+    // Smooth scroll et active class
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+          closeMobileMenu();
+        }
+      });
+    });
+
+    // Active class based on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      const scrollPosition = window.scrollY + 100;
+
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionBottom = sectionTop + section.offsetHeight;
+
+        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Initialisation
     window.addEventListener('load', () => {
-      initHero3D();
-      changePage('accueil');
+      initBackground3D();
     });
   </script>
 </body>
